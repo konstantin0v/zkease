@@ -2,6 +2,8 @@ import styles from "./Header.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 
 const Header = ({ ...props }) => {
   return (
@@ -34,10 +36,19 @@ const Header = ({ ...props }) => {
         </li>
       </ul>
       <div className={styles.btn}>
-        <Button>Connect Wallet</Button>
-      </div>
+      <ConnectButton 
+      label="Sign in"
+     // accountStatus="address"
+      chainStatus="none"
+      showBalance={{
+        smallScreen: false,
+        largeScreen: true,
+      }}
+      />
+            </div>
     </header>
   );
 };
 
 export default Header;
+
