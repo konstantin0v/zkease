@@ -1,12 +1,12 @@
 .button {
-  color: var(--sectext);
+  color: var(--secondtext);
   background-color: var(--buttonmain);
   padding: 8px 12px;
   width: 145px;
   height: 35px;
   border: none;
   border-radius: 8px;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: 500;
   display: flex;

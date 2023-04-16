@@ -2,12 +2,12 @@
 
 :root {
   --maintext: white;
-  --sectext: black;
+  --secondtext: black;
   --buttonmain: white;
   --buttonhover: rgb(230, 230, 230);
   --background: black;
   --border: #414141;
-  --textsecond: #adadad;
+  --thirdtext: #adadad;
 }
 
 * {

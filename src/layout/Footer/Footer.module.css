@@ -1,24 +1,33 @@
+.footer {
+  width: 1200px;
+  height: 84px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .btn {
-  margin-left: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nav {
-  margin-right: 120px;
   margin-left: 64px;
   display: flex;
+  align-items: center;
 }
 .nav li {
   margin-left: 10px;
-  color: var(--textsecond);
+  color: var(--thirdtext);
 }
 .nav li:hover {
   margin-left: 10px;
   color: var(--white);
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .btn {
-    margin-left: 15px;
+    margin-left: 5px;
   }
   .nav {
-    margin-right: 15px;
+    margin-right: 5px;
   }
 }

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styles from "./Sidebar.module.css";
+import { Leaderboard } from "@/components";
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
@@ -11,7 +12,7 @@ const Sidebar = ({ ...props }) => {
       {currentPage === "/" ? (
         <>
           <div className={styles.achievements}>Achievements</div>
-          <div className={styles.leaderboard}>Leaderboard</div>
+          <Leaderboard />
         </>
       ) : (
         <>

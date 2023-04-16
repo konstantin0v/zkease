@@ -1,54 +1,53 @@
 import styles from "./Header.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header = ({ ...props }) => {
   return (
-    <header {...props}>
-      <Link href="/" className={styles.link}>
-        <Image
-          src="/image/logo.svg"
-          alt="zkEasy logo"
-          width={20}
-          height={20}
-          className={styles.link__logo}
-        />
-        <h1 className={styles.link_text}>zkEasy</h1>
-      </Link>
-      <ul className={styles.nav}>
-        <li>
-          <Link href="/" className={styles.nav__link}>
-            Learn
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className={styles.nav__link}>
-            Community
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className={styles.nav__link}>
-            About
-          </Link>
-        </li>
-      </ul>
-      <div className={styles.btn}>
-      <ConnectButton 
-      label="Sign in"
-     // accountStatus="address"
-      chainStatus="none"
-      showBalance={{
-        smallScreen: false,
-        largeScreen: true,
-      }}
-      />
-            </div>
-    </header>
+    <div {...props}>
+      <header className={styles.navbar}>
+        <Link href="/" className={styles.logo}>
+          <Image
+            src="/image/logo.svg"
+            alt="zkEasy logo"
+            width={20}
+            height={20}
+            className={styles.logo__img}
+          />
+          <h1 className={styles.logo__text}>zkEasy</h1>
+        </Link>
+        <ul className={styles.menu}>
+          <li>
+            <Link href="/" className={styles.menu__link}>
+              Learn
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className={styles.menu__link}>
+              Community
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className={styles.menu__link}>
+              About
+            </Link>
+          </li>
+        </ul>
+        <div className={styles.button}>
+          <ConnectButton
+            label="Sign in"
+            // accountStatus="address"
+            chainStatus="none"
+            showBalance={{
+              smallScreen: false,
+              largeScreen: true,
+            }}
+          />
+        </div>
+      </header>
+    </div>
   );
 };
 
 export default Header;
-
