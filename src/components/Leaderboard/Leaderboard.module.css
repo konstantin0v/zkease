@@ -5,6 +5,7 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
+  background-color: rgba(36, 36, 36, 1);
 }
 .subtitle {
   border-bottom: 1px solid var(--border);
