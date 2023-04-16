@@ -4,6 +4,7 @@
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 8px;
+  background-color: rgba(36, 36, 36, 1);
 }
 .achievements {
   height: 148px;
@@ -11,6 +12,7 @@
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 8px;
+  background-color: rgba(36, 36, 36, 1);
 }
 .task {
   height: 50px;

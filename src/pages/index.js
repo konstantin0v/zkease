@@ -1,3 +1,4 @@
+import { Task } from "@/components";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
@@ -8,9 +9,7 @@ export default function Home({ ...props }) {
       <Link href="/task/task" className={styles.ink}>
         click me
       </Link>
- 
+      <Task />
     </>
   );
 }
-
-

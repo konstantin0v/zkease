@@ -6,6 +6,7 @@
   --buttonmain: white;
   --buttonhover: rgb(230, 230, 230);
   --background: black;
+  --secondbackground: rgba(23, 23, 23, 1);
   --border: #414141;
   --thirdtext: #adadad;
 }
