@@ -1,27 +1,21 @@
-import { useRouter } from "next/router";
-import styles from "./Sidebar.module.css";
+import { useRouter } from 'next/router';
+import styles from './Sidebar.module.css';
+import { Achieves, Leaderboard, Progress } from '@/components';
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
   const currentPage = router.pathname;
+  const { journey } = router.query;
   return (
-    <div {...props}>
-      <div className={styles.progress}>Progress</div>
-
-      {currentPage === "/" ? (
-        <>
-          <div className={styles.achievements}>Achievements</div>
-          <div className={styles.leaderboard}>Leaderboard</div>
-        </>
-      ) : (
-        <>
-          <div className={styles.task}>mute</div>
-          <div className={styles.task}>orbiter</div>
-          <div className={styles.task}>zk</div>
-          <div className={styles.task}>celer</div>
-        </>
+    <>
+      {!currentPage.includes('task') && !currentPage.includes('landing') &&(
+        <div {...props}>
+          <Progress journey={journey} />
+          <Achieves />
+          <Leaderboard />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default Sidebar;
