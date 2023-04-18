@@ -12,7 +12,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 //import { generateColorFromAddress } from './utils';
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
 import { Provider } from "react-redux";
-import store from "@/store";
+import { store, persistor } from "@/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const CustomAvatar = ({ address }) => {
   return address ? (
@@ -40,9 +41,11 @@ export default function App({ Component, pageProps }) {
         theme={darkTheme()}
       >
         <Provider store={store}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <PersistGate loading={null} persistor={persistor}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </PersistGate>
         </Provider>
       </RainbowKitProvider>
     </WagmiConfig>
