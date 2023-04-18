@@ -36,8 +36,6 @@ export const getServerSideProps = async () => {
 
 export default function Home({ bestUsers, ...props }) {
   const { address: WalletAddress } = useAccount();
-  // console.log("WAGMIaddress", WalletAddress);
-  // console.log("RENDER");
   const score = 0;
   const dispatch = useDispatch();
   const { address, exp, bestPerformers } = useSelector(zkRecordSelector);
@@ -48,16 +46,12 @@ export default function Home({ bestUsers, ...props }) {
     dispatch(setExp(record.exp));
     router.reload();
   };
-  // const handleAddExpTEST = useCallback(async() => {
-  //   const {record} = await updateTasksByAddress(address, 'test', 10)
-  //   dispatch(setExp(record.exp));
-  // }, []);
   useEffect(() => {
     (async () => {
       dispatch(setBestPerformers(bestUsers));
 
     })();
-  }, [useDispatch]);
+  }, []);
 console.log('EXP', exp)
   useEffect(() => {
     (async () => {
