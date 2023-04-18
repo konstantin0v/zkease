@@ -1,13 +1,25 @@
-import { Button } from "@/components";
+import { Button, Union } from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
+
+// import Icon from "/image/union.svg";
 
 const Footer = ({ ...props }) => {
   return (
     <div {...props}>
       <footer className={styles.footer}>
         <div className={styles.btn}>
-          <Button>join</Button>
+          <Button
+            type="primary"
+            intent="intent-primary"
+            size="medium"
+            showIconRight
+            IconRight={Union}
+            showIconLeft
+            IconLeft={Union}
+          >
+            Join
+          </Button>
         </div>
         <ul className={styles.nav}>
           <li>
