@@ -87,8 +87,8 @@ console.log('EXP', exp)
         click me
       </Link>
       <Task />
-    
-      <button onClick={handleAddExpTEST}>GIVE ME EXP</button>
+    {WalletAddress && <button onClick={handleAddExpTEST}>GIVE ME EXP</button>}
+      
     </>
   );
 }
