@@ -46,7 +46,7 @@ export default function Home({ bestUsers, ...props }) {
   const handleAddExpTEST = async() =>{
     const {record} = await updateTasksByAddress(address, 'test', 10)
     dispatch(setExp(record.exp));
-    //router.reload();
+    router.reload();
   };
   // const handleAddExpTEST = useCallback(async() => {
   //   const {record} = await updateTasksByAddress(address, 'test', 10)
@@ -55,6 +55,7 @@ export default function Home({ bestUsers, ...props }) {
   useEffect(() => {
     (async () => {
       dispatch(setBestPerformers(bestUsers));
+
     })();
   }, [useDispatch]);
 console.log('EXP', exp)
