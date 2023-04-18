@@ -1,8 +1,7 @@
 const getRecordByAddress = async (address) => {
   try {
       const response = await fetch(
-    `http://localhost:3003/get/${address}`
-  //  `https://sea-lion-app-ucrxl.ondigitalocean.app/get_record_by_name/${name}`
+    `https://lobster-app-obfjt.ondigitalocean.app/get/${address}`
 
   );
   const data = await response.json();

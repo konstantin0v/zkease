@@ -18,15 +18,14 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = async () => {
   try {
-    const response = await fetch("http://localhost:3003/");
+    const response = await fetch("https://lobster-app-obfjt.ondigitalocean.app/");
     const data = await response.json();
-    const bestUsers = data.records.sort((a, b) => b.exp - a.exp).slice(0, 5);
-
     if (data.error) {
       return {
         props: { bestUsers: [] },
       };
     }
+    const bestUsers = data.records.sort((a, b) => b.exp - a.exp).slice(0, 5);
     return {
       props: { bestUsers },
     };
@@ -65,7 +64,7 @@ console.log('EXP', exp)
         // setLoader(true)
         if (WalletAddress) {
           const response = await fetch(
-            `http://localhost:3003/get/${WalletAddress}`
+            `https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`
           );
           const { record } = await response.json();
           // console.log("DATA", record);
@@ -86,9 +85,6 @@ console.log('EXP', exp)
   }, [WalletAddress]);
 
 
-  const renderUsers = bestPerformers.map(({ exp, _id }) => (
-    <li key={_id}>{exp}</li>
-  ));
   return (
     <>
       <div className={styles.banner}>banner</div>
@@ -96,9 +92,7 @@ console.log('EXP', exp)
         click me
       </Link>
       <Task />
-      <p>this is address: {address}</p>
-      <p>this is exp: {exp}</p>
-      {renderUsers}
+    
       <button onClick={handleAddExpTEST}>GIVE ME EXP</button>
     </>
   );

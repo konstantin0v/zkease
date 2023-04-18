@@ -7,8 +7,7 @@ const postRecord = async (address, exp) => {
     },
   };
   try {
-    const response = await fetch(`http://localhost:3003/`, requestOptions);
-// const response = await fetch(`https://sea-lion-app-ucrxl.ondigitalocean.app/`, requestOptions);
+    const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/`, requestOptions);
   const data = await response.json();
   if (response.status !== 200) {
     throw new Error(data.error);

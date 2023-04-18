@@ -7,7 +7,7 @@
       body: JSON.stringify({ task, exp })
     };
     try {
-      const response = await fetch(`http://localhost:3003/update/${address}`, requestOptions);
+      const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/update/${address}`, requestOptions);
       const {record} = await response.json();
       return {record}
       if (response.ok) {

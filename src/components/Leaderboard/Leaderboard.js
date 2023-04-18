@@ -1,9 +1,9 @@
 import styles from "./Leaderboard.module.css";
 import { zkRecordSelector } from '../../store/zkRecord/reducer';
 import { useSelector } from 'react-redux';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4  } from 'uuid';
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
-
+const uuid = uuidv4()
 export const Leaderboard = () => {
   const { bestPerformers } = useSelector(zkRecordSelector);
   // const guys = [
@@ -52,7 +52,7 @@ export const Leaderboard = () => {
       <h3 className={styles.subtitle}>Leaderboard</h3>
       <ul className={styles.list}>
         {bestPerformers.map(({address, exp}) => (
-          <ul key={uuid()} className={styles.list__row}>
+          <ul key={uuid} className={styles.list__row}>
             <li className={styles.list__row__name}>
             <Jazzicon diameter={30} seed={jsNumberForAddress(address)} />
             {address.slice(0, 5) +"..." +address.slice(38)}
