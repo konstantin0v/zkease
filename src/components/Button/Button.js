@@ -1,13 +1,4 @@
-import Image from "next/image";
 import styles from "./Button.module.css";
-
-// export const Button = ({ children, ...props }) => {
-//   return (
-//     <button className={styles.button} {...props}>
-//       {children}
-//     </button>
-//   );
-// };
 
 export const Button = ({
   type = "primary",

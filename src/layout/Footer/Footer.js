@@ -11,7 +11,7 @@ const Footer = ({ ...props }) => {
         <div className={styles.btn}>
           <Button
             type="primary"
-            intent="intent-primary"
+            intent="intent-positive"
             size="medium"
             showIconRight
             IconRight={Union}
