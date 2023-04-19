@@ -1,8 +1,6 @@
-import { Button, Union } from "@/components";
+import { Button, ButtonIcon } from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
-
-// import Icon from "/image/union.svg";
 
 const Footer = ({ ...props }) => {
   return (
@@ -11,12 +9,11 @@ const Footer = ({ ...props }) => {
         <div className={styles.btn}>
           <Button
             type="primary"
-            intent="intent-positive"
-            size="medium"
+            size="large"
             showIconRight
-            IconRight={Union}
+            IconRight={ButtonIcon}
             showIconLeft
-            IconLeft={Union}
+            IconLeft={ButtonIcon}
           >
             Join
           </Button>

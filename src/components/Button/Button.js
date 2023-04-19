@@ -29,7 +29,7 @@ export const Button = ({
             <IconLeft />
           </span>
         )}
-        {children}
+        <span className={styles.buttonText}>{children}</span>
         {showIconRight && (
           <span className={styles.iconRight}>
             <IconRight />
