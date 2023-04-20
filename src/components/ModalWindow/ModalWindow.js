@@ -9,13 +9,13 @@ const ModalWindow = ({
     message = "Message",
     image = pic,
     imageAltText,
-    imageWidth,
+    imageWidth = 128,
+    imageHeight = 128,
     imageFlag = false,
     numberOfButtons = 1,
     secondButtonType = "secondary",
     secondButtonColor,
     secondButtonText = "Second Button",
-    
     firstButtonType,
     firstButtonColor = "intent-primary",
     firstButtonText = "First Button",
@@ -30,7 +30,7 @@ const ModalWindow = ({
                 </header>
 
                 <main className={styles.modalBody}>
-                    {imageFlag && <Image alt={imageAltText} src={image} width={128} height={128}/>}
+                    {imageFlag && <Image alt={imageAltText} src={image} width={imageWidth} height={imageHeight}/>}
                     <p className={styles.modalMassage}>{message}</p>
                 </main>
 
