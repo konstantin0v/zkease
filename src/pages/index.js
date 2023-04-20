@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { zkRecordSelector } from "../store/zkRecord/reducer";
 import updateTasksByAddress from "../serverUtils/updateTasksByAddress";
 import { useRouter } from "next/router";
+import ModalWindow from "@/components/ModalWindow/ModalWindow";
 // import { usersSelector } from '../store/users/reducer';
 
 export const getServerSideProps = async () => {
@@ -87,6 +88,7 @@ console.log('EXP', exp)
         click me
       </Link>
       <Task />
+      <ModalWindow />
     {WalletAddress && <button onClick={handleAddExpTEST}>GIVE ME EXP</button>}
       
     </>
