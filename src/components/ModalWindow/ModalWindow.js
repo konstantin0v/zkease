@@ -10,7 +10,16 @@ const ModalWindow = ({
     image = pic,
     imageAltText,
     imageWidth,
-    imageFlag = true,
+    imageFlag = false,
+    numberOfButtons = 1,
+    secondButtonType = "secondary",
+    secondButtonColor,
+    secondButtonText = "Second Button",
+    
+    firstButtonType,
+    firstButtonColor = "intent-primary",
+    firstButtonText = "First Button",
+
 }) => {
     return ( 
         <>
@@ -21,13 +30,13 @@ const ModalWindow = ({
                 </header>
 
                 <main className={styles.modalBody}>
-                    <Image alt={imageAltText} src={image} width={128} height={128}/>
+                    {imageFlag && <Image alt={imageAltText} src={image} width={128} height={128}/>}
                     <p className={styles.modalMassage}>{message}</p>
                 </main>
 
                 <footer className={styles.modelFooter}>
-                    <Button type="secondary">БАРЯ</Button>
-                    <Button intent="intent-primary">УМЕР</Button>
+                    {numberOfButtons === 2 && <Button intent={secondButtonColor} type={secondButtonType}>{secondButtonText}</Button>}
+                    <Button type={firstButtonType} intent={firstButtonColor}>{firstButtonText}</Button>
                 </footer>
             </div>
         </>
