@@ -26,25 +26,25 @@ const ModalWindow = ({
 
     return ( 
         <>
-                     <button onClick={() => setIsOpen(true)}>Open Modal</button>
-                    <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)} className={styles.modalBackground}>
-                        <div className={styles.ModalWindow}>
-                            <header className={styles.modalHeader}>
-                                <p className={styles.modalTitle}>{title}</p>
-                                <button onClick={() => setIsOpen(false)}>&#10006;</button>
-                            </header>
+                <button onClick={() => setIsOpen(true)}>Open Modal</button>
+                <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)} className={styles.modalBackground}>
+                    <div className={styles.ModalWindow}>
+                        <header className={styles.modalHeader}>
+                            <p className={styles.modalTitle}>{title}</p>
+                            <button onClick={() => setIsOpen(false)}>&#10006;</button>
+                        </header>
 
-                            <main className={styles.modalBody}>
-                                {imageFlag && <Image alt={imageAltText} src={image} width={imageWidth} height={imageHeight}/>}
-                                <p className={styles.modalMassage}>{message}</p>
-                            </main>
+                        <main className={styles.modalBody}>
+                            {imageFlag && <Image alt={imageAltText} src={image} width={imageWidth} height={imageHeight}/>}
+                            <p className={styles.modalMassage}>{message}</p>
+                        </main>
 
-                            <footer className={styles.modelFooter}>
-                                {numberOfButtons === 2 && <Button intent={secondButtonColor} type={secondButtonType}>{secondButtonText}</Button>}
-                                <Button type={firstButtonType} intent={firstButtonColor}>{firstButtonText}</Button>
-                            </footer>
-                        </div>
-                    </Modal>
+                        <footer className={styles.modelFooter}>
+                            {numberOfButtons === 2 && <Button intent={secondButtonColor} type={secondButtonType}>{secondButtonText}</Button>}
+                            <Button type={firstButtonType} intent={firstButtonColor}>{firstButtonText}</Button>
+                        </footer>
+                    </div>
+                </Modal>
 
         </>
     );
