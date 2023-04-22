@@ -15,6 +15,7 @@ import { zkRecordSelector } from "../store/zkRecord/reducer";
 import updateTasksByAddress from "../serverUtils/updateTasksByAddress";
 import { useRouter } from "next/router";
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
+import Accordion from "@/components/Accordion/Accordion";
 // import { usersSelector } from '../store/users/reducer';
 
 export const getServerSideProps = async () => {
@@ -89,6 +90,7 @@ console.log('EXP', exp)
       </Link>
       <Task />
       <ModalWindow />
+      <Accordion />
     {WalletAddress && <button onClick={handleAddExpTEST}>GIVE ME EXP</button>}
       
     </>
