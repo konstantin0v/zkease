@@ -49,8 +49,8 @@ export default function Home({ bestUsers, ...props }) {
     (async () => {
       try {
         if (WalletAddress) {
-          const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
-          //const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`);
+          //const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
+          const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`);
           const { record } = await response.json();
           if (record) {
             dispatch(setAddress(record.address));
