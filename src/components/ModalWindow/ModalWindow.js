@@ -24,14 +24,30 @@ const ModalWindow = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleModalOpenClick = () =>{
+        if (typeof document !== "undefined") {
+            const modal = document.querySelector("#modal");
+            modal.styles.opacity = "1";
+            setIsOpen(true);
+        }
+    }
+
+    const handleModalCloseClick = () =>{
+        if (typeof document !== "undefined") {
+            const modal = document.querySelector("#modal");
+            modal.styles.opacity = "0";
+            setIsOpen(false);
+        }
+    }
+
     return ( 
         <>
-            <Button size="small" onClick={() => setIsOpen(true)}>Open ModalWindow</Button>
-            <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)} className={styles.modalBackground}>
-                <div className={styles.ModalWindow}>
+            <Button size="small" onClick={handleModalOpenClick}>Open ModalWindow</Button>
+            <Modal isOpen={isOpen} onRequestClose={handleModalCloseClick} className={styles.modalBackground}>
+                <main id="modal" className={styles.modalWindow}>
                     <header className={styles.modalHeader}>
                         <p className={styles.modalTitle}>{title}</p>
-                        <button onClick={() => setIsOpen(false)}>&#10006;</button>
+                        <button onClick={handleModalCloseClick}>&#10006;</button>
                     </header>
 
                     <main className={styles.modalBody}>
@@ -43,7 +59,7 @@ const ModalWindow = ({
                         {numberOfButtons === 2 && <Button intent={secondButtonColor} type={secondButtonType}>{secondButtonText}</Button>}
                         <Button type={firstButtonType} intent={firstButtonColor}>{firstButtonText}</Button>
                     </footer>
-                </div>
+                </main>
             </Modal>
         </>
     );

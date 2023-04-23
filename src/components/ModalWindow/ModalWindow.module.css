@@ -2,13 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, );
+    background: rgba(247, 247, 247, 0.1);
+    backdrop-filter: blur(2px);
     /* padding-top: 150px; */
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    z-index: 20;
 }
 
-.ModalWindow{
+.modalWindow{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -28,7 +30,8 @@
     flex-grow: 0;
 
     /* НЕ ЗАБУДЬ УБРАТЬ */
-    margin: 20px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
 }
 
 .modalHeader{
