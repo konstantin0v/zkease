@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     address: undefined,
     exp: undefined,
-    bestPerformers: [],
+    storedTasks: {},
+    nfts: {},
 }
 
 export const zkRecordSlice = createSlice({
@@ -16,13 +17,16 @@ export const zkRecordSlice = createSlice({
         setExp: (state, action) => {
             state.exp = action.payload
         },
-        setBestPerformers: (state, action) => {
-            state.bestPerformers = action.payload
+        setStoredTasks: (state, action) => {
+            state.storedTasks = action.payload
+        },
+        setNfts: (state, action) => {
+            state.nfts = action.payload
         },
         }
 })
 
-export const { setAddress, setExp,  setBestPerformers} = zkRecordSlice.actions
+export const { setAddress, setExp, setStoredTasks, setNfts} = zkRecordSlice.actions
 
 export const zkRecordSelector = (state) => state.zkRecord;
 

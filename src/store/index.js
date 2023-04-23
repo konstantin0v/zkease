@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import zkRecordReducer from './zkRecord/reducer'
+import usersReducer from './users/reducer'
 import storageSession from 'redux-persist/lib/storage/session'
 import {
   persistStore,
@@ -25,6 +26,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   zkRecord: zkRecordReducer,
+  users: usersReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
