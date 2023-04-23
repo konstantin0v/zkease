@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./task.module.css";
 
-export const TaskByRoma = () => {
-  const [userProgress, setUserProgress] = useState(0);
-  const [wholeProgress, setWholeProgress] = useState(4);
-  const [status, setStatus] = useState("not Started");
-  const [task, setTask] = useState("Quest Title");
-  const [description, setDescription] = useState("Description");
+export const Task = ({
+  description = "Description",
+  task = "Quest Title",
+  progessInBar = 1,
+  taskStatus = "not Started",
+  wholeProgress = 4,
+}) => {
+  const [userProgress, setUserProgress] = useState(progessInBar);
+  const [status, setStatus] = useState(taskStatus);
+
   if (typeof document !== "undefined") {
     const progress = document.querySelector("#progress");
   }
   const changeWidth = () => {
+    if(userProgress > wholeProgress) return;
+    
     progress.style.width = `${(userProgress / wholeProgress) * 100}%`;
   };
 
@@ -43,7 +49,7 @@ export const TaskByRoma = () => {
         </div>
       </div>
       {/* кнопка для теста  */}
-      <button onClick={handleClick}>НАЖМИ МЕНЯ</button>
+      {/* <button onClick={handleClick}>НАЖМИ МЕНЯ</button> */}
 
       <div className={styles.content}>
         <p className={styles.contentTask}>{task}</p>
