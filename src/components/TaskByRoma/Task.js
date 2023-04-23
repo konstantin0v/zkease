@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./task.module.css";
 
-export const Task = () => {
+export const TaskByRoma = () => {
   const [userProgress, setUserProgress] = useState(0);
   const [wholeProgress, setWholeProgress] = useState(4);
   const [status, setStatus] = useState("not Started");

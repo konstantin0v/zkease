@@ -1,20 +1,19 @@
-import { Task } from "@/components";
+import { JourneyCard } from "@/components";
 import postRecord from "@/serverUtils/postRecord";
 import styles from "@/styles/Home.module.css";
-import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import {  useEffect } from "react";
 import { useAccount } from "wagmi";
 import {
   setExp,
   setAddress,
-  setBestPerformers,
+  setStoredTasks,
+  setNfts
 } from "../store/zkRecord/reducer";
-// import {  setUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { zkRecordSelector } from "../store/zkRecord/reducer";
-import updateTasksByAddress from "../serverUtils/updateTasksByAddress";
-import { useRouter } from "next/router";
-// import { usersSelector } from '../store/users/reducer';
+import {  setUsers } from "../store/users/reducer";
+import { useDispatch } from "react-redux";
+import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
+import { nfts } from "@/consts/nfts";
+import { v4 as uuidv4  } from 'uuid';
 
 export const getServerSideProps = async () => {
   try {
@@ -37,58 +36,51 @@ export const getServerSideProps = async () => {
 export default function Home({ bestUsers, ...props }) {
   const { address: WalletAddress } = useAccount();
   const score = 0;
+   const initialTasks = replaceValuesWithZero(allTasks)
   const dispatch = useDispatch();
-  const { address, exp, bestPerformers } = useSelector(zkRecordSelector);
-  //const {  users } = useSelector(usersSelector);
-  const router = useRouter()
-  const handleAddExpTEST = async() =>{
-    const {record} = await updateTasksByAddress(address, 'test', 10)
-    dispatch(setExp(record.exp));
-    router.reload();
-  };
+
   useEffect(() => {
     (async () => {
-      dispatch(setBestPerformers(bestUsers));
-
+      dispatch(setUsers(bestUsers))
     })();
   }, []);
-console.log('EXP', exp)
+
   useEffect(() => {
     (async () => {
       try {
-        // setLoader(true)
         if (WalletAddress) {
-          const response = await fetch(
-            `https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`
-          );
+          const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
+          //const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`);
           const { record } = await response.json();
-          // console.log("DATA", record);
           if (record) {
             dispatch(setAddress(record.address));
             dispatch(setExp(record.exp));
+            dispatch(setStoredTasks(record.tasks));
+            dispatch(setNfts(record.nfts));
+
           } else {
-            await postRecord(WalletAddress, score);
+            await postRecord(WalletAddress, score, initialTasks, nfts);
             dispatch(setAddress(WalletAddress));
             dispatch(setExp(score));
+            dispatch(setStoredTasks(initialTasks));
+            dispatch(setNfts(nfts));
           }
         }
-        //  setLoader(false)
       } catch (error) {
         console.error(error);
       }
     })();
   }, [WalletAddress]);
 
-
   return (
     <>
       <div className={styles.banner}>banner</div>
-      <Link href="/task/task" className={styles.ink}>
-        click me
-      </Link>
-      <Task />
-    {WalletAddress && <button onClick={handleAddExpTEST}>GIVE ME EXP</button>}
-      
-    </>
+{
+    Object.keys(allTasks).map(i => 
+    <div key={uuidv4()}>
+      <JourneyCard journeyName={i}/>
+    </div>
+    )
+}    </>
   );
 }
