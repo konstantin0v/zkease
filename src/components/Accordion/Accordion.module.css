@@ -30,10 +30,10 @@
     border-radius: 16px 16px 0 0;
 }
 
-.accordionTitle:hover,
+/* .accordionTitle:hover,
 .accordionTitleActive:hover {
     background-color: #3A3A3A;
-}
+} */
 
 .accordionTitle,
 .accordionContent {
