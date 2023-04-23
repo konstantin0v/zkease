@@ -75,6 +75,5 @@ export const handleMintNft = async (WalletAddress, journey, setNfts, dispatch) =
   } catch (error) {
     console.log(error);
   }
-  
-  
-}
+};
+

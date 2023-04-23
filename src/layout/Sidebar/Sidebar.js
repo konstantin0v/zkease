@@ -11,30 +11,18 @@ import { v4 as uuidv4 } from "uuid";
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
   const currentPage = router.pathname;
-  const { journey, taskName } = router.query;
+  const { journey } = router.query;
   const tasksByJourney = allTasks[journey];
-
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-console.log('NAME from address string',journey, 'taskName', taskName);
+
   return (
     <div {...props}>
       <div className={styles.progress}>Progress - {WalletAddress && exp}XP
-      <p>You have NFT:</p>
+      <p>You have {(Object.entries(nfts).filter(([_, value]) => value !== 0)).length} NFT
+        
+      </p>
       </div>
-      {/* {currentPage === "/" ? (
-        <>
-          <div className={styles.achievements}>Achievements</div>
-          <Leaderboard />
-        </>
-      ) : (
-        <>
-          <div className={styles.task}>mute</div>
-          <div className={styles.task}>orbiter</div>
-          <div className={styles.task}>zk</div>
-          <div className={styles.task}>celer</div>
-        </>
-      )} */}
 {currentPage.includes("task")
  ?
 
