@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Accordion.module.css";
 import {motion} from "framer-motion";
+import Image from "next/image";
+import { CloserSvg } from "..";
+import { OpenerSvg } from "..";
+import { TestSvg } from "..";
 
 const Accordion = ({
     accordionData = {
@@ -20,10 +24,19 @@ const Accordion = ({
         <div className={styles.accordion}>
             <div className={styles.accordionItem}>
             <div className={isActive ? styles.accordionTitleActive : styles.accordionTitle } onClick={() => setIsActive(!isActive)}>
-                <div>{title}</div>
-                <div>{isActive ? '-' : '+'}</div>
+                <div className={styles.title}>
+                    <TestSvg />
+                    <div className={styles.titleText}>{title}</div> 
+                </div>
+
+                <div>{isActive ? <CloserSvg /> : <OpenerSvg />}</div>
             </div>
-            {isActive && <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.7 }} className={styles.accordionContent}>{content}</motion.div>}
+            {isActive && <motion.div 
+                initial={{opacity: 0}} 
+                animate={{opacity: 1, transition:{ duration: 0.7 }}} 
+                exit={{opacity: 0, delay: 0.3}} 
+                className={styles.accordionContent}
+                >{content}</motion.div>}
             </div>
         </div>
     </> 

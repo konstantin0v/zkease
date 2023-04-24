@@ -36,8 +36,14 @@ const ModalWindow = ({
     return ( 
         <>
             <Button size="small" onClick={handleModalOpenClick}>Open ModalWindow</Button>
-            <Modal isOpen={isOpen}  onRequestClose={handleModalCloseClick} className={styles.modalBackground}>
-                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.3 }} id="modal" className={styles.modalWindow}>
+            <Modal closeTimeoutMS={250} isOpen={isOpen} onRequestClose={handleModalCloseClick} className={styles.modalBackground}>
+                <motion.div 
+                    initial={{opacity: 0}} 
+                    animate={{opacity: 1, transition:{ duration: 0.3 }}}  
+                    exit={{opacity: 0, transition: {delay: 0.3}}} 
+                    id="modal" 
+                    className={styles.modalWindow}
+                >
                     <header className={styles.modalHeader}>
                         <p className={styles.modalTitle}>{title}</p>
                         <button onClick={handleModalCloseClick}>&#10006;</button>
