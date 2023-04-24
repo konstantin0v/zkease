@@ -76,7 +76,6 @@ export default function Home({ bestUsers, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
-      <ModalWindow />
 
 {
     Object.keys(allTasks).map(i => 
