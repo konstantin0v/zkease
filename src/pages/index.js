@@ -15,6 +15,7 @@ import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
 import { nfts } from "@/consts/nfts";
 import { v4 as uuidv4  } from 'uuid';
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
+import Accordion from "@/components/Accordion/Accordion";
 
 export const getServerSideProps = async () => {
   try {
@@ -76,6 +77,7 @@ export default function Home({ bestUsers, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
+      <Accordion />
 
 {
     Object.keys(allTasks).map(i => 

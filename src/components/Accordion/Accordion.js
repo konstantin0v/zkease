@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import styles from "./Accordion.module.css";
+import {motion} from "framer-motion";
 
 const Accordion = ({
-    accordionData,
-}) => {
-    const [isActive, setIsActive] = useState(false);
-
-    const data = {
+    accordionData = {
         title: 'Section 1',
         content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
           laborum cupiditate possimus labore, hic temporibus velit dicta earum
           suscipit commodi eum enim atque at? Et perspiciatis dolore iure
           voluptatem.`
-      };
+      },
+}) => {
+    const [isActive, setIsActive] = useState(false);
     
-    const { title, content } = data;
+    const { title, content } = accordionData;
 
     return ( 
     <>
@@ -24,7 +23,7 @@ const Accordion = ({
                 <div>{title}</div>
                 <div>{isActive ? '-' : '+'}</div>
             </div>
-            {isActive && <div className={styles.accordionContent}>{content}</div>}
+            {isActive && <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.7 }} className={styles.accordionContent}>{content}</motion.div>}
             </div>
         </div>
     </> 
