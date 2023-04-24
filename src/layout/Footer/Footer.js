@@ -1,4 +1,4 @@
-import { Button, ButtonIcon } from "@/components";
+import { Button, TestSvg, ButtonIcon } from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
 
@@ -9,14 +9,17 @@ const Footer = ({ ...props }) => {
         <div className={styles.btn}>
           <Button
             type="primary"
-            size="large"
+            size="medium"
             showIconRight
-            IconRight={ButtonIcon}
+            IconRight={TestSvg}
             showIconLeft
-            IconLeft={ButtonIcon}
+            IconLeft={TestSvg}
           >
             Join
           </Button>
+        </div>
+        <div>
+          <ButtonIcon type="primary" size="small" Icon={TestSvg} />
         </div>
         <ul className={styles.nav}>
           <li>

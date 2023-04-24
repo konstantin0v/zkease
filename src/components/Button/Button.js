@@ -23,7 +23,7 @@ export const Button = ({
       disabled={disabled}
       style={style}
     >
-      <div className={styles.buttonTextContainer}>
+      <div className={styles.buttonContainer}>
         {showIconLeft && (
           <span className={styles.iconLeft}>
             <IconLeft />
