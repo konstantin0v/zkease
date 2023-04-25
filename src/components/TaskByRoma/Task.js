@@ -15,8 +15,8 @@ export const Task = ({
     const progress = document.querySelector("#progress");
   }
   const changeWidth = () => {
-    if (userProgress > wholeProgress) return;
-
+    if(userProgress > wholeProgress) return;
+    
     progress.style.width = `${(userProgress / wholeProgress) * 100}%`;
   };
 

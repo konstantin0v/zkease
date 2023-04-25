@@ -1,4 +1,3 @@
-
 import { Button, TestSvg, ButtonIcon, Badge } from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
@@ -56,4 +55,3 @@ const Footer = ({ ...props }) => {
 };
 
 export default Footer;
-
