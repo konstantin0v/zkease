@@ -1,4 +1,5 @@
-import { Button, TestSvg, ButtonIcon } from "@/components";
+
+import { Button, TestSvg, ButtonIcon, Badge } from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
 
@@ -20,6 +21,17 @@ const Footer = ({ ...props }) => {
         </div>
         <div>
           <ButtonIcon type="primary" size="small" Icon={TestSvg} />
+        </div>
+        <div>
+          <Badge
+            appereance="blue"
+            showIconRight
+            IconRight={TestSvg}
+            showIconLeft
+            IconLeft={TestSvg}
+          >
+            Badge
+          </Badge>
         </div>
         <ul className={styles.nav}>
           <li>
@@ -44,3 +56,4 @@ const Footer = ({ ...props }) => {
 };
 
 export default Footer;
+

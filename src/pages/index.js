@@ -15,10 +15,14 @@ import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
 import { nfts } from "@/consts/nfts";
 import { v4 as uuidv4 } from "uuid";
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
+
 import {
   initialDataSelector,
   setInitialData,
 } from "@/store/initialData/reducer";
+
+import Accordion from "@/components/Accordion/Accordion";
+
 
 // export const getServerSideProps = async () => {
 //   try {
@@ -114,6 +118,7 @@ export default function Home({ bestUsers, serverData, ...props }) {
     <>
       <div className={styles.banner}>banner</div>
       <ModalWindow />
+      <Accordion />
 
       {(initialData &&
         Object.keys(initialData).map((i) => (

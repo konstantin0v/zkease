@@ -2,8 +2,11 @@ import styles from "./ModalWindow.module.css";
 import React, { useState } from "react";
 import Button from "../Button/Button";
 import Image from "next/image";
-import pic from "../../../public/image/illustration_128_blockchain.png";
-import Modal from "react-modal";
+
+import pic from "../../../public/image/illustration_128_blockchain.png"
+import Modal from 'react-modal';
+import {motion} from "framer-motion"; 
+
 
 const ModalWindow = ({
   title = "Title",
@@ -23,19 +26,17 @@ const ModalWindow = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleModalOpenClick = () => {
-    if (typeof document !== "undefined") {
-      const modal = document.querySelector("#modal");
-      modal.styles.opacity = "1";
-      setIsOpen(true);
+
+    const handleModalOpenClick = () =>{
+        setIsOpen(true);
+
     }
   };
 
-  const handleModalCloseClick = () => {
-    if (typeof document !== "undefined") {
-      const modal = document.querySelector("#modal");
-      modal.styles.opacity = "0";
-      setIsOpen(false);
+
+    const handleModalCloseClick = () =>{
+        setIsOpen(false);
+
     }
   };
 
@@ -55,17 +56,23 @@ const ModalWindow = ({
             <button onClick={handleModalCloseClick}>&#10006;</button>
           </header>
 
-          <main className={styles.modalBody}>
-            {imageFlag && (
-              <Image
-                alt={imageAltText}
-                src={image}
-                width={imageWidth}
-                height={imageHeight}
-              />
-            )}
-            <p className={styles.modalMassage}>{message}</p>
-          </main>
+
+    return ( 
+        <>
+            <Button size="small" onClick={handleModalOpenClick}>Open ModalWindow</Button>
+            <Modal closeTimeoutMS={250} isOpen={isOpen} onRequestClose={handleModalCloseClick} className={styles.modalBackground}>
+                <motion.div 
+                    initial={{opacity: 0}} 
+                    animate={{opacity: 1, transition:{ duration: 0.3 }}}  
+                    exit={{opacity: 0, transition: {delay: 0.3}}} 
+                    id="modal" 
+                    className={styles.modalWindow}
+                >
+                    <header className={styles.modalHeader}>
+                        <p className={styles.modalTitle}>{title}</p>
+                        <button onClick={handleModalCloseClick}>&#10006;</button>
+                    </header>
+
 
           <footer className={styles.modelFooter}>
             {numberOfButtons === 2 && (
@@ -83,4 +90,16 @@ const ModalWindow = ({
   );
 };
 
+
+                    <footer className={styles.modelFooter}>
+                        {numberOfButtons === 2 && <Button intent={secondButtonColor} type={secondButtonType}>{secondButtonText}</Button>}
+                        <Button type={firstButtonType} intent={firstButtonColor}>{firstButtonText}</Button>
+                    </footer>
+                </motion.div>
+            </Modal>
+        </>
+    );
+}
+ 
 export default ModalWindow;
+
