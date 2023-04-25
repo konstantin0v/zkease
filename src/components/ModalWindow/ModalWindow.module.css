@@ -33,115 +33,109 @@
     transition: 0.5s;
 }
 
-.modalHeader{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0px;
-    gap: 8px;
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
 
-    width: 332px;
-    height: 40px;
+  width: 332px;
+  height: 40px;
 
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
-.modalTitle{
+.modalTitle {
+  width: 288px;
+  height: 24px;
 
-    width: 288px;
-    height: 24px;
+  /* title/medium */
 
-    /* title/medium */
+  font-family: "SF Pro";
+  font-style: normal;
+  font-weight: 510;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height, or 120% */
 
-    font-family: 'SF Pro';
-    font-style: normal;
-    font-weight: 510;
-    font-size: 20px;
-    line-height: 24px;
-    /* identical to box height, or 120% */
+  /* text/high_em */
 
+  color: #cfcfcf;
 
-    /* text/high_em */
+  /* Inside auto layout */
 
-    color: #CFCFCF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 1;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
 }
 
-.modalBody{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
 
-    width: 332px;
+  width: 332px;
 
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
-.modalMassage{
-    width: 332px;
-    height: 20px;
+.modalMassage {
+  width: 332px;
+  height: 20px;
 
-    /* body/medium */
+  /* body/medium */
 
-    font-family: 'SF Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height, or 125% */
+  font-family: "SF Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
 
+  /* text/medium_em */
 
-    /* text/medium_em */
+  color: #b4b4b4;
 
-    color: #B4B4B4;
+  /* Inside auto layout */
 
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
-.modelFooter{
-    /* Auto layout */
+.modelFooter {
+  /* Auto layout */
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
 
-    width: 332px;
-    height: 44px;
+  width: 332px;
+  height: 44px;
 
+  /* Inside auto layout */
 
-    /* Inside auto layout */
 
     flex: none;
     order: 2;
     align-self: stretch;
     flex-grow: 0;
+
 }
