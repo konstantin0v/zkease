@@ -1,88 +1,49 @@
 import { JourneyCard } from "@/components";
 import postRecord from "@/serverUtils/postRecord";
 import styles from "@/styles/Home.module.css";
-import { useEffect } from "react";
+import {  useEffect } from "react";
 import { useAccount } from "wagmi";
 import {
   setExp,
   setAddress,
   setStoredTasks,
-  setNfts,
+  setNfts
 } from "../store/zkRecord/reducer";
-import { setUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
+import {  setUsers } from "../store/users/reducer";
+import { useDispatch } from "react-redux";
 import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
 import { nfts } from "@/consts/nfts";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4  } from 'uuid';
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
-
-import {
-  initialDataSelector,
-  setInitialData,
-} from "@/store/initialData/reducer";
-
 import Accordion from "@/components/Accordion/Accordion";
 
-
-// export const getServerSideProps = async () => {
-//   try {
-//     const response = await fetch(
-//       "https://lobster-app-obfjt.ondigitalocean.app/"
-//     );
-//     const data = await response.json();
-//     if (data.error) {
-//       return {
-//         props: { bestUsers: [] },
-//       };
-//     }
-//     const bestUsers = data.records.sort((a, b) => b.exp - a.exp).slice(0, 5);
-//     return {
-//       props: { bestUsers },
-//     };
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 export const getServerSideProps = async () => {
   try {
-    const responseUsers = await fetch(
-      "https://lobster-app-obfjt.ondigitalocean.app/"
-    );
-    const dataUsers = await responseUsers.json();
-
-    const responseData = await fetch(
-      `https://lobster-app-obfjt.ondigitalocean.app/data`
-    );
-    const { records } = await responseData.json();
-    const { _id, ...serverData } = records[0];
-
-    if (dataUsers.error || records.error) {
+    const response = await fetch("https://lobster-app-obfjt.ondigitalocean.app/");
+    const data = await response.json();
+    if (data.error) {
       return {
-        props: { bestUsers: [], serverData: [] },
+        props: { bestUsers: [] },
       };
     }
-    const bestUsers = dataUsers.records
-      .sort((a, b) => b.exp - a.exp)
-      .slice(0, 5);
+    const bestUsers = data.records.sort((a, b) => b.exp - a.exp).slice(0, 5);
     return {
-      props: { bestUsers, serverData },
+      props: { bestUsers },
     };
   } catch (error) {
     console.error(error);
   }
 };
 
-export default function Home({ bestUsers, serverData, ...props }) {
+export default function Home({ bestUsers, ...props }) {
   const { address: WalletAddress } = useAccount();
-  const { initialData } = useSelector(initialDataSelector);
   const score = 0;
-  const initialTasks = replaceValuesWithZero(allTasks);
+   const initialTasks = replaceValuesWithZero(allTasks)
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      dispatch(setUsers(bestUsers));
-      dispatch(setInitialData(serverData));
+      dispatch(setUsers(bestUsers))
     })();
   }, []);
 
@@ -91,15 +52,14 @@ export default function Home({ bestUsers, serverData, ...props }) {
       try {
         if (WalletAddress) {
           //const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
-          const response = await fetch(
-            `https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`
-          );
+          const response = await fetch(`https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`);
           const { record } = await response.json();
           if (record) {
             dispatch(setAddress(record.address));
             dispatch(setExp(record.exp));
             dispatch(setStoredTasks(record.tasks));
             dispatch(setNfts(record.nfts));
+
           } else {
             await postRecord(WalletAddress, score, initialTasks, nfts);
             dispatch(setAddress(WalletAddress));
@@ -120,16 +80,12 @@ export default function Home({ bestUsers, serverData, ...props }) {
       <ModalWindow />
       <Accordion />
 
-      {(initialData &&
-        Object.keys(initialData).map((i) => (
-          <div key={i}>
-            <JourneyCard
-              journeyName={i}
-              journeyNick={initialData[i]?.nick}
-              journeyTitle={initialData[i]?.title}
-            />
-          </div>
-        ))) || <p>No journeys found</p>}
-    </>
+{
+    Object.keys(allTasks).map(i => 
+    <div key={uuidv4()}>
+      <JourneyCard journeyName={i}/>
+    </div>
+    )
+}    </>
   );
 }

@@ -6,7 +6,6 @@ import { CloserSvg } from "..";
 import { OpenerSvg } from "..";
 import { TestSvg } from "..";
 
-
 const Accordion = ({
     accordionData = {
         title: 'Section 1',
@@ -20,12 +19,8 @@ const Accordion = ({
     
     const { title, content } = accordionData;
 
-
-  const { title, content } = data;
-
-  return (
+    return ( 
     <>
-
         <div className={styles.accordion}>
             <div className={styles.accordionItem}>
             <div className={isActive ? styles.accordionTitleActive : styles.accordionTitle } onClick={() => setIsActive(!isActive)}>
@@ -43,11 +38,9 @@ const Accordion = ({
                 className={styles.accordionContent}
                 >{content}</motion.div>}
             </div>
-
         </div>
-      </div>
-    </>
-  );
-};
-
-export default Accordion;
+    </> 
+    );
+}
+ 
+export default Accordion; 
