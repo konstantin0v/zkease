@@ -44,8 +44,6 @@ export const allTasks = {
   },
 };
 
-
-
 export const replaceValuesWithZero = (obj) => {
   const newObj = {};
   for (let journey in obj) {
@@ -55,4 +53,62 @@ export const replaceValuesWithZero = (obj) => {
     }
   }
   return newObj;
-}
+};
+const testData = {
+  journey0: {
+    nick: "Journey prepartion",
+    title: "First steps in ZkSync",
+    tasks: {
+      task1: {
+        title: "Make any swap",
+        exp: 10,
+        source: "Mute.io",
+        link: "https://mute.io/",
+      },
+    },
+  },
+
+  journey1: {
+    nick: "Journey One",
+    title: "Basic swaps and mints",
+    tasks: {
+      task11: {
+        title: "Swap any token",
+        exp: 10,
+        source: "Space.net",
+        link: "https://space.net/",
+      },
+      task12: {
+        title: "Mint NFT",
+        exp: 10,
+        source: "Rhino.fi",
+        link: "https://rhino.fi/",
+      },
+    },
+  },
+  journey2: {
+    nick: "Journey Two",
+    title: "Advanced swaps, LP, leverage trading",
+    tasks: {
+      task21: {
+        title: "Wrap any amount of ETH",
+        exp: 30,
+        source: "Space.net",
+        link: "https://space.net/",
+      },
+      task22: {
+        title: "Swap any token",
+        exp: 30,
+        source: "Rhino.fi",
+        link: "https://rhino.fi/",
+      },
+      task23: {
+        title: "Transfer any token",
+        exp: 30,
+        source: "Rhino.io",
+        link: "https://Rhino.io/",
+      },
+    },
+  },
+};
+const jsonString = JSON.stringify(testData);
