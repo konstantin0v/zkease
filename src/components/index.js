@@ -7,3 +7,8 @@ export * from "./ButtonIcon/ButtonIcon";
 export { default as CloserSvg } from "./Svgs/closer.svg";
 export { default as OpenerSvg } from "./Svgs/opener.svg";
 export * from "./Badge/Badge";
+export { default as TodoSvg } from "./Svgs/circle.svg";
+export { default as CompletedSvg } from "./Svgs/done.svg";
+export { default as InProgressSvg } from "./Svgs/in_progress.svg";
+export { default as LockedSvg } from "./Svgs/locked.svg";
+export * from "./Status/Status";
