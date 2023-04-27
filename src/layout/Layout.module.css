@@ -1,24 +1,20 @@
 .wrapper {
   min-height: 100vh;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .header {
   position: sticky;
   top: 0;
   height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--grey-0);
   background-color: var(--background);
-}
-.sidebar {
-  width: 280px;
-  position: fixed;
-  top: 92px;
-  font-size: 20px;
+  z-index: 3;
 }
 .main {
   max-width: 1200px;
@@ -26,6 +22,12 @@
   display: flex;
   flex: 1;
   width: 100%;
+}
+.sidebar {
+  width: 280px;
+  position: fixed;
+  top: 92px;
+  font-size: 20px;
 }
 .page {
   margin: 32px 0 32px 320px;
@@ -35,11 +37,12 @@
   flex: 1;
 }
 .footer {
+  height: 142px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid var(--border);
+  flex-direction: column;
+  border-top: 1px solid var(--grey-0);
 }
+
 @media (max-width: 1024px) {
   .sidebar {
     position: static;

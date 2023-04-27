@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import styles from "./journeyPage.module.css";
-import { limitsForMinting } from "@/consts/limitsForMinting";
-import { useDispatch, useSelector } from "react-redux";
-import { setNfts, zkRecordSelector } from "@/store/zkRecord/reducer";
-import { useAccount } from "wagmi";
-import TaskCard from "@/components/TaskCard/taskCard";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import { handleMintNft } from "@/utils/handleMintNft";
+import { useRouter } from 'next/router';
+import styles from './journeyPage.module.css';
+import { limitsForMinting } from '@/consts/limitsForMinting';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNfts, zkRecordSelector } from '@/store/zkRecord/reducer';
+import { useAccount } from 'wagmi';
+import TaskCard from '@/components/TaskCard/taskCard';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import { handleMintNft } from '@/utils/handleMintNft';
 
 const JourneyPage = () => {
   const { initialData } = useSelector(initialDataSelector);

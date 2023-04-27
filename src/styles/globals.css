@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --maintext: white;
@@ -8,7 +8,7 @@
   --background: black;
   --secondbackground: rgba(23, 23, 23, 1);
   --border: #414141;
-  --thirdtext: #adadad;
+  --thirdtext: #b4b4b4;
 
   --grey-0: #101010;
   --grey-50: #171717;
@@ -94,7 +94,7 @@
 body {
   color: var(--maintext);
   background-color: var(--background);
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 500;
 }

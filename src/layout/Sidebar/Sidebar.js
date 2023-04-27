@@ -1,12 +1,11 @@
-import { useRouter } from "next/router";
-import styles from "./Sidebar.module.css";
-import { Leaderboard } from "@/components";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { useAccount } from "wagmi";
-import TaskCard from "@/components/TaskCard/taskCard";
-import { v4 as uuidv4 } from "uuid";
-import { initialDataSelector } from "@/store/initialData/reducer";
+import { useRouter } from 'next/router';
+import styles from './Sidebar.module.css';
+import { Leaderboard } from '@/components';
+import { useSelector } from 'react-redux';
+import TaskCard from '@/components/TaskCard/taskCard';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import Progress from '@/components/Progress/Progress';
+import Achieves from '@/components/Achieves/Achieves';
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
@@ -14,23 +13,10 @@ const Sidebar = ({ ...props }) => {
   const { journey } = router.query;
   const { initialData } = useSelector(initialDataSelector);
   const tasksByJourney = initialData[journey]?.tasks;
-  const { exp, nfts } = useSelector(zkRecordSelector);
-  const { address: WalletAddress } = useAccount();
 
   return (
     <div {...props}>
-      <div className={styles.progress}>
-        Progress - {WalletAddress && exp}XP
-        <p>
-          You have{" "}
-          {WalletAddress &&
-            nfts &&
-            Object.entries(nfts).filter(([_, value]) => value !== 0)
-              .length}{" "}
-          NFT
-        </p>
-      </div>
-      {currentPage.includes("task") ? (
+      {currentPage.includes('task') ? (
         <>
           {(tasksByJourney &&
             Object.entries(tasksByJourney).map(([key, task]) => (
@@ -44,7 +30,8 @@ const Sidebar = ({ ...props }) => {
         </>
       ) : (
         <>
-          <div className={styles.achievements}>Achievements</div>
+          <Progress />
+          <Achieves />
           <Leaderboard />
         </>
       )}
