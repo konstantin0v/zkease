@@ -37,7 +37,6 @@ export default function TaskCard({
   const projectName =
     source.charAt(0).toUpperCase() +
     source.substring(1, source.indexOf(".")).toLowerCase();
-  console.log(projectName);
 
   const project = {
     Multichain,
