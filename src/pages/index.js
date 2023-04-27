@@ -118,6 +118,8 @@ export default function Home({ bestUsers, serverData, ...props }) {
     <>
       <div className={styles.banner}>banner</div>
 
+
+
       {(initialData &&
         Object.keys(initialData).map((i) => (
           <div key={i}>
