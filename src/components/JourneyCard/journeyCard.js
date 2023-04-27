@@ -6,6 +6,9 @@ import { getJourneyTasks } from "@/utils/getJourneyTasks";
 import { limitsForMinting } from "@/consts/limitsForMinting";
 import React, { useEffect, useState } from "react";
 import styles from "./journeyCard.module.css"
+import Status from "../Status/Status";
+import { XpSvg } from "..";
+import {Badge} from "..";
 
 // export const JourneyCard = ({
 //   journeyName,
@@ -68,16 +71,18 @@ export const JourneyCard   = ({
   };
 
   return (
-    // <Link href={`/journeyPage/${journeyName}`}>
+    <Link href={`/journeyPage/${journeyName}`}>
       <div className={styles.card}>
         <div className={styles.progressBar}>
           <div className={styles.progressBarText}>
+
             <div className={styles.status}>
-              <p>{status}</p>
+              <Status type={objOfProgress?.doneTasks === objOfProgress?.totalTasks ? "completed" : "progress"} />
             </div>
 
             <p>
-              {userProgress}/{wholeProgress}
+              {/* {userProgress}/{wholeProgress} */}
+              Progress: {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks}
             </p>
           </div>
 
@@ -86,17 +91,20 @@ export const JourneyCard   = ({
           </div>
         </div>
         {/* кнопка для теста  */}
-        <button onClick={handleClick}>НАЖМИ МЕНЯ</button>
+        {/* <button onClick={handleClick}>НАЖМИ МЕНЯ</button> */}
 
         <div className={styles.content}>
-          <p className={styles.contentTask}>{task}</p>
-
-          <p className={styles.contentDescription}>{description}</p>
+          <p className={styles.contentTask}>{journeyNick}</p>
+          <p className={styles.contentDescription}>{journeyTitle}</p>
         </div>
 
         <div className={styles.tags}></div>
+
+        <Badge showIconLeft IconLeft={XpSvg}>
+          {`limitsForMinting.journey${id}`}
+        </Badge>
       </div>
-    // </Link>
+    </Link>
   );
 };
 

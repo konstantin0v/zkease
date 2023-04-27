@@ -6,7 +6,7 @@ import {
   Badge,
 } from "@/components";
 
-export const Status = ({ type }) => {
+export const Status = ({ type = "todo"}) => {
   const status = {
     todo: (
       <Badge showIconLeft IconLeft={TodoSvg}>
