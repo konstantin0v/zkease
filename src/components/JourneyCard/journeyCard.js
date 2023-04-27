@@ -33,12 +33,13 @@ import styles from "./journeyCard.module.css"
 export const JourneyCard   = ({
   description = "Description",
   task = "Quest Title",
-  progessInBar = 1,
+  progessInBar = 0,
   taskStatus = "not Started",
   wholeProgress = 4,
   journeyName,
   journeyTitle,
   journeyNick,
+  id,
   ...props
 }) => {
   const [userProgress, setUserProgress] = useState(progessInBar);
@@ -47,7 +48,7 @@ export const JourneyCard   = ({
   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
 
   // if (typeof document !== "undefined") {
-  const progress = document.querySelector("#progress");
+    const progress = document.querySelector(`#${id}`);
   // }
   const changeWidth = () => {
     if(userProgress > wholeProgress) return;
@@ -67,7 +68,7 @@ export const JourneyCard   = ({
   };
 
   return (
-    <Link href={`/journeyPage/${journeyName}`}>
+    // <Link href={`/journeyPage/${journeyName}`}>
       <div className={styles.card}>
         <div className={styles.progressBar}>
           <div className={styles.progressBarText}>
@@ -81,7 +82,7 @@ export const JourneyCard   = ({
           </div>
 
           <div className={styles.bar}>
-            <div id="progress" className={styles.done}></div>
+            <div id={id} className={styles.done}></div>
           </div>
         </div>
         {/* кнопка для теста  */}
@@ -95,7 +96,7 @@ export const JourneyCard   = ({
 
         <div className={styles.tags}></div>
       </div>
-    </Link>
+    // </Link>
   );
 };
 

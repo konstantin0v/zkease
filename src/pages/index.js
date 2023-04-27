@@ -124,6 +124,7 @@ export default function Home({ bestUsers, serverData, ...props }) {
         Object.keys(initialData).map((i) => (
           <div key={i}>
             <JourneyCard
+              id={i}
               journeyName={i}
               journeyNick={initialData[i]?.nick}
               journeyTitle={initialData[i]?.title}
