@@ -1,4 +1,11 @@
-import { Button, TestSvg, ButtonIcon, Badge, Status } from "@/components";
+import {
+  Button,
+  TestSvg,
+  ButtonIcon,
+  Badge,
+  Status,
+  ProjectName,
+} from "@/components";
 import styles from "./Footer.module.css";
 import Link from "next/link";
 
@@ -44,6 +51,7 @@ const Footer = ({ ...props }) => {
         <div>
           <Status type="completed" />
         </div>
+
         <ul className={styles.nav}>
           <li>
             <Link href="/" className={styles.nav__link}>
