@@ -117,8 +117,6 @@ export default function Home({ bestUsers, serverData, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
-      <ModalWindow />
-      <Accordion />
 
       {(initialData &&
         Object.keys(initialData).map((i) => (
