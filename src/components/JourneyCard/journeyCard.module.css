@@ -22,16 +22,21 @@
   gap: 16px;
   width: 304px;
   height: 280px;
-  background: #171717;
+  background: var(--grey-50);
   border: 1px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
 }
 
 .card:hover{
-  background-color: #242424;
-  border: 1px solid #505050;
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-300);
 }
+
+.card:active {
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-300);
+  }
 
 .bar {
   background-color: #F7F7F71A;
