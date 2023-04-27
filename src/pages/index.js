@@ -117,13 +117,14 @@ export default function Home({ bestUsers, serverData, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
-      <ModalWindow />
-      <Accordion />
+
+
 
       {(initialData &&
         Object.keys(initialData).map((i) => (
           <div key={i}>
             <JourneyCard
+              id={i}
               journeyName={i}
               journeyNick={initialData[i]?.nick}
               journeyTitle={initialData[i]?.title}
