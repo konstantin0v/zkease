@@ -1,5 +1,25 @@
+import {
+  Badge,
+  Status,
+  ProjectName,
+  XpSvg,
+  Multichain,
+  Mintsquare,
+  Mute,
+  Nexon,
+  Onchain,
+  Unidex,
+  Rhino,
+  Spacefi,
+  Orbiter,
+  Syncswap,
+  Zksync,
+} from "@/components";
 import styles from "./taskCard.module.css";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { clsx } from "clsx";
 
 export default function TaskCard({
   taskName,
@@ -7,18 +27,59 @@ export default function TaskCard({
   title,
   source,
   link,
+  exp,
+  showNewTaskBadge = false,
+  showCounterBadge = false,
+  sidebar = false,
 }) {
+  const { storedTasks } = useSelector(zkRecordSelector);
+  const statusOfTask = storedTasks?.[journeyName]?.[taskName];
+  const projectName =
+    source.charAt(0).toUpperCase() +
+    source.substring(1, source.indexOf(".")).toLowerCase();
+  console.log(projectName);
+
+  const project = {
+    Multichain,
+    Mintsquare,
+    Mute,
+    Nexon,
+    Onchain,
+    Unidex,
+    Rhino,
+    Spacefi,
+    Orbiter,
+    Syncswap,
+    Zksync,
+  };
+
   return (
-    <>
-      <div className={styles.card}>
-        <Link href={`/journeyPage/${journeyName}/${taskName}`}>
-          View CONTENT of task
-        </Link>
-        <p>i am {taskName}</p>
-        <p>{title}</p>
-        <p>{source}</p>
-        <p>{link}</p>
+    <Link
+      href={`/journeyPage/${journeyName}/${taskName}`}
+      className={styles.card}
+    >
+      <div className={styles.cardHeader}>
+        <ProjectName Logo={project[projectName]}>{projectName}</ProjectName>
+        {showNewTaskBadge && <Badge appereance="blue">New!</Badge>}
       </div>
-    </>
+      <div
+        className={clsx(
+          styles.cardContent,
+          sidebar && styles.cardContentSidebar
+        )}
+      >
+        {title}
+      </div>
+      <div className={styles.cardFooter}>
+        <Badge showIconLeft IconLeft={XpSvg}>
+          {exp}
+        </Badge>
+
+        <div className={styles.cardFooterStatus}>
+          {showCounterBadge && <Badge>3 times</Badge>}
+          <Status type={statusOfTask ? "completed" : "todo"} />
+        </div>
+      </div>
+    </Link>
   );
 }
