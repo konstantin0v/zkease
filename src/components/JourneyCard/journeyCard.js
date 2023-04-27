@@ -101,7 +101,7 @@ export const JourneyCard   = ({
         <div className={styles.tags}></div>
 
         <Badge showIconLeft IconLeft={XpSvg}>
-          {`limitsForMinting.journey${id}`}
+          {limitsForMinting[id]}
         </Badge>
       </div>
     </Link>
