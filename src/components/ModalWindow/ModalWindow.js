@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import Image from "next/image";
 import pic from "../../../public/image/illustration_128_blockchain.png"
 import Modal from 'react-modal';
-import {motion} from "framer-motion"; 
+import {cubicBezier, motion} from "framer-motion"; 
 
 const ModalWindow = ({
     title = "Title",
@@ -40,7 +40,7 @@ const ModalWindow = ({
                 <motion.div 
                     initial={{opacity: 0}} 
                     animate={{opacity: 1, transition:{ duration: 0.3 }}}  
-                    exit={{opacity: 0, transition: {delay: 0.3}}} 
+                    exit={{opacity: 0, transition: {delay: 0.3} }} 
                     id="modal" 
                     className={styles.modalWindow}
                 >

@@ -1,13 +1,11 @@
 .leaderboard {
   height: 300px;
-  width: 280px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   background-color: var(--grey-50);
 }
 .subtitle {
-  border-bottom: 1px solid var(--border);
   margin: 0;
   padding: 16px;
   font-size: 20px;

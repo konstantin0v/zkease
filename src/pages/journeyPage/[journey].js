@@ -22,10 +22,17 @@ const JourneyPage = () => {
   return (
     <div>
       <h2>Tasks for {initialData[journey]?.nick}</h2>
-      {(tasksByJourney &&
-        Object.entries(tasksByJourney).map(([key, task]) => (
-          <TaskCard key={key} taskName={key} journeyName={journey} {...task} />
-        ))) || <p>No tasks found</p>}
+      <div className={styles.cards}>
+        {(tasksByJourney &&
+          Object.entries(tasksByJourney).map(([key, task]) => (
+            <TaskCard
+              key={key}
+              taskName={key}
+              journeyName={journey}
+              {...task}
+            />
+          ))) || <p>No tasks found</p>}
+      </div>
       {limitsForMinting[journey] <= exp && (
         <button onClick={handleMintNftByPlace}>MINT NFT</button>
       )}

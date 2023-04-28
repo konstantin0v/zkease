@@ -1,14 +1,90 @@
 .card {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 24px;
-  gap: 16px;
-  width: 304px;
-  height: 230px;
-  background: radial-gradient(50% 50% at 50% 50%, #010224 0%, #000000 100%);
-  border: 4px solid #f7efef;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  background: var(--grey-50);
   border-radius: 16px;
+  border: 1px solid transparent;
+  /* margin: 10px; */
+}
+
+.card:hover {
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-300);
+}
+
+.card:active {
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-300);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardContent {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 510;
+  font-style: normal;
+  line-height: 22px;
+  height: 88px;
+  color: var(--grey-800);
+  width: 100%;
+}
+
+.cardContentSidebar {
+  flex: 1;
+}
+.cardSidebar {
+  width: 100%;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardFooterStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectNameContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 2px 0px;
+  gap: 6px;
+  width: 100%;
+  height: 28px;
+  user-select: none;
+}
+
+.projectNameLogo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.projectNameText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 590;
+  font-style: normal;
+  line-height: 16px;
+  color: var(--grey-700);
 }

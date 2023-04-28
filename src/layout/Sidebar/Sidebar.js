@@ -24,6 +24,7 @@ const Sidebar = ({ ...props }) => {
                 key={key}
                 taskName={key}
                 journeyName={journey}
+                sidebar
                 {...task}
               />
             ))) || <p>No tasks found</p>}

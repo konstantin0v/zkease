@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./task.module.css";
 
-export const Task = ({
+export const TaskByRoma = ({
   description = "Description",
   task = "Quest Title",
   progessInBar = 1,
   taskStatus = "not Started",
   wholeProgress = 4,
+  id
 }) => {
   const [userProgress, setUserProgress] = useState(progessInBar);
   const [status, setStatus] = useState(taskStatus);
@@ -45,7 +46,7 @@ export const Task = ({
         </div>
 
         <div className={styles.bar}>
-          <div id="progress" className={styles.done}></div>
+          <div id={id} className={styles.done}></div>
         </div>
       </div>
       {/* кнопка для теста  */}
