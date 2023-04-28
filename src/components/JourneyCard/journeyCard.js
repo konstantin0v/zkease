@@ -74,11 +74,18 @@ export const JourneyCard = ({
         <div className={styles.progressBar}>
           <div className={styles.progressBarText}>
             <div className={styles.status}>
-              <p>{status}</p>
+              <Status
+                type={
+                  objOfProgress?.doneTasks === objOfProgress?.totalTasks
+                    ? 'completed'
+                    : 'progress'
+                }
+              />
             </div>
 
             <p>
-              {userProgress}/{wholeProgress}
+              {/* {userProgress}/{wholeProgress} */}
+              Progress: {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks}
             </p>
           </div>
 
@@ -87,15 +94,18 @@ export const JourneyCard = ({
           </div>
         </div>
         {/* кнопка для теста  */}
-        <button onClick={handleClick}>НАЖМИ МЕНЯ</button>
+        {/* <button onClick={handleClick}>НАЖМИ МЕНЯ</button> */}
 
         <div className={styles.content}>
-          <p className={styles.contentTask}>{task}</p>
-
-          <p className={styles.contentDescription}>{description}</p>
+          <p className={styles.contentTask}>{journeyNick}</p>
+          <p className={styles.contentDescription}>{journeyTitle}</p>
         </div>
 
         <div className={styles.tags}></div>
+
+        <Badge showIconLeft IconLeft={XpSvg}>
+          {limitsForMinting[id]}
+        </Badge>
       </div>
     </Link>
   );
