@@ -1,9 +1,9 @@
-import styles from "./Button.module.css";
+import styles from './Button.module.css';
 
 export const Button = ({
-  type = "primary",
-  intent = "normal",
-  size = "medium",
+  type = 'primary',
+  intent = 'normal',
+  size = 'medium',
   showIconLeft = false,
   showIconRight = false,
   IconLeft,
@@ -13,29 +13,31 @@ export const Button = ({
   onClick,
   style,
 }) => {
-  const buttonClassName = `${styles.button} ${styles[type]} ${styles[size]} ${
-    styles[intent]
-  } ${disabled ? styles.disabled : ""}`;
   return (
     <button
-      className={buttonClassName}
+      className={clsx(
+        styles.button,
+        styles[type],
+        styles[size],
+        styles[intent],
+        disabled && styles.disabled,
+        styles.buttonContainer
+      )}
       onClick={onClick}
       disabled={disabled}
       style={style}
     >
-      <div className={styles.buttonContainer}>
-        {showIconLeft && (
-          <span className={styles.iconLeft}>
-            <IconLeft />
-          </span>
-        )}
-        <span className={styles.buttonText}>{children}</span>
-        {showIconRight && (
-          <span className={styles.iconRight}>
-            <IconRight />
-          </span>
-        )}
-      </div>
+      {showIconLeft && (
+        <span className={styles.iconLeft}>
+          <IconLeft />
+        </span>
+      )}
+      <span className={styles.buttonText}>{children}</span>
+      {showIconRight && (
+        <span className={styles.iconRight}>
+          <IconRight />
+        </span>
+      )}
     </button>
   );
 };

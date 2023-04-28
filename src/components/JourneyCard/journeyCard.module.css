@@ -1,4 +1,4 @@
-.card {
+/* .card {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,90 @@
   border: 4px solid #f7efef;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
+} */
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 16px;
+  width: 304px;
+  height: 280px;
+  background: var(--grey-50);
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.card:hover{
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-300);
+}
+
+.card:active {
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-300);
+  }
+
+.bar {
+  background-color: #F7F7F71A;
+  border-radius: 8px;
+  width: 256px;
+  height: 4px;
+}
+
+.done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #155EE6;
+  border-radius: 8px;
+  height: 100%;
+  width: 0;
+  transition: 1s ease 0.3s;
+}
+
+.progressBarText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: antiquewhite;
+  width: 256px;
+  height: 28px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 256px;
+  height: 140px;
+  padding: 0px;
+  gap: 8px;
+}
+
+.contentTask {
+  font-family: "SF Pro";
+  font-style: normal;
+  font-weight: 510;
+  font-size: 24px;
+  line-height: 26px;
+  color: #cfcfcf;
+}
+
+.contentDescription {
+  font-family: "SF Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #b4b4b4;
+}
+
+.tags {
+  width: 112px;
+  height: 20px;
+  gap: 8px;
 }
