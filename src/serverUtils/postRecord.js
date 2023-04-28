@@ -32,12 +32,12 @@ const postRecord = async (address) => {
     },
   };
   try {
-    const response = await fetch(`http://localhost:3003/`, requestOptions);
+    // const response = await fetch(`http://localhost:3003/`, requestOptions);
 
-    // const response = await fetch(
-    //   `https://lobster-app-obfjt.ondigitalocean.app/`,
-    //   requestOptions
-    // );
+    const response = await fetch(
+      `https://lobster-app-obfjt.ondigitalocean.app/`,
+      requestOptions
+    );
     const data = await response.json();
     if (!response.ok) {
       const error = await response.json();

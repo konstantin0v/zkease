@@ -84,8 +84,8 @@ export const getServerSideProps = async () => {
 export default function Home({ bestUsers, serverData, ...props }) {
   const { address: WalletAddress } = useAccount();
   const { initialData } = useSelector(initialDataSelector);
-  const score = 0;
-  const initialTasks = replaceValuesWithZero(allTasks);
+  // const score = 0;
+  // const initialTasks = replaceValuesWithZero(allTasks);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -160,9 +160,3 @@ export default function Home({ bestUsers, serverData, ...props }) {
     </>
   );
 }
-//info
-//inf02
-//info3
-//info4
-//info5
-//info6

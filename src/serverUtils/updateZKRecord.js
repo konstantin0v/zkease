@@ -1,10 +1,10 @@
 export const updateZKRecord = async (address, exp, taskPath, value) => {
   try {
-    const response = await fetch(
-      `http://localhost:3003/update/${address}`,
+    // const response = await fetch(
+    //   `http://localhost:3003/update/${address}`,
 
-      // const response = await fetch(
-      //   `https://lobster-app-obfjt.ondigitalocean.app/update/${address}`,
+    const response = await fetch(
+      `https://lobster-app-obfjt.ondigitalocean.app/update/${address}`,
       {
         method: "PUT",
         headers: {
