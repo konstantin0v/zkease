@@ -49,27 +49,6 @@ export const JourneyCard = ({
   const { storedTasks } = useSelector(zkRecordSelector);
   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
   const [userProgress, setUserProgress] = useState(objOfProgress?.doneTasks);
-  const [status, setStatus] = useState("not Started")
-
-  // if (typeof document !== "undefined") {
-  const progress = document.querySelector(`#${id}`);
-  // }
-  const changeWidth = () => {
-    if(userProgress > wholeProgress) return;
-    
-    progress && (progress.style.width = `${(userProgress / wholeProgress) * 100}%`);
-  };
-
-  useEffect(() => {
-    changeWidth();
-    if (userProgress && userProgress < wholeProgress) setStatus("in Progress");
-
-    if (userProgress === wholeProgress) setStatus("Done");
-  }, [userProgress]);
-
-  const handleClick = () => {
-    setUserProgress(userProgress + 1);
-  };
 
   return (
     <Link href={`/journeyPage/${journeyName}`}>
@@ -77,13 +56,7 @@ export const JourneyCard = ({
         <header className={styles.header}>
           <div className={styles.progressBarText}>
             <div className={styles.status}>
-              <Status
-                type={
-                  objOfProgress?.doneTasks === objOfProgress?.totalTasks
-                    ? 'completed'
-                    : 'progress'
-                }
-              />
+              <Status type={(objOfProgress?.doneTasks === 0 && 'todo') || (objOfProgress?.doneTasks === objOfProgress?.totalTasks && "completed") || (objOfProgress?.doneTasks < objOfProgress?.totalTasks && objOfProgress?.doneTasks !== 0 && 'progress')} />
             </div>
 
             <p>
