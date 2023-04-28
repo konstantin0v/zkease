@@ -14,35 +14,51 @@ import { useDispatch, useSelector } from "react-redux";
 import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
 import { nfts } from "@/consts/nfts";
 import { v4 as uuidv4 } from "uuid";
+<<<<<<< Updated upstream
 import ModalWindow from "@/components/ModalWindow/ModalWindow";
 
+=======
+>>>>>>> Stashed changes
 import {
   initialDataSelector,
   setInitialData,
 } from "@/store/initialData/reducer";
 
 import Accordion from "@/components/Accordion/Accordion";
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 // export const getServerSideProps = async () => {
 //   try {
-//     const response = await fetch(
+//     const responseUsers = await fetch(
 //       "https://lobster-app-obfjt.ondigitalocean.app/"
 //     );
-//     const data = await response.json();
-//     if (data.error) {
+//     const dataUsers = await responseUsers.json();
+
+//     const responseData = await fetch(
+//       `https://lobster-app-obfjt.ondigitalocean.app/data`
+//     );
+//     const { records } = await responseData.json();
+//     const { _id, ...serverData } = records[0];
+
+//     if (dataUsers.error || records.error) {
 //       return {
-//         props: { bestUsers: [] },
+//         props: { bestUsers: [], serverData: [] },
 //       };
 //     }
-//     const bestUsers = data.records.sort((a, b) => b.exp - a.exp).slice(0, 5);
+//     const bestUsers = dataUsers.records
+//       .sort((a, b) => b.exp - a.exp)
+//       .slice(0, 5);
 //     return {
-//       props: { bestUsers },
+//       props: { bestUsers, serverData },
 //     };
 //   } catch (error) {
 //     console.error(error);
 //   }
 // };
+
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
@@ -56,19 +72,19 @@ export const getServerSideProps = async () => {
     const { records } = await responseData.json();
     const { _id, ...serverData } = records[0];
 
-    if (dataUsers.error || records.error) {
-      return {
-        props: { bestUsers: [], serverData: [] },
-      };
-    }
     const bestUsers = dataUsers.records
       .sort((a, b) => b.exp - a.exp)
       .slice(0, 5);
+
     return {
       props: { bestUsers, serverData },
     };
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    return {
+      notFound: true,
+      props: { bestUsers: [], serverData: {} },
+    };
   }
 };
 
@@ -86,28 +102,46 @@ export default function Home({ bestUsers, serverData, ...props }) {
     })();
   }, []);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       if (WalletAddress) {
+  //         //const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
+  //         const response = await fetch(
+  //           `https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`
+  //         );
+  //         const { record } = await response.json();
+  //         if (record) {
+  //           dispatch(setAddress(record.address));
+  //           dispatch(setExp(record.exp));
+  //           dispatch(setStoredTasks(record.tasks));
+  //           dispatch(setNfts(record.nfts));
+  //         } else {
+  //           await postRecord(WalletAddress, score, initialTasks, nfts);
+  //           dispatch(setAddress(WalletAddress));
+  //           dispatch(setExp(score));
+  //           dispatch(setStoredTasks(initialTasks));
+  //           dispatch(setNfts(nfts));
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   })();
+  // }, [WalletAddress]);
+
   useEffect(() => {
     (async () => {
       try {
         if (WalletAddress) {
-          //const response = await fetch(`http://localhost:3003/get/${WalletAddress}`);
-          const response = await fetch(
-            `https://lobster-app-obfjt.ondigitalocean.app/get/${WalletAddress}`
-          );
-          const { record } = await response.json();
+          const { record } = await postRecord(WalletAddress);
           if (record) {
             dispatch(setAddress(record.address));
             dispatch(setExp(record.exp));
             dispatch(setStoredTasks(record.tasks));
             dispatch(setNfts(record.nfts));
-          } else {
-            await postRecord(WalletAddress, score, initialTasks, nfts);
-            dispatch(setAddress(WalletAddress));
-            dispatch(setExp(score));
-            dispatch(setStoredTasks(initialTasks));
-            dispatch(setNfts(nfts));
-          }
-        }
+          } else throw new Error(record.error);
+        } else return null;
       } catch (error) {
         console.error(error);
       }
