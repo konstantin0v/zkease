@@ -1,28 +1,23 @@
-import { JourneyCard } from "@/components";
-import postRecord from "@/serverUtils/postRecord";
-import styles from "@/styles/Home.module.css";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
+import { JourneyCard } from '@/components';
+import postRecord from '@/serverUtils/postRecord';
+import styles from '@/styles/Home.module.css';
+import { useEffect } from 'react';
+import { useAccount } from 'wagmi';
 import {
   setExp,
   setAddress,
   setStoredTasks,
   setNfts,
-} from "../store/zkRecord/reducer";
-import { setUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { allTasks, replaceValuesWithZero } from "@/consts/allTasks";
-import { nfts } from "@/consts/nfts";
-import { v4 as uuidv4 } from "uuid";
-import ModalWindow from "@/components/ModalWindow/ModalWindow";
-
+} from '../store/zkRecord/reducer';
+import { setUsers } from '../store/users/reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { allTasks, replaceValuesWithZero } from '@/consts/allTasks';
+import { nfts } from '@/consts/nfts';
+import { v4 as uuidv4 } from 'uuid';
 import {
   initialDataSelector,
   setInitialData,
-} from "@/store/initialData/reducer";
-
-import Accordion from "@/components/Accordion/Accordion";
-
+} from '@/store/initialData/reducer';
 
 // export const getServerSideProps = async () => {
 //   try {
@@ -46,7 +41,7 @@ import Accordion from "@/components/Accordion/Accordion";
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      "https://lobster-app-obfjt.ondigitalocean.app/"
+      'https://lobster-app-obfjt.ondigitalocean.app/'
     );
     const dataUsers = await responseUsers.json();
 
@@ -117,20 +112,19 @@ export default function Home({ bestUsers, serverData, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
-
-
-
-      {(initialData &&
-        Object.keys(initialData).map((i) => (
-          <div key={i}>
-            <JourneyCard
-              id={i}
-              journeyName={i}
-              journeyNick={initialData[i]?.nick}
-              journeyTitle={initialData[i]?.title}
-            />
-          </div>
-        ))) || <p>No journeys found</p>}
+      <div className={styles.box}>
+        {(initialData &&
+          Object.keys(initialData).map((i) => (
+            <div key={i}>
+              <JourneyCard
+                id={i}
+                journeyName={i}
+                journeyNick={initialData[i]?.nick}
+                journeyTitle={initialData[i]?.title}
+              />
+            </div>
+          ))) || <p>No journeys found</p>}
+      </div>
     </>
   );
 }

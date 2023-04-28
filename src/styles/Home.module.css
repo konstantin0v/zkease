@@ -1,9 +1,13 @@
 .banner {
-    display: flex;
-    background: #212121;
-    border-radius: 16px;
-    justify-content: center;
-    align-items: center;
-    height: 284px;
-  }
-  
+  display: flex;
+  background: #212121;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 284px;
+}
+.box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}

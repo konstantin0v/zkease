@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 // import styles from "./journeyCard.module.css";
 import { useSelector } from "react-redux";
 import { zkRecordSelector } from "@/store/zkRecord/reducer";
@@ -34,11 +34,12 @@ import ProgressBar from "@ramonak/react-progress-bar";
 //     </>
 //   );
 // };
-export const JourneyCard   = ({
-  description = "Description",
-  task = "Quest Title",
+export const JourneyCard = ({
+  description = 'Description',
+  task = 'Quest Title',
   progessInBar = 0,
   taskStatus = "not Started",
+  wholeProgress = 4,
   journeyName,
   journeyTitle,
   journeyNick,
@@ -51,19 +52,19 @@ export const JourneyCard   = ({
   const [status, setStatus] = useState("not Started")
 
   // if (typeof document !== "undefined") {
-    const progress = document.querySelector(`#${id}`);
+  const progress = document.querySelector(`#${id}`);
   // }
   const changeWidth = () => {
-    if(userProgress > objOfProgress?.totalTasks) return;
+    if(userProgress > wholeProgress) return;
     
-    progress && (progress.style.width = `${(userProgress / objOfProgress?.totalTasks) * 100}%`);
+    progress && (progress.style.width = `${(userProgress / wholeProgress) * 100}%`);
   };
 
   useEffect(() => {
     changeWidth();
-    if (userProgress && userProgress < objOfProgress?.totalTasks) setStatus("in Progress");
+    if (userProgress && userProgress < wholeProgress) setStatus("in Progress");
 
-    if (userProgress === objOfProgress?.totalTasks) setStatus("Done");
+    if (userProgress === wholeProgress) setStatus("Done");
   }, [userProgress]);
 
   const handleClick = () => {
@@ -75,9 +76,14 @@ export const JourneyCard   = ({
       <div className={styles.card}>
         <header className={styles.header}>
           <div className={styles.progressBarText}>
-
             <div className={styles.status}>
-              <Status type={objOfProgress?.doneTasks === objOfProgress?.totalTasks ? "completed" : "progress"} />
+              <Status
+                type={
+                  objOfProgress?.doneTasks === objOfProgress?.totalTasks
+                    ? 'completed'
+                    : 'progress'
+                }
+              />
             </div>
 
             <p>
@@ -119,4 +125,3 @@ export const JourneyCard   = ({
     </Link>
   );
 };
-

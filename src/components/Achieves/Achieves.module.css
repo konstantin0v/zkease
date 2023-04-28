@@ -1,0 +1,7 @@
+.achievements {
+  height: 148px;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 8px;
+  background-color: var(--grey-50);
+}

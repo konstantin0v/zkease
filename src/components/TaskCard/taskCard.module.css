@@ -4,7 +4,7 @@
   align-items: flex-start;
   padding: 16px;
   gap: 12px;
-  width: 260px;
+  width: 100%;
   background: var(--grey-50);
   border-radius: 16px;
   border: 1px solid transparent;
@@ -12,24 +12,24 @@
 }
 
 .card:hover {
-background-color: var(--grey-100);
-border: 1px solid var(--grey-300);
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-300);
 }
 
 .card:active {
-background-color: var(--grey-50);
-border: 1px solid var(--grey-300);
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-300);
 }
 
 .cardHeader {
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .cardContent {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 510;
   font-style: normal;
@@ -39,21 +39,24 @@ width: 100%;
   width: 100%;
 }
 
-.cardContentSidebar { 
+.cardContentSidebar {
   flex: 1;
+}
+.cardSidebar {
+  width: 100%;
 }
 
 .cardFooter {
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .cardFooterStatus {
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .projectNameContainer {
@@ -78,10 +81,10 @@ justify-content: space-between;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 590;
   font-style: normal;
   line-height: 16px;
-  color: var(--grey-700)
+  color: var(--grey-700);
 }
