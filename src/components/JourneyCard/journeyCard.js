@@ -1,5 +1,6 @@
 import Link from 'next/link';
 // import styles from "./journeyCard.module.css";
+
 import { useSelector } from "react-redux";
 import { zkRecordSelector } from "@/store/zkRecord/reducer";
 import { getJourneyTasks } from "@/utils/getJourneyTasks";
@@ -38,7 +39,7 @@ export const JourneyCard = ({
   description = 'Description',
   task = 'Quest Title',
   progessInBar = 0,
-  taskStatus = "not Started",
+  taskStatus = 'not Started',
   wholeProgress = 4,
   journeyName,
   journeyTitle,
@@ -48,6 +49,7 @@ export const JourneyCard = ({
 }) => {
   const { storedTasks } = useSelector(zkRecordSelector);
   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
+
   const [userProgress, setUserProgress] = useState(objOfProgress?.doneTasks);
 
   return (
@@ -56,6 +58,7 @@ export const JourneyCard = ({
         <header className={styles.header}>
           <div className={styles.progressBarText}>
             <div className={styles.status}>
+
               <Status type={(objOfProgress?.doneTasks === 0 && 'todo') || (objOfProgress?.doneTasks === objOfProgress?.totalTasks && "completed") || (objOfProgress?.doneTasks < objOfProgress?.totalTasks && objOfProgress?.doneTasks !== 0 && 'progress')} />
             </div>
 
