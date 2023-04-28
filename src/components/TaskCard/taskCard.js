@@ -14,12 +14,12 @@ import {
   Orbiter,
   Syncswap,
   Zksync,
-} from "@/components";
-import styles from "./taskCard.module.css";
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { clsx } from "clsx";
+} from '@/components';
+import styles from './taskCard.module.css';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { clsx } from 'clsx';
 
 export default function TaskCard({
   taskName,
@@ -36,7 +36,7 @@ export default function TaskCard({
   const statusOfTask = storedTasks?.[journeyName]?.[taskName];
   const projectName =
     source.charAt(0).toUpperCase() +
-    source.substring(1, source.indexOf(".")).toLowerCase();
+    source.substring(1, source.indexOf('.')).toLowerCase();
 
   const project = {
     Multichain,
@@ -55,7 +55,7 @@ export default function TaskCard({
   return (
     <Link
       href={`/journeyPage/${journeyName}/${taskName}`}
-      className={styles.card}
+      className={clsx(styles.card, sidebar && styles.cardSidebar)}
     >
       <div className={styles.cardHeader}>
         <ProjectName Logo={project[projectName]}>{projectName}</ProjectName>
@@ -64,7 +64,8 @@ export default function TaskCard({
       <div
         className={clsx(
           styles.cardContent,
-          sidebar && styles.cardContentSidebar
+          sidebar && styles.cardContentSidebar,
+          sidebar && styles.cardSidebar
         )}
       >
         {title}
@@ -76,7 +77,7 @@ export default function TaskCard({
 
         <div className={styles.cardFooterStatus}>
           {showCounterBadge && <Badge>3 times</Badge>}
-          <Status type={statusOfTask ? "completed" : "todo"} />
+          <Status type={statusOfTask ? 'completed' : 'todo'} />
         </div>
       </div>
     </Link>
