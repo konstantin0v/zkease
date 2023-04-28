@@ -6,6 +6,9 @@ import { getJourneyTasks } from '@/utils/getJourneyTasks';
 import { limitsForMinting } from '@/consts/limitsForMinting';
 import React, { useEffect, useState } from 'react';
 import styles from './journeyCard.module.css';
+import Status from '../Status/Status';
+import { XpSvg } from '..';
+import { Badge } from '..';
 
 // export const JourneyCard = ({
 //   journeyName,
