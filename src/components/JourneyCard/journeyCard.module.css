@@ -36,24 +36,11 @@
 .card:active {
   background-color: var(--grey-50);
   border: 1px solid var(--grey-300);
-  }
-
-.bar {
-  background-color: #F7F7F71A;
-  border-radius: 8px;
-  width: 256px;
-  height: 4px;
 }
 
-.done {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #155EE6;
-  border-radius: 8px;
-  height: 100%;
-  width: 0;
-  transition: 1s ease 0.3s;
+.header{
+  width: 252px;
+  height: 40px;
 }
 
 .progressBarText {
@@ -65,12 +52,18 @@
   height: 28px;
 }
 
+.barContainer{
+  height: 12px;
+  width: 256px;
+  margin-top: 8px;
+}
+
 .content {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  width: 256px;
-  height: 140px;
+  width: 252px;
+  height: 142px;
   padding: 0px;
   gap: 8px;
 }
