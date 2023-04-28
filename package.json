@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.12.8",
+    "@ramonak/react-progress-bar": "^5.0.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@svgr/webpack": "^7.0.0",
     "@wagmi/chains": "^0.2.18",
