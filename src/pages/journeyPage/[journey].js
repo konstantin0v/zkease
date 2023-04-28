@@ -15,7 +15,7 @@ const JourneyPage = () => {
   const { exp } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
   const dispatch = useDispatch();
-  const tasksByJourney = initialData[journey]?.tasks;
+  const tasksByJourney = initialData?.[journey]?.tasks;
   const handleMintNftByPlace = async () => {
     await handleMintNft(WalletAddress, journey, setNfts, dispatch);
   };

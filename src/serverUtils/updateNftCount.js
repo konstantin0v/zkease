@@ -1,6 +1,7 @@
 const updateNftCount = async (address, nft) => {
   try {
-    // const response = await fetch(`http://localhost:3003/rewrite/${address}`,
+    // const response = await fetch(
+    // `http://localhost:3003/rewrite/${address}`,
     const response = await fetch(
       `https://lobster-app-obfjt.ondigitalocean.app/rewrite/${address}`,
       {

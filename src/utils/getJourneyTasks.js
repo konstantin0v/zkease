@@ -1,6 +1,6 @@
 export const getJourneyTasks = (journeyName, obj) => {
-  let journey = obj[journeyName];
-  let totalTasks = Object.keys(journey || {}).length;
+  let journey = obj[journeyName] || {};
+  let totalTasks = Object.keys(journey).length;
   let doneTasks = 0;
 
   for (let task in journey) {

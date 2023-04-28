@@ -17,8 +17,8 @@ const TaskPage = ({ ...props }) => {
   const dispatch = useDispatch();
   const { initialData } = useSelector(initialDataSelector);
 
-  const earnedExp = initialData[journey]?.tasks[taskName]?.exp;
-  const countOfEfforts = storedTasks[journey]?.[taskName];
+  const earnedExp = initialData?.[journey]?.tasks[taskName]?.exp;
+  const countOfEfforts = storedTasks?.[journey]?.[taskName];
   const newPath = `tasks.${journey}.${taskName}`;
 
   const handleVerify = async () => {
