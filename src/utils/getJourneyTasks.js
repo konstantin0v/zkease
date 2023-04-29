@@ -1,5 +1,5 @@
 export const getJourneyTasks = (journeyName, obj) => {
-  let journey = {};
+  let journey = obj[journeyName] || {};
   let totalTasks = Object.keys(journey).length;
   let doneTasks = 0;
 

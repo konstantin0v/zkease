@@ -1,73 +1,46 @@
-import Link from 'next/link';
+import Link from "next/link";
 // import styles from "./journeyCard.module.css";
 
-import { useSelector } from 'react-redux';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import { getJourneyTasks } from '@/utils/getJourneyTasks';
-import { limitsForMinting } from '@/consts/limitsForMinting';
-import React, { useEffect, useState } from 'react';
-import styles from './journeyCard.module.css';
-import Status from '../Status/Status';
-import { XpSvg } from '..';
-import { Badge } from '..';
-import ProgressBar from '@ramonak/react-progress-bar';
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { getJourneyTasks } from "@/utils/getJourneyTasks";
+import { limitsForMinting } from "@/consts/limitsForMinting";
+import React, { useEffect, useState } from "react";
+import styles from "./journeyCard.module.css";
+import Status from "../Status/Status";
+import { XpSvg } from "..";
+import { Badge } from "..";
+import ProgressBar from "@ramonak/react-progress-bar";
+import CustomLink from "./customLink";
 
-// export const JourneyCard = ({
-//   journeyName,
-//   journeyTitle,
-//   journeyNick,
-//   ...props
-// }) => {
-//   const { storedTasks } = useSelector(zkRecordSelector);
-//   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
-//   return (
-//     <>
-//       <div className={styles.card}>
-//         <p>{journeyNick}</p>
-//         <p>{journeyTitle}</p>
-//         <p>
-//           Progress: {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks}
-//         </p>
-//         <>EXP of lvl: {limitsForMinting[journeyName]}</>
-
-//         <Link href={`/journeyPage/${journeyName}`}>View Tasks</Link>
-//       </div>
-//     </>
-//   );
-// };
 export const JourneyCard = ({
-  description = 'Description',
-  task = 'Quest Title',
-  progessInBar = 0,
-  taskStatus = 'not Started',
-  wholeProgress = 4,
   journeyName,
   journeyTitle,
   journeyNick,
-  id,
+  prevJourneyName,
   showNewTaskBadge = true,
   ...props
 }) => {
-  const { storedTasks } = useSelector(zkRecordSelector);
+  const { storedTasks, nfts } = useSelector(zkRecordSelector);
   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
-
-  const [userProgress, setUserProgress] = useState(objOfProgress?.doneTasks);
-
   return (
-    <Link href={`/journeyPage/${journeyName}`} className={styles.card}>
+    <CustomLink
+      href={`/journeyPage/${journeyName}`}
+      disabled={journeyName != "journey0" && !nfts[prevJourneyName]}
+    >
       <div className={styles.top}>
         <Status
           type={
-            (objOfProgress?.doneTasks === 0 && 'todo') ||
+            (objOfProgress?.doneTasks === 0 && "todo") ||
             (objOfProgress?.doneTasks === objOfProgress?.totalTasks &&
-              'completed') ||
+              "completed") ||
             (objOfProgress?.doneTasks < objOfProgress?.totalTasks &&
               objOfProgress?.doneTasks !== 0 &&
-              'progress')
+              "progress")
           }
         />
         <p className={styles.top__text}>
-          {userProgress}/{objOfProgress?.totalTasks}
+          {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks}
         </p>
       </div>
       <ProgressBar
@@ -76,21 +49,17 @@ export const JourneyCard = ({
         height="4px"
         borderRadius="8px"
         customLabel=" "
-        completed={(userProgress / objOfProgress?.totalTasks) * 100}
+        completed={(objOfProgress?.doneTasks / objOfProgress?.totalTasks) * 100}
         className={styles.bar}
       />
       <h3 className={styles.subtitle}>{journeyNick}</h3>
       <h4 className={styles.description}>{journeyTitle}</h4>
       <div className={styles.badges}>
         <Badge showIconLeft IconLeft={XpSvg}>
-          {limitsForMinting[id]}
+          {limitsForMinting[journeyName]}
         </Badge>
         {showNewTaskBadge && <Badge appereance="blue">New tasks!</Badge>}
       </div>
-    </Link>
+    </CustomLink>
   );
 };
-/* Progress: {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks} */
-/* <div className={styles.bar}> */
-/* <ProgressBar journeyName={journeyName} progress={userProgress} /> */
-/* <button onClick={handleClick}>НАЖМИ МЕНЯ</button> */

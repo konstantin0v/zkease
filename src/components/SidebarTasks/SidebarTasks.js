@@ -1,13 +1,22 @@
-import SidebarJourney from '../SidebarJourney/SidebarJourney';
-import TaskCard from '../TaskCard/taskCard';
-import styles from './SidebarTasks.module.css';
+import { useSelector } from "react-redux";
+import SidebarJourney from "../SidebarJourney/SidebarJourney";
+import TaskCard from "../TaskCard/taskCard";
+import styles from "./SidebarTasks.module.css";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { useRouter } from "next/router";
 
-const SidebarTasks = ({ data, journey, ...props }) => {
+const SidebarTasks = ({ ...props }) => {
+  const router = useRouter();
+  const { journey } = router.query;
+  const { initialData } = useSelector(initialDataSelector);
+  const tasksByJourney = initialData[journey]?.tasks;
+  const journeyNick = initialData[journey].nick;
+  console.log(journeyNick);
   return (
     <div className={styles.box}>
-      <SidebarJourney />
-      {(data &&
-        Object.entries(data).map(([key, task]) => (
+      <SidebarJourney journeyName={journey} journeyNick={journeyNick} />
+      {(tasksByJourney &&
+        Object.entries(tasksByJourney).map(([key, task]) => (
           <TaskCard
             key={key}
             taskName={key}
