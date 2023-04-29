@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
-import styles from './Progress.module.css';
-import { useAccount } from 'wagmi';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import ProgressBar from '@ramonak/react-progress-bar';
+import { useSelector } from "react-redux";
+import styles from "./Progress.module.css";
+import { useAccount } from "wagmi";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const Progress = () => {
   const { exp, nfts } = useSelector(zkRecordSelector);
@@ -12,12 +12,16 @@ const Progress = () => {
     <div className={styles.progress}>
       <h2 className={styles.subtitle}>My progress</h2>
       <div className={styles.info}>
-        <p>
-          Lvl
-          {nfts &&
-            Object.entries(nfts).filter(([_, value]) => value !== 0).length}
-        </p>
-        <p>XP {WalletAddress && exp}/?</p>
+        Lvl i dont know & you have
+        {WalletAddress && (
+          <>
+            {nfts &&
+              Object.entries(nfts).filter(([_, value]) => value !== 0)
+                .length}{" "}
+            nfts
+            <p>XP {exp}</p>
+          </>
+        )}
       </div>
       <ProgressBar
         bgColor="#155EE6"

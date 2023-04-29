@@ -1,6 +1,6 @@
 const getRecordByAddress = async (address) => {
   try {
-    //const response = await fetch(`http://localhost:3003/get/${address}`);
+    // const response = await fetch(`http://localhost:3003/get/${address}`);
 
     const response = await fetch(
       `https://lobster-app-obfjt.ondigitalocean.app/get/${address}`

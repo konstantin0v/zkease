@@ -1,24 +1,28 @@
-import Status from '../Status/Status';
-import styles from './SidebarJourney.module.css';
-import ProgressBar from '@ramonak/react-progress-bar';
+import { useSelector } from "react-redux";
+import Status from "../Status/Status";
+import styles from "./SidebarJourney.module.css";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { getJourneyTasks } from "@/utils/getJourneyTasks";
 
-const SidebarJourney = () => {
+const SidebarJourney = ({ journeyName, journeyNick }) => {
+  const { storedTasks } = useSelector(zkRecordSelector);
+  const objOfProgress = getJourneyTasks(journeyName, storedTasks);
+
   return (
     <div className={styles.box}>
       <div className={styles.top}>
         <Status
-          // type={
-          //   (objOfProgress?.doneTasks === 0 && 'todo') ||
-          //   (objOfProgress?.doneTasks === objOfProgress?.totalTasks &&
-          //     'completed') ||
-          //   (objOfProgress?.doneTasks < objOfProgress?.totalTasks &&
-          //     objOfProgress?.doneTasks !== 0 &&
-          //     'progress')
-          // }
-          type={'progress'}
+          type={
+            (objOfProgress?.doneTasks === objOfProgress?.totalTasks &&
+              "completed") ||
+            (objOfProgress?.doneTasks < objOfProgress?.totalTasks &&
+              objOfProgress?.doneTasks !== 0 &&
+              "progress")
+          }
         />
         <p className={styles.top__text}>
-          {/* {userProgress}/{objOfProgress?.totalTasks} */}3 / 5
+          {objOfProgress?.doneTasks}/{objOfProgress?.totalTasks}
         </p>
       </div>
       <ProgressBar
@@ -27,11 +31,10 @@ const SidebarJourney = () => {
         height="4px"
         borderRadius="8px"
         customLabel=" "
-        completed={90}
-        // completed={(userProgress / objOfProgress?.totalTasks) * 100}
+        completed={(objOfProgress?.doneTasks / objOfProgress?.totalTasks) * 100}
         className={styles.bar}
       />
-      <h3 className={styles.subtitle}>Journey Name</h3>
+      <h3 className={styles.subtitle}>{journeyNick}</h3>
     </div>
   );
 };
