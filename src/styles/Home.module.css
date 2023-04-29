@@ -11,3 +11,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
 }
+.title {
+  font-weight: 500;
+  font-size: 20px;
+  color: #cfcfcf;
+  margin: 32px 0 16px;
+}

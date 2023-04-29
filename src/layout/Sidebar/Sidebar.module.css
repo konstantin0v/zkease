@@ -5,6 +5,7 @@
   padding: 16px;
   margin-bottom: 8px;
 }
+
 @media (max-width: 1024px) {
   .progress {
     flex: 1;

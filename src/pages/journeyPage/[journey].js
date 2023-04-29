@@ -21,7 +21,8 @@ const JourneyPage = () => {
   };
   return (
     <div>
-      <h2>Tasks for {initialData[journey]?.nick}</h2>
+      <h2 className={styles.title}>{initialData[journey]?.nick}</h2>
+      <h2 className={styles.subtitle}>Tasks</h2>
       <div className={styles.cards}>
         {(tasksByJourney &&
           Object.entries(tasksByJourney).map(([key, task]) => (

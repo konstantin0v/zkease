@@ -5,3 +5,8 @@
   margin-bottom: 8px;
   background-color: var(--grey-50);
 }
+.subtitle {
+  font-weight: 510;
+  font-size: 18px;
+  color: #b4b4b4;
+}

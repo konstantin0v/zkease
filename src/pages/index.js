@@ -17,7 +17,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   initialDataSelector,
   setInitialData,
-
 } from '@/store/initialData/reducer';
 
 // export const getServerSideProps = async () => {
@@ -64,7 +63,7 @@ export const getServerSideProps = async () => {
 
     const bestUsers = dataUsers.records
       .sort((a, b) => b.exp - a.exp)
-      .slice(0, 5);
+      .slice(0, 10);
 
     return {
       props: { bestUsers, serverData },
@@ -141,6 +140,7 @@ export default function Home({ bestUsers, serverData, ...props }) {
   return (
     <>
       <div className={styles.banner}>banner</div>
+      <h2 className={styles.title}>Journeys in zkSync</h2>
       <div className={styles.box}>
         {(initialData &&
           Object.keys(initialData).map((i) => (
