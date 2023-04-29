@@ -1,4 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Medium.eot');
+  src: local('/fonts/SF Pro Display Medium'), local('SFProDisplay-Medium'),
+    url('/fonts/SFProDisplay-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Medium.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Medium.woff') format('woff'),
+    url('/fonts/SFProDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Heavy.eot');
+  src: local('/fonts/SF Pro Display Heavy'), local('SFProDisplay-Heavy'),
+    url('/fonts/SFProDisplay-Heavy.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Heavy.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Heavy.woff') format('woff'),
+    url('/fonts/SFProDisplay-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Thin.eot');
+  src: local('/fonts/SF Pro Display Thin'), local('SFProDisplay-Thin'),
+    url('/fonts/SFProDisplay-Thin.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Thin.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Thin.woff') format('woff'),
+    url('/fonts/SFProDisplay-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Light.eot');
+  src: local('/fonts/SF Pro Display Light'), local('SFProDisplay-Light'),
+    url('/fonts/SFProDisplay-Light.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Light.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Light.woff') format('woff'),
+    url('/fonts/SFProDisplay-Light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Bold.eot');
+  src: local('/fonts/SF Pro Display Bold'), local('SFProDisplay-Bold'),
+    url('/fonts/SFProDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Bold.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Bold.woff') format('woff'),
+    url('/fonts/SFProDisplay-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Black.eot');
+  src: local('/fonts/SF Pro Display Black'), local('SFProDisplay-Black'),
+    url('/fonts/SFProDisplay-Black.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Black.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Black.woff') format('woff'),
+    url('/fonts/SFProDisplay-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Ultralight.eot');
+  src: local('/fonts/SF Pro Display Ultralight'),
+    local('SFProDisplay-Ultralight'),
+    url('/fonts/SFProDisplay-Ultralight.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Ultralight.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Ultralight.woff') format('woff'),
+    url('/fonts/SFProDisplay-Ultralight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Semibold.eot');
+  src: local('/fonts/SF Pro Display Semibold'), local('SFProDisplay-Semibold'),
+    url('/fonts/SFProDisplay-Semibold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Semibold.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Semibold.woff') format('woff'),
+    url('/fonts/SFProDisplay-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('/fonts/SFProDisplay-Regular.eot');
+  src: local('/fonts/SF Pro Display Regular'), local('SFProDisplay-Regular'),
+    url('/fonts/SFProDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFProDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/SFProDisplay-Regular.woff') format('woff'),
+    url('/fonts/SFProDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --maintext: white;
@@ -94,9 +201,9 @@
 body {
   color: var(--maintext);
   background-color: var(--grey-0);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SF Pro', sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 510;
 }
 
 a {

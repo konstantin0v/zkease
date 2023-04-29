@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import styles from './Progress.module.css';
 import { useAccount } from 'wagmi';
 import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import ProgressBar from '@ramonak/react-progress-bar';
 
 const Progress = () => {
   const { exp, nfts } = useSelector(zkRecordSelector);
@@ -9,16 +10,40 @@ const Progress = () => {
 
   return (
     <div className={styles.progress}>
-      My progress - {WalletAddress && exp}XP
-      <p>
-        You have{' '}
-        {WalletAddress &&
-          nfts &&
-          Object.entries(nfts).filter(([_, value]) => value !== 0).length}{' '}
-        NFT
-      </p>
+      <h2 className={styles.subtitle}>My progress</h2>
+      <div className={styles.info}>
+        <p>
+          Lvl
+          {nfts &&
+            Object.entries(nfts).filter(([_, value]) => value !== 0).length}
+        </p>
+        <p>XP {WalletAddress && exp}/?</p>
+      </div>
+      <ProgressBar
+        bgColor="#155EE6"
+        baseBgColor="#F7F7F71A"
+        height="4px"
+        borderRadius="8px"
+        customLabel=" "
+        completed={0}
+        // completed={(userProgress / objOfProgress?.totalTasks) * 100}
+        className={styles.bar}
+      />
     </div>
   );
 };
 
 export default Progress;
+
+{
+  /* <div className={styles.progress}>
+  My progress - {WalletAddress && exp}XP
+  <p>
+    You have{' '}
+    {WalletAddress &&
+      nfts &&
+      Object.entries(nfts).filter(([_, value]) => value !== 0).length}{' '}
+    NFT
+  </p>
+</div>; */
+}

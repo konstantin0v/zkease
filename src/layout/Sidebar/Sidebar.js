@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import styles from './Sidebar.module.css';
 import { Leaderboard } from '@/components';
 import { useSelector } from 'react-redux';
-import TaskCard from '@/components/TaskCard/taskCard';
 import { initialDataSelector } from '@/store/initialData/reducer';
 import Progress from '@/components/Progress/Progress';
 import Achieves from '@/components/Achieves/Achieves';
+import SidebarTasks from '@/components/SidebarTasks/SidebarTasks';
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
@@ -15,28 +15,17 @@ const Sidebar = ({ ...props }) => {
   const tasksByJourney = initialData[journey]?.tasks;
 
   return (
-    <div {...props}>
+    <>
       {currentPage.includes('task') ? (
-        <>
-          {(tasksByJourney &&
-            Object.entries(tasksByJourney).map(([key, task]) => (
-              <TaskCard
-                key={key}
-                taskName={key}
-                journeyName={journey}
-                sidebar
-                {...task}
-              />
-            ))) || <p>No tasks found</p>}
-        </>
+        <SidebarTasks data={tasksByJourney} journey={journey} />
       ) : (
-        <>
+        <div {...props}>
           <Progress />
           <Achieves />
           <Leaderboard />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default Sidebar;

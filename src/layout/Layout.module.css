@@ -23,12 +23,14 @@
   flex: 1;
   width: 100%;
 }
+
 .sidebar {
   width: 280px;
   position: fixed;
   top: 92px;
   font-size: 20px;
 }
+
 .page {
   margin: 32px 0 32px 320px;
   /* border: 1px solid var(--border); */

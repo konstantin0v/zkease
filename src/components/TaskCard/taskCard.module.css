@@ -29,7 +29,7 @@
 }
 
 .cardContent {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SF Pro', sans-serif;
   font-size: 18px;
   font-weight: 510;
   font-style: normal;
@@ -44,6 +44,7 @@
 }
 .cardSidebar {
   width: 100%;
+  margin-bottom: 8px;
 }
 
 .cardFooter {
@@ -81,7 +82,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SF Pro', sans-serif;
   font-size: 12px;
   font-weight: 590;
   font-style: normal;

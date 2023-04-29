@@ -1,5 +1,5 @@
 .leaderboard {
-  height: 300px;
+  height: 360px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -8,32 +8,55 @@
 .subtitle {
   margin: 0;
   padding: 16px;
-  font-size: 20px;
-  font-weight: 500;
+  font-weight: 510;
+  font-size: 18px;
+  color: #b4b4b4;
 }
 .list {
   color: var(--thirdtext);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 25px 32px;
   flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto;
+  margin: 0 21px;
 }
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
 .list__row {
   display: flex;
   align-items: column;
   justify-content: space-between;
+  margin-bottom: 13px;
+}
+.list__row__pos {
+  width: 34px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 .list__row__name {
-  margin-left: 21px;
   flex: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: stretch;
   align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+}
+.list__row__name__p {
+  margin-left: 8px;
 }
 .list__row__xp {
   color: var(--maintext);
-  font-size: 16px;
+  font-weight: 590;
+  font-size: 12px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
