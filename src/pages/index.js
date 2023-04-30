@@ -51,7 +51,7 @@ export default function Home({ bestUsers, serverData, ...props }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
+    (() => {
       dispatch(setUsers(bestUsers));
       dispatch(setInitialData(serverData));
     })();
