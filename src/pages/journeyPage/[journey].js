@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router';
-import styles from './journeyPage.module.css';
-import { limitsForMinting } from '@/consts/limitsForMinting';
-import { useDispatch, useSelector } from 'react-redux';
-import { setNfts, zkRecordSelector } from '@/store/zkRecord/reducer';
-import { useAccount } from 'wagmi';
-import TaskCard from '@/components/TaskCard/taskCard';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import { handleMintNft } from '@/utils/handleMintNft';
+import { useRouter } from "next/router";
+import styles from "./journeyPage.module.css";
+import { limitsForMinting } from "@/consts/limitsForMinting";
+import { useDispatch, useSelector } from "react-redux";
+import { setNfts, zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useAccount } from "wagmi";
+import TaskCard from "@/components/TaskCard/taskCard";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { handleMintNft } from "@/utils/handleMintNft";
 
 const JourneyPage = () => {
   const { initialData } = useSelector(initialDataSelector);
@@ -22,11 +22,7 @@ const JourneyPage = () => {
   return (
     <div>
       <h2 className={styles.title}>{initialData[journey]?.nick}</h2>
-      <h3 className={styles.desc}>
-        Mute.io lets you swap cryptocurrencies quietly and easily. Our platform
-        is hassle-free and secure, giving you peace of mind while trading. Say
-        goodbye to noise and trade your way with us.
-      </h3>
+      <h3 className={styles.desc}>{initialData[journey]?.journeyDesc}</h3>
       <h2 className={styles.subtitle}>Tasks</h2>
       <div className={styles.cards}>
         {(tasksByJourney &&

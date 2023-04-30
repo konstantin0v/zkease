@@ -22,6 +22,7 @@ export const JourneyCard = ({
 }) => {
   const { storedTasks, nfts } = useSelector(zkRecordSelector);
   const objOfProgress = getJourneyTasks(journeyName, storedTasks);
+
   return (
     <CustomLink
       href={`/journeyPage/${journeyName}`}
