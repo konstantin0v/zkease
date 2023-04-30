@@ -1,25 +1,25 @@
-import { JourneyCard } from '@/components';
-import postRecord from '@/serverUtils/postRecord';
-import styles from '@/styles/Home.module.css';
-import { useEffect } from 'react';
-import { useAccount } from 'wagmi';
+import { Banner, JourneyCard } from "@/components";
+import postRecord from "@/serverUtils/postRecord";
+import styles from "@/styles/Home.module.css";
+import { useEffect } from "react";
+import { useAccount } from "wagmi";
 import {
   setExp,
   setAddress,
   setStoredTasks,
   setNfts,
-} from '../store/zkRecord/reducer';
-import { setUsers } from '../store/users/reducer';
-import { useDispatch, useSelector } from 'react-redux';
+} from "../store/zkRecord/reducer";
+import { setUsers } from "../store/users/reducer";
+import { useDispatch, useSelector } from "react-redux";
 import {
   initialDataSelector,
   setInitialData,
-} from '@/store/initialData/reducer';
+} from "@/store/initialData/reducer";
 
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      'https://lobster-app-obfjt.ondigitalocean.app/'
+      "https://lobster-app-obfjt.ondigitalocean.app/"
     );
     const dataUsers = await responseUsers.json();
 
@@ -77,7 +77,19 @@ export default function Home({ bestUsers, serverData, ...props }) {
 
   return (
     <>
-      <div className={styles.banner}>banner</div>
+      <div className={styles.banner}>
+        <Banner
+          linkText="Learn more"
+          bannerTextTitle="Join our community"
+          bannerTextDescription="Join our community"
+        />
+        <Banner
+          submitBanner
+          linkText="Submit"
+          bannerTextTitle="Submit your project"
+          bannerTextDescription="If you want to attract users to your project built on zkSyncEra, then contact us using the form below."
+        />
+      </div>
       <h2 className={styles.title}>Journeys in zkSync</h2>
       <div className={styles.box}>
         {(initialData &&
