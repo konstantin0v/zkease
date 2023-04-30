@@ -1,25 +1,12 @@
-import {
-  Badge,
-  Status,
-  ProjectName,
-  XpSvg,
-  Multichain,
-  Mintsquare,
-  Mute,
-  Nexon,
-  Onchain,
-  Unidex,
-  Rhino,
-  Spacefi,
-  Orbiter,
-  Syncswap,
-  Zksync,
-} from "@/components";
-import styles from "./taskCard.module.css";
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { clsx } from "clsx";
+import styles from './taskCard.module.css';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { clsx } from 'clsx';
+import ProjectName from '@/components/TaskCard/ProjectName';
+import Badge from '@/components/Badge/Badge';
+import Status from '@/components/Status/Status';
+import { XpSvg } from '@/components';
 
 export default function TaskCard({
   taskName,
@@ -34,23 +21,6 @@ export default function TaskCard({
 }) {
   const { storedTasks } = useSelector(zkRecordSelector);
   const statusOfTask = storedTasks?.[journeyName]?.[taskName];
-  const projectName =
-    source.charAt(0).toUpperCase() +
-    source.substring(1, source.indexOf(".")).toLowerCase();
-
-  const project = {
-    Multichain,
-    Mintsquare,
-    Mute,
-    Nexon,
-    Onchain,
-    Unidex,
-    Rhino,
-    Spacefi,
-    Orbiter,
-    Syncswap,
-    Zksync,
-  };
 
   return (
     <Link
@@ -58,7 +28,7 @@ export default function TaskCard({
       className={clsx(styles.card, sidebar && styles.cardSidebar)}
     >
       <div className={styles.cardHeader}>
-        <ProjectName Logo={project[projectName]}>{source}</ProjectName>
+        <ProjectName tag={source}>{source}</ProjectName>
         {showNewTaskBadge && <Badge appereance="blue">New!</Badge>}
       </div>
       <div
@@ -74,10 +44,9 @@ export default function TaskCard({
         <Badge showIconLeft IconLeft={XpSvg}>
           {exp}
         </Badge>
-
         <div className={styles.cardFooterStatus}>
           {showCounterBadge && <Badge>3 times</Badge>}
-          <Status type={statusOfTask ? "completed" : "todo"} />
+          <Status type={statusOfTask ? 'completed' : 'todo'} />
         </div>
       </div>
     </Link>
