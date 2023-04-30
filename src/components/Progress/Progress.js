@@ -35,7 +35,7 @@ const Progress = () => {
           />
           {exp >= needExp[nftCount] && (
             <Button
-              type="primary"
+              type="intent-primary"
               intent="primary"
               size="medium"
               style={{ marginTop: '12px' }}

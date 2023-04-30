@@ -104,10 +104,11 @@ const TaskPage = ({ ...props }) => {
       <div className={styles.down}>
         {WalletAddress && (
           <Button
-            type="primary"
+            type="intent-primary"
             intent="primary"
             size="large"
             onClick={handleVerify}
+            style={{ width: '91px' }}
           >
             Verify
           </Button>

@@ -1,25 +1,25 @@
-import { JourneyCard } from "@/components";
-import postRecord from "@/serverUtils/postRecord";
-import styles from "@/styles/Home.module.css";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
+import { JourneyCard } from '@/components';
+import postRecord from '@/serverUtils/postRecord';
+import styles from '@/styles/Home.module.css';
+import { useEffect } from 'react';
+import { useAccount } from 'wagmi';
 import {
   setExp,
   setAddress,
   setStoredTasks,
   setNfts,
-} from "../store/zkRecord/reducer";
-import { setUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
+} from '../store/zkRecord/reducer';
+import { setUsers } from '../store/users/reducer';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   initialDataSelector,
   setInitialData,
-} from "@/store/initialData/reducer";
+} from '@/store/initialData/reducer';
 
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      "https://lobster-app-obfjt.ondigitalocean.app/"
+      'https://lobster-app-obfjt.ondigitalocean.app/'
     );
     const dataUsers = await responseUsers.json();
 
