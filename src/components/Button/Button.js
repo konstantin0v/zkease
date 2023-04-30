@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import styles from './Button.module.css';
 
 export const Button = ({
   type = 'primary',
-  intent = 'normal',
+  intent = 'primary',
   size = 'medium',
   showIconLeft = false,
   showIconRight = false,
@@ -18,8 +19,8 @@ export const Button = ({
       className={clsx(
         styles.button,
         styles[type],
-        styles[size],
         styles[intent],
+        styles[size],
         disabled && styles.disabled,
         styles.buttonContainer
       )}

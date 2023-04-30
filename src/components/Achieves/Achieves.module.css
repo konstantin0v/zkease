@@ -1,12 +1,36 @@
 .achievements {
-  height: 148px;
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 8px;
   background-color: var(--grey-50);
+  height: 134px;
 }
-.subtitle {
+.title {
   font-weight: 510;
   font-size: 18px;
   color: #b4b4b4;
+  margin-bottom: 16px;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  color: #b4b4b4;
+  text-align: center;
+}
+.box {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  position: relative;
+}
+.nft {
+  margin-right: 12px;
+}
+.overlay {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background: linear-gradient(270deg, #171717 1.62%, rgba(23, 23, 23, 0) 50%);
 }

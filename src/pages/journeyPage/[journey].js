@@ -22,6 +22,11 @@ const JourneyPage = () => {
   return (
     <div>
       <h2 className={styles.title}>{initialData[journey]?.nick}</h2>
+      <h3 className={styles.desc}>
+        Mute.io lets you swap cryptocurrencies quietly and easily. Our platform
+        is hassle-free and secure, giving you peace of mind while trading. Say
+        goodbye to noise and trade your way with us.
+      </h3>
       <h2 className={styles.subtitle}>Tasks</h2>
       <div className={styles.cards}>
         {(tasksByJourney &&

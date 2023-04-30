@@ -1,4 +1,4 @@
-import styles from "./taskCard.module.css";
+import styles from './taskCard.module.css';
 
 export const ProjectName = ({ children, Logo }) => {
   let LogoIcon = Logo;

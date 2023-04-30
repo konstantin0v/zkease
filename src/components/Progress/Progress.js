@@ -1,53 +1,54 @@
-import { useSelector } from "react-redux";
-import styles from "./Progress.module.css";
-import { useAccount } from "wagmi";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import ProgressBar from "@ramonak/react-progress-bar";
+import { useSelector } from 'react-redux';
+import styles from './Progress.module.css';
+import { useAccount } from 'wagmi';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import ProgressBar from '@ramonak/react-progress-bar';
+import Button from '../Button/Button';
 
 const Progress = () => {
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
 
+  const needExp = { 0: 10, 1: 80, 2: 510, 3: 1490, 4: 2690 };
+  let nftCount = 0;
+  if (nfts) {
+    nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
+  }
   return (
     <div className={styles.progress}>
-      <h2 className={styles.subtitle}>My progress</h2>
-      <div className={styles.info}>
-        Lvl i dont know & you have
-        {WalletAddress && (
-          <>
-            {nfts &&
-              Object.entries(nfts).filter(([_, value]) => value !== 0)
-                .length}{" "}
-            nfts
-            <p>XP {exp}</p>
-          </>
-        )}
-      </div>
-      <ProgressBar
-        bgColor="#155EE6"
-        baseBgColor="#F7F7F71A"
-        height="4px"
-        borderRadius="8px"
-        customLabel=" "
-        completed={0}
-        // completed={(userProgress / objOfProgress?.totalTasks) * 100}
-        className={styles.bar}
-      />
+      <h2 className={styles.title}>My progress</h2>
+      {WalletAddress ? (
+        <>
+          <div className={styles.info}>
+            <p>Lvl {nftCount}</p>
+            <p>
+              XP {exp} / {needExp[nftCount]}
+            </p>
+          </div>
+          <ProgressBar
+            bgColor="#155EE6"
+            baseBgColor="#F7F7F71A"
+            height="4px"
+            borderRadius="8px"
+            customLabel=" "
+            completed={(exp / needExp[nftCount]) * 100}
+          />
+          {exp >= needExp[nftCount] && (
+            <Button
+              type="primary"
+              intent="primary"
+              size="medium"
+              style={{ marginTop: '12px' }}
+            >
+              Level Up
+            </Button>
+          )}
+        </>
+      ) : (
+        <h3 className={styles.subtitle}>Connect wallet to see your level</h3>
+      )}
     </div>
   );
 };
 
 export default Progress;
-
-{
-  /* <div className={styles.progress}>
-  My progress - {WalletAddress && exp}XP
-  <p>
-    You have{' '}
-    {WalletAddress &&
-      nfts &&
-      Object.entries(nfts).filter(([_, value]) => value !== 0).length}{' '}
-    NFT
-  </p>
-</div>; */
-}

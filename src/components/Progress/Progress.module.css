@@ -1,12 +1,10 @@
 .progress {
-  height: 106px;
-
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 8px;
   background-color: var(--grey-50);
 }
-.subtitle {
+.title {
   font-weight: 510;
   font-size: 18px;
   color: #b4b4b4;
@@ -18,5 +16,11 @@
   font-size: 12px;
   font-weight: 590;
   color: #cfcfcf;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  color: #b4b4b4;
+  text-align: center;
 }

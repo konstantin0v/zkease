@@ -1,24 +1,23 @@
-import Link from "next/link";
+import Link from 'next/link';
 // import styles from "./journeyCard.module.css";
 
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { getJourneyTasks } from "@/utils/getJourneyTasks";
-import { limitsForMinting } from "@/consts/limitsForMinting";
-import React, { useEffect, useState } from "react";
-import styles from "./journeyCard.module.css";
-import Status from "../Status/Status";
-import { XpSvg } from "..";
-import { Badge } from "..";
-import ProgressBar from "@ramonak/react-progress-bar";
-import CustomLink from "./customLink";
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { getJourneyTasks } from '@/utils/getJourneyTasks';
+import { limitsForMinting } from '@/consts/limitsForMinting';
+import styles from './journeyCard.module.css';
+import Status from '../Status/Status';
+import ProgressBar from '@ramonak/react-progress-bar';
+import CustomLink from './customLink';
+import Badge from '@/components/Badge/Badge';
+import { XpSvg } from '@/components';
 
 export const JourneyCard = ({
   journeyName,
   journeyTitle,
   journeyNick,
   prevJourneyName,
-  showNewTaskBadge = true,
+  showNewTaskBadge = false,
   ...props
 }) => {
   const { storedTasks, nfts } = useSelector(zkRecordSelector);
@@ -26,17 +25,18 @@ export const JourneyCard = ({
   return (
     <CustomLink
       href={`/journeyPage/${journeyName}`}
-      disabled={journeyName != "journey0" && !nfts[prevJourneyName]}
+      disabled={journeyName != 'journey0' && !nfts[prevJourneyName]}
     >
       <div className={styles.top}>
         <Status
           type={
-            (objOfProgress?.doneTasks === 0 && "todo") ||
+            (journeyName != 'journey0' && !nfts[prevJourneyName] && 'locked') ||
+            (objOfProgress?.doneTasks === 0 && 'todo') ||
             (objOfProgress?.doneTasks === objOfProgress?.totalTasks &&
-              "completed") ||
+              'completed') ||
             (objOfProgress?.doneTasks < objOfProgress?.totalTasks &&
               objOfProgress?.doneTasks !== 0 &&
-              "progress")
+              'progress')
           }
         />
         <p className={styles.top__text}>

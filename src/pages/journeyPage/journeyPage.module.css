@@ -7,6 +7,12 @@
 .title {
   font-size: 32px;
   color: #cfcfcf;
+  margin-bottom: 8px;
+}
+.desc {
+  font-weight: 400;
+  font-size: 16px;
+  color: #b4b4b4;
 }
 .subtitle {
   font-size: 20px;
