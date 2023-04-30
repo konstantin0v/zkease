@@ -14,17 +14,6 @@ import {
   Status,
   ProjectName,
   XpSvg,
-  Multichain,
-  Mintsquare,
-  Mute,
-  Nexon,
-  Onchain,
-  Unidex,
-  Rhino,
-  Spacefi,
-  Orbiter,
-  Syncswap,
-  Zksync,
   LinkSvg,
   Button,
 } from '@/components';
@@ -56,25 +45,11 @@ const TaskPage = ({ ...props }) => {
     dispatch(setStoredTasks(response.tasks));
   };
 
-  const project = {
-    Multichain,
-    Mintsquare,
-    Mute,
-    Nexon,
-    Onchain,
-    Unidex,
-    Rhino,
-    Spacefi,
-    Orbiter,
-    Syncswap,
-    Zksync,
-  };
-
   return (
     <div className={styles.main}>
       <ul className={styles.top}>
         <li>
-          <ProjectName Logo={Mute}>Mute.io</ProjectName>
+          <ProjectName tag="Mute.io">Mute.io</ProjectName>
         </li>
         <li>
           <Status type={'todo'} />
@@ -94,12 +69,7 @@ const TaskPage = ({ ...props }) => {
           <LinkSvg className={styles.iframe__svg} />
         </Link>
       </div>
-      <iframe
-        src="https://app.mute.io/swap"
-        width="100%"
-        height="800"
-        frameborder="0"
-      ></iframe>
+      <iframe src="https://app.mute.io/swap" width="100%" height="800"></iframe>
       <div className={styles.iframewrapper__down}></div>
       <div className={styles.down}>
         {WalletAddress && (
