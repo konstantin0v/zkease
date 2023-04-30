@@ -6,7 +6,7 @@
     url('/fonts/SFProDisplay-Medium.woff2') format('woff2'),
     url('/fonts/SFProDisplay-Medium.woff') format('woff'),
     url('/fonts/SFProDisplay-Medium.ttf') format('truetype');
-  font-weight: 500;
+  font-weight: 510;
   font-style: normal;
 }
 
@@ -91,7 +91,7 @@
     url('/fonts/SFProDisplay-Semibold.woff2') format('woff2'),
     url('/fonts/SFProDisplay-Semibold.woff') format('woff'),
     url('/fonts/SFProDisplay-Semibold.ttf') format('truetype');
-  font-weight: 600;
+  font-weight: 590;
   font-style: normal;
 }
 
@@ -214,4 +214,9 @@ a {
 ol,
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+  width: 0;
 }

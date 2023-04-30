@@ -1,66 +1,31 @@
-.accordion {
-  width: 600px;
-  margin: 2rem auto;
-}
-
 .title {
-  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 0px;
-  isolation: isolate;
-  background: #101010;
-}
-
-.titleText {
-  margin-left: 10px;
-}
-
-.accordionTitle {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 0px;
-  isolation: isolate;
-  background: #101010;
-  border: 1px solid #3a3a3a;
-  border-radius: 16px;
-}
-
-.accordionTitleActive {
-  box-sizing: border-box;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
-  isolation: isolate;
-  background: #101010;
+  font-weight: 510;
+  font-size: 18px;
+  background-color: #171717;
   border: 1px solid #3a3a3a;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
+  padding: 16px 21px 16px 17px;
 }
-
-.accordionTitle,
-.accordionContent {
-  padding: 1rem;
+.title__active {
+  border-radius: 16px 16px 0px 0px;
 }
-
-.accordionContent {
-  box-sizing: border-box;
+.top {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+}
+.titleText {
+  margin-left: 9px;
+}
+.accordionContent {
   padding: 16px;
-  gap: 16px;
-  width: 600px;
-  background: #101010;
   border-width: 0px 1px 1px 1px;
   border-style: solid;
-  border-color: #3a3a3a;
   border-radius: 0px 0px 16px 16px;
+  font-weight: 400;
+  font-size: 14px;
+  border-color: #3a3a3a;
+  background-color: #101010;
+  color: #b4b4b4;
 }

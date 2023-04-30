@@ -1,13 +1,35 @@
-import { updateZKRecord } from "@/serverUtils/updateZKRecord";
-import { initialDataSelector } from "@/store/initialData/reducer";
+import { updateZKRecord } from '@/serverUtils/updateZKRecord';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import styles from './taskNamePage.module.css';
 import {
   setExp,
   setStoredTasks,
   zkRecordSelector,
-} from "@/store/zkRecord/reducer";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { useAccount } from "wagmi";
+} from '@/store/zkRecord/reducer';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAccount } from 'wagmi';
+import {
+  Badge,
+  Status,
+  ProjectName,
+  XpSvg,
+  Multichain,
+  Mintsquare,
+  Mute,
+  Nexon,
+  Onchain,
+  Unidex,
+  Rhino,
+  Spacefi,
+  Orbiter,
+  Syncswap,
+  Zksync,
+  LinkSvg,
+  Button,
+} from '@/components';
+import Accordion from '@/components/Accordion/Accordion';
+import Link from 'next/link';
 
 const TaskPage = ({ ...props }) => {
   const { address: WalletAddress } = useAccount();
@@ -34,17 +56,67 @@ const TaskPage = ({ ...props }) => {
     dispatch(setStoredTasks(response.tasks));
   };
 
+  const project = {
+    Multichain,
+    Mintsquare,
+    Mute,
+    Nexon,
+    Onchain,
+    Unidex,
+    Rhino,
+    Spacefi,
+    Orbiter,
+    Syncswap,
+    Zksync,
+  };
+
   return (
-    <>
-      <div>
-        <p>I am {taskName}</p>
-        {WalletAddress && <button onClick={handleVerify}>VERIFY</button>}
-        <p>
-          You have done this task for {countOfEfforts}
-          times
-        </p>
+    <div className={styles.main}>
+      <ul className={styles.top}>
+        <li>
+          <ProjectName Logo={Mute}>Mute.io</ProjectName>
+        </li>
+        <li>
+          <Status type={'todo'} />
+        </li>
+      </ul>
+      <h2 className={styles.title}>Make any swap</h2>
+      <h3 className={styles.subtitle}>
+        Mute.io lets you swap cryptocurrencies quietly and easily. Our platform
+        is hassle-free and secure, giving you peace of mind while trading. Say
+        goodbye to noise and trade your way with us.
+      </h3>
+      <Accordion />
+      <div className={styles.iframewrapper}>
+        <p className={styles.iframe__text}>Try here</p>
+        <Link href="https://app.mute.io/swap" className={styles.iframe__link}>
+          Open new tab
+          <LinkSvg className={styles.iframe__svg} />
+        </Link>
       </div>
-    </>
+      <iframe
+        src="https://app.mute.io/swap"
+        width="100%"
+        height="800"
+        frameborder="0"
+      ></iframe>
+      <div className={styles.iframewrapper__down}></div>
+      <div className={styles.down}>
+        {WalletAddress && (
+          <Button
+            type="primary"
+            intent="primary"
+            size="large"
+            onClick={handleVerify}
+          >
+            Verify
+          </Button>
+        )}
+        <Badge showIconLeft IconLeft={XpSvg}>
+          ???
+        </Badge>
+      </div>
+    </div>
   );
 };
 

@@ -4,9 +4,9 @@ import {
   LockedSvg,
   InProgressSvg,
   Badge,
-} from "@/components";
+} from '@/components';
 
-export const Status = ({ type = "todo"}) => {
+export const Status = ({ type = 'todo' }) => {
   const status = {
     todo: (
       <Badge showIconLeft IconLeft={TodoSvg}>
@@ -20,7 +20,7 @@ export const Status = ({ type = "todo"}) => {
     ),
     locked: (
       <Badge showIconLeft IconLeft={LockedSvg}>
-        Lvl 2 required
+        Lvl required
       </Badge>
     ),
     completed: (

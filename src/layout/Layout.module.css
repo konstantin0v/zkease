@@ -32,13 +32,15 @@
 }
 
 .page {
-  margin: 32px 0 32px 320px;
-  /* border: 1px solid var(--border); */
+  margin-top: 32px;
+  margin-left: 320px;
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 .footer {
+  margin-top: 32px;
   height: 142px;
   display: flex;
   flex-direction: column;
