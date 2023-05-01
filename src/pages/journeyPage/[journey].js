@@ -8,21 +8,34 @@ import TaskCard from "@/components/TaskCard/taskCard";
 import { initialDataSelector } from "@/store/initialData/reducer";
 import { handleMintNft } from "@/utils/handleMintNft";
 
-const JourneyPage = () => {
+export async function getServerSideProps(context) {
+  try {
+    const { journey } = context.query;
+    return {
+      props: { journey },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
+}
+const JourneyPage = ({ journey }) => {
   const { initialData } = useSelector(initialDataSelector);
-  const router = useRouter();
-  const { journey } = router.query;
   const { exp } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
   const dispatch = useDispatch();
-  const tasksByJourney = initialData?.[journey]?.tasks;
+
+  const tasksByJourney = initialData[journey].tasks;
+
   const handleMintNftByPlace = async () => {
     await handleMintNft(WalletAddress, journey, setNfts, dispatch);
   };
   return (
     <div>
-      <h2 className={styles.title}>{initialData[journey]?.nick}</h2>
-      <h3 className={styles.desc}>{initialData[journey]?.journeyDesc}</h3>
+      <h2 className={styles.title}>{initialData[journey].nick}</h2>
+      <h3 className={styles.desc}>{initialData[journey].journeyDesc}</h3>
       <h2 className={styles.subtitle}>Tasks</h2>
       <div className={styles.cards}>
         {(tasksByJourney &&
