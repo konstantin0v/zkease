@@ -19,31 +19,33 @@ import {
 } from "@/components";
 import Accordion from "@/components/Accordion/Accordion";
 import Link from "next/link";
-import { useEffect } from "react";
 
-const TaskPage = ({ ...props }) => {
+export async function getServerSideProps(context) {
+  try {
+    const { journey, taskName } = context.query;
+    return {
+      props: { journey, taskName },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
+}
+
+const TaskPage = ({ journey, taskName, ...props }) => {
   const { address: WalletAddress } = useAccount();
-  const router = useRouter();
   const dispatch = useDispatch();
   const { exp, storedTasks } = useSelector(zkRecordSelector);
-  const { taskName, journey } = router.query;
   const { initialData } = useSelector(initialDataSelector);
-  console.log("LOG", initialData);
-  // useEffect(() => {
-  //   if (!href) {
-  //     dispatch(setHref(initialData?.[journey]?.tasks[taskName]?.link)); // add this line to save the href value to the Redux store if it hasn't been saved already
-  //   }
-  // }, []);
-  let earnedExp = initialData?.[journey]?.tasks[taskName]?.exp;
+
+  const earnedExp = initialData[journey].tasks[taskName].exp;
+  const newPath = `tasks.${journey}.${taskName}`;
   let countOfEfforts = storedTasks?.[journey]?.[taskName];
-  let newPath = `tasks.${journey}.${taskName}`;
-  let link = initialData?.[journey]?.tasks[taskName]?.link;
-  // useEffect(() => {
-  //   earnedExp = initialData?.[journey]?.tasks[taskName]?.exp;
-  //   countOfEfforts = storedTasks?.[journey]?.[taskName];
-  //   newPath = `tasks.${journey}.${taskName}`;
-  //   link = initialData?.[journey]?.tasks[taskName]?.link;
-  // }, []);
+  if (!WalletAddress) {
+    countOfEfforts = false;
+  }
 
   const handleVerify = async () => {
     const newExp = exp + earnedExp;
@@ -57,13 +59,13 @@ const TaskPage = ({ ...props }) => {
     dispatch(setExp(response.exp));
     dispatch(setStoredTasks(response.tasks));
   };
-  console.log("LINK", link);
+
   return (
     <div className={styles.main}>
       <ul className={styles.top}>
         <li>
-          <ProjectName tag={initialData?.[journey]?.tasks[taskName]?.source}>
-            {initialData?.[journey]?.tasks[taskName]?.source}
+          <ProjectName tag={initialData[journey].tasks[taskName].source}>
+            {initialData[journey].tasks[taskName].source}
           </ProjectName>
         </li>
         <li>
@@ -71,17 +73,14 @@ const TaskPage = ({ ...props }) => {
         </li>
       </ul>
       <h2 className={styles.title}>
-        {initialData?.[journey]?.tasks[taskName]?.title}
+        {initialData[journey].tasks[taskName].title}
       </h2>
-      <h3 className={styles.subtitle}>
-        {initialData?.[journey]?.tasks[taskName]?.taskDesc}
-      </h3>
-      <Accordion content={initialData?.[journey]?.journeyDesc} />
+      <h3 className={styles.subtitle}>{initialData[journey].journeyDesc}</h3>
+      <Accordion content={initialData[journey].tasks[taskName].taskDesc} />
       <div className={styles.iframewrapper}>
         <p className={styles.iframe__text}>Try here</p>
         <Link
-          // href={initialData?.[journey]?.tasks[taskName]?.link}
-          href={link}
+          href={initialData[journey].tasks[taskName].link}
           className={styles.iframe__link}
           target="_blank"
         >
@@ -90,8 +89,7 @@ const TaskPage = ({ ...props }) => {
         </Link>
       </div>
       <iframe
-        // src={initialData?.[journey]?.tasks[taskName]?.link}
-        src={link}
+        src={initialData[journey].tasks[taskName].link}
         width="100%"
         height="800"
       ></iframe>
@@ -109,7 +107,7 @@ const TaskPage = ({ ...props }) => {
           </Button>
         )}
         <Badge showIconLeft IconLeft={XpSvg}>
-          ???
+          {initialData[journey].tasks[taskName].exp}
         </Badge>
       </div>
     </div>

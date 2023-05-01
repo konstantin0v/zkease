@@ -1,15 +1,15 @@
-import { useSelector } from 'react-redux';
-import styles from './Progress.module.css';
-import { useAccount } from 'wagmi';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import ProgressBar from '@ramonak/react-progress-bar';
-import Button from '../Button/Button';
+import { useSelector } from "react-redux";
+import styles from "./Progress.module.css";
+import { useAccount } from "wagmi";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import ProgressBar from "@ramonak/react-progress-bar";
+import Button from "../Button/Button";
+import { limitsForMinting } from "@/consts/limitsForMinting";
 
 const Progress = () => {
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-
-  const needExp = { 0: 10, 1: 80, 2: 510, 3: 1490, 4: 2690 };
+  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 1170 };
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -38,7 +38,7 @@ const Progress = () => {
               type="intent-primary"
               intent="primary"
               size="medium"
-              style={{ marginTop: '12px' }}
+              style={{ marginTop: "12px" }}
             >
               Level Up
             </Button>
