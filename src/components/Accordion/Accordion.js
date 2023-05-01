@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Accordion.module.css";
 import { motion } from "framer-motion";
 import { CloserSvg, GuideSvg, OpenerSvg } from "@/components";
@@ -6,8 +6,11 @@ import clsx from "clsx";
 
 const Accordion = ({ content }) => {
   const [isActive, setIsActive] = useState(false);
+  let notFirstRednder = false;
 
-  // const { title, content } = accordionData;
+  useEffect(() =>{
+    if(isActive === true) notFirstRednder = true;
+  }, [isActive])
 
   return (
     <>
@@ -21,16 +24,13 @@ const Accordion = ({ content }) => {
         </div>
         {isActive ? <CloserSvg /> : <OpenerSvg />}
       </div>
-      {isActive && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.7 } }}
-          exit={{ opacity: 0, delay: 0.3 }}
+          initial={{ y: -20, opacity:0 }}
+          animate={isActive ? { y: 0, opacity:1, transition: { duration: 0.8 }} : { y: -20, opacity:0, transition: { duration: 0.8 }}} 
           className={styles.accordionContent}
         >
           {content}
         </motion.div>
-      )}
     </>
   );
 };

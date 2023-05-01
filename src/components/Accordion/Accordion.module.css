@@ -8,6 +8,7 @@
   border: 1px solid #3a3a3a;
   border-radius: 16px;
   padding: 16px 21px 16px 17px;
+  transition-delay: 0.2s;
 }
 .title__active {
   border-radius: 16px 16px 0px 0px;
