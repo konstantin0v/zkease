@@ -19,6 +19,7 @@ const SidebarJourney = ({ journeyName, journeyNick }) => {
     (doneTasks = 0),
       (totalTasks = Object.keys(initialData[journeyName].tasks).length);
   }
+
   return (
     <Link className={styles.box} href={`/journeyPage/${journeyName}`}>
       <div className={styles.top}>
