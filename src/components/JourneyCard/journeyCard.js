@@ -11,6 +11,7 @@ import Badge from "@/components/Badge/Badge";
 import { XpSvg } from "@/components";
 import { useAccount } from "wagmi";
 import { initialDataSelector } from "@/store/initialData/reducer";
+import { getJourneyTasks } from "@/utils/getJourneyTasks";
 
 export const JourneyCard = ({
   journeyName,
@@ -24,12 +25,10 @@ export const JourneyCard = ({
   const { initialData } = useSelector(initialDataSelector);
   const { address: WalletAddress } = useAccount();
 
-  const totalTasks = Object.keys(initialData[journeyName].tasks).length;
-  let doneTasks = Object.values(storedTasks[journeyName])
-    .filter((val) => val !== 0)
-    .reduce((acc, val) => acc + 1, 0);
+  let { doneTasks, totalTasks } = getJourneyTasks(journeyName, storedTasks);
   if (!WalletAddress) {
-    doneTasks = 0;
+    (doneTasks = 0),
+      (totalTasks = Object.keys(initialData[journeyName].tasks).length);
   }
 
   return (
