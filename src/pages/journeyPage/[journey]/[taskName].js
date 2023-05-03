@@ -19,6 +19,8 @@ import {
 } from "@/components";
 import Accordion from "@/components/Accordion/Accordion";
 import Link from "next/link";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context) {
   try {
@@ -39,6 +41,11 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const dispatch = useDispatch();
   const { exp, storedTasks } = useSelector(zkRecordSelector);
   const { initialData } = useSelector(initialDataSelector);
+  const [firstTxCount, setfirstTxCount] = useState(null);
+  const provider = new ethers.providers.JsonRpcProvider(
+    // "https://testnet.era.zksync.dev"
+    "https://mainnet.era.zksync.io"
+  );
 
   // const earnedExp = initialData[journey].tasks[taskName].exp;
   const newPath = `tasks.${journey}.${taskName}`;
@@ -58,6 +65,37 @@ const TaskPage = ({ journey, taskName, ...props }) => {
     );
     dispatch(setExp(response.exp));
     dispatch(setStoredTasks(response.tasks));
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const txCountFirst = await provider.getTransactionCount(WalletAddress);
+        setfirstTxCount(txCountFirst);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [WalletAddress]);
+
+  const handleVerifyTEST = async () => {
+    const newExp = exp + initialData[journey].tasks[taskName].exp;
+    const newCountOfEfforts = countOfEfforts + 1;
+    const txCountNow = await provider.getTransactionCount(WalletAddress);
+
+    if (txCountNow > firstTxCount) {
+      setfirstTxCount(txCountNow);
+      const response = await updateZKRecord(
+        WalletAddress,
+        newExp,
+        newPath,
+        newCountOfEfforts
+      );
+      dispatch(setExp(response.exp));
+      dispatch(setStoredTasks(response.tasks));
+    } else {
+      window.alert("Oopss, you havent done the task!");
+    }
   };
 
   return (
@@ -100,15 +138,26 @@ const TaskPage = ({ journey, taskName, ...props }) => {
           <div className={styles.iframewrapper__down}></div>
           <div className={styles.down}>
             {WalletAddress && (
-              <Button
-                type="intent-primary"
-                intent="primary"
-                size="large"
-                onClick={handleVerify}
-                style={{ width: "91px" }}
-              >
-                Verify
-              </Button>
+              <>
+                <Button
+                  type="intent-primary"
+                  intent="primary"
+                  size="large"
+                  onClick={handleVerify}
+                  style={{ width: "91px" }}
+                >
+                  Verify
+                </Button>
+                <Button
+                  type="intent-primary"
+                  intent="primary"
+                  size="large"
+                  onClick={handleVerifyTEST}
+                  style={{ width: "91px" }}
+                >
+                  TEST Verify
+                </Button>
+              </>
             )}
             <Badge showIconLeft IconLeft={XpSvg}>
               {initialData[journey]?.tasks[taskName].exp}
