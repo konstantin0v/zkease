@@ -53,6 +53,17 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   if (!WalletAddress) {
     countOfEfforts = false;
   }
+  const router = useRouter();
+  const [updateCount, setUpdateCount] = useState(0);
+  useEffect(() => {
+    if (updateCount >= 2 && WalletAddress !== undefined) {
+      router.push("/");
+    }
+  }, [WalletAddress, updateCount]);
+
+  useEffect(() => {
+    setUpdateCount((count) => count + 1);
+  }, [WalletAddress]);
 
   const handleVerify = async () => {
     const newExp = exp + initialData[journey].tasks[taskName].exp;

@@ -7,7 +7,8 @@ import { useAccount } from "wagmi";
 import TaskCard from "@/components/TaskCard/taskCard";
 import { initialDataSelector } from "@/store/initialData/reducer";
 import { handleMintNft } from "@/utils/handleMintNft";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Wallet } from "ethers";
 
 export async function getServerSideProps(context) {
   try {
@@ -28,6 +29,17 @@ const JourneyPage = ({ journey }) => {
   const { address: WalletAddress } = useAccount();
   const dispatch = useDispatch();
   //let tasksByJourney = initialData[journey].tasks;
+  const router = useRouter();
+  const [updateCount, setUpdateCount] = useState(0);
+  useEffect(() => {
+    if (updateCount >= 2 && WalletAddress !== undefined) {
+      router.push("/");
+    }
+  }, [WalletAddress, updateCount]);
+
+  useEffect(() => {
+    setUpdateCount((count) => count + 1);
+  }, [WalletAddress]);
 
   const handleMintNftByPlace = async () => {
     await handleMintNft(WalletAddress, journey, setNfts, dispatch);
