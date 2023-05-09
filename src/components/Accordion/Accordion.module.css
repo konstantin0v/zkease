@@ -1,32 +1,49 @@
+.accord {
+  border-radius: 16px;
+  border: 1px solid #3a3a3a;
+}
 .title {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   font-weight: 510;
   font-size: 18px;
   background-color: #171717;
-  border: 1px solid #3a3a3a;
-  border-radius: 16px;
   padding: 16px 21px 16px 17px;
-  transition-delay: 0.2s;
+  width: 100%;
+  border-radius: 16px;
+  transition: all 0.3s ease-out;
+}
+.title__left {
+  display: flex;
+  align-items: center;
+}
+.title__text {
+  margin-left: 9px;
+  font-weight: 510;
+  font-size: 18px;
 }
 .title__active {
   border-radius: 16px 16px 0px 0px;
+  transition: all 0.2s ease-out;
 }
-.top {
-  display: flex;
-}
-.titleText {
-  margin-left: 9px;
-}
-.accordionContent {
-  padding: 16px;
-  border-width: 0px 1px 1px 1px;
-  border-style: solid;
-  border-radius: 0px 0px 16px 16px;
+.content {
   font-weight: 400;
   font-size: 14px;
-  border-color: #3a3a3a;
-  background-color: #101010;
+  padding: 0 16px;
   color: #b4b4b4;
+  user-select: none;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.2s ease-out, padding 0.2s ease-out,
+    opacity 0.1s ease-out, visibility 0.1s ease-out;
+}
+.content__active {
+  padding: 16px;
+  visibility: visible;
+  opacity: 1;
+  max-height: 700px;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out,
+    opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
 }
