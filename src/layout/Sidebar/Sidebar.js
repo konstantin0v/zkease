@@ -10,14 +10,14 @@ import SidebarTasks from "@/components/SidebarTasks/SidebarTasks";
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
   const currentPage = router.pathname;
-
+  const { journey } = router.query;
   return (
     <>
       {currentPage.includes("task") ? (
-        <SidebarTasks />
+        <SidebarTasks journey={journey} />
       ) : (
         <div {...props}>
-          <Progress />
+          <Progress journey={journey} />
           <Achieves />
           <Leaderboard />
         </div>

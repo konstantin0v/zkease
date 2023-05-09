@@ -19,12 +19,12 @@ import {
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      "https://lobster-app-obfjt.ondigitalocean.app/"
+      "https://clownfish-app-z2nhn.ondigitalocean.app"
     );
     const dataUsers = await responseUsers.json();
 
     const responseData = await fetch(
-      `https://lobster-app-obfjt.ondigitalocean.app/data`
+      `https://clownfish-app-z2nhn.ondigitalocean.app/data`
     );
     const { records } = await responseData.json();
     const { _id, ...serverData } = records[0];

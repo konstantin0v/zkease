@@ -1,14 +1,11 @@
 import { useRouter } from "next/router";
 import styles from "./journeyPage.module.css";
-import { limitsForMinting } from "@/consts/limitsForMinting";
-import { useDispatch, useSelector } from "react-redux";
-import { setNfts, zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
 import { useAccount } from "wagmi";
 import TaskCard from "@/components/TaskCard/taskCard";
 import { initialDataSelector } from "@/store/initialData/reducer";
-import { handleMintNft } from "@/utils/handleMintNft";
 import { useEffect, useState } from "react";
-import { Wallet } from "ethers";
 
 export async function getServerSideProps(context) {
   try {
@@ -27,10 +24,9 @@ const JourneyPage = ({ journey }) => {
   const { initialData } = useSelector(initialDataSelector);
   const { exp } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-  const dispatch = useDispatch();
-  //let tasksByJourney = initialData[journey].tasks;
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);
+
   useEffect(() => {
     if (updateCount >= 2 && WalletAddress !== undefined) {
       router.push("/");
@@ -41,9 +37,6 @@ const JourneyPage = ({ journey }) => {
     setUpdateCount((count) => count + 1);
   }, [WalletAddress]);
 
-  const handleMintNftByPlace = async () => {
-    await handleMintNft(WalletAddress, journey, setNfts, dispatch);
-  };
   return (
     <>
       {initialData && (
@@ -62,9 +55,6 @@ const JourneyPage = ({ journey }) => {
                 />
               ))) || <p>No tasks found</p>}
           </div>
-          {limitsForMinting[journey] <= exp && (
-            <button onClick={handleMintNftByPlace}>MINT NFT</button>
-          )}
         </div>
       )}
     </>
