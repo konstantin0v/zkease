@@ -8,10 +8,13 @@ import { ethers } from "ethers";
 import { contract } from "@/web3/contractNFT";
 import walletProvider from "@/web3/walletProvider";
 import { handleMintNft } from "@/utils/handleMintNft";
+import { RotatingLines } from "react-loader-spinner";
+import { useState } from "react";
 
 const Progress = ({ journey }) => {
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 1170 };
   let nftCount = 0;
@@ -24,6 +27,7 @@ const Progress = ({ journey }) => {
   };
   const handleNFT = async () => {
     try {
+      setLoader(true);
       const level = nftCount + 1;
       const journeyName = nftCount === 4 ? "journeyEnd" : `journey${nftCount}`;
       const contractWithSigner = await getContractWithSigner(contract);
@@ -34,6 +38,8 @@ const Progress = ({ journey }) => {
       await handleMintNft(WalletAddress, journeyName, setNfts, dispatch);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -63,8 +69,19 @@ const Progress = ({ journey }) => {
               size="medium"
               style={{ marginTop: "12px" }}
               onClick={handleNFT}
+              disabled={loader}
             >
-              Level Up
+              {loader ? (
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="20"
+                  visible={true}
+                />
+              ) : (
+                "Level Up"
+              )}
             </Button>
           )}
         </>
