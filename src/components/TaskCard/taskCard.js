@@ -1,15 +1,12 @@
-import styles from "./taskCard.module.css";
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { clsx } from "clsx";
-import ProjectName from "@/components/TaskCard/ProjectName";
-import Badge from "@/components/Badge/Badge";
-import Status from "@/components/Status/Status";
-import { XpSvg } from "@/components";
-import { useAccount } from "wagmi";
+import styles from './TaskCard.module.css';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { clsx } from 'clsx';
+import { Badge, ProjectName, Status, XpSvg } from '@/components';
+import { useAccount } from 'wagmi';
 
-export default function TaskCard({
+export const TaskCard = ({
   taskName,
   journeyName,
   title,
@@ -19,7 +16,7 @@ export default function TaskCard({
   showNewTaskBadge = false,
   showCounterBadge = false,
   sidebar = false,
-}) {
+}) => {
   const { storedTasks } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
 
@@ -52,9 +49,9 @@ export default function TaskCard({
         </Badge>
         <div className={styles.cardFooterStatus}>
           {showCounterBadge && <Badge>3 times</Badge>}
-          <Status type={statusOfTask ? "completed" : "todo"} />
+          <Status type={statusOfTask ? 'completed' : 'todo'} />
         </div>
       </div>
     </Link>
   );
-}
+};

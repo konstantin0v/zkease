@@ -5,20 +5,20 @@
   padding: 16px;
   gap: 12px;
   width: 100%;
-  background: var(--grey-50);
+  background: #1b1b21;
   border-radius: 16px;
   border: 1px solid transparent;
   /* margin: 10px; */
 }
 
 .card:hover {
-  background-color: var(--grey-100);
-  border: 1px solid var(--grey-300);
+  background-color: #25252a;
+  border: 1px solid #36363a;
 }
 
 .card:active {
-  background-color: var(--grey-50);
-  border: 1px solid var(--grey-300);
+  background: #1b1b21;
+  border: 1px solid #36363a;
 }
 
 .cardHeader {

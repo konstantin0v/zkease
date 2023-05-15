@@ -1,8 +1,8 @@
-import styles from "./Badge.module.css";
+import styles from './Badge.module.css';
 
 export const Badge = ({
-  type = "normal",
-  appereance = "neutral",
+  type = 'normal',
+  appereance = 'neutral',
   showIconLeft = false,
   showIconRight = false,
   IconLeft,
@@ -14,19 +14,9 @@ export const Badge = ({
 
   return (
     <div className={badgeClassName} style={style}>
-      {showIconLeft && (
-        <span className={styles.iconLeft}>
-          <IconLeft />
-        </span>
-      )}
+      {showIconLeft && <IconLeft />}
       <span className={styles.badgeText}>{children}</span>
-      {showIconRight && (
-        <span className={styles.iconRight}>
-          <IconRight />
-        </span>
-      )}
+      {showIconRight && <IconRight />}
     </div>
   );
 };
-
-export default Badge;

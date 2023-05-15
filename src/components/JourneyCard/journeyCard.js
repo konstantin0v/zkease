@@ -1,17 +1,11 @@
-import Link from "next/link";
-// import styles from "./journeyCard.module.css";
-
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import styles from "./journeyCard.module.css";
-import Status from "../Status/Status";
-import ProgressBar from "@ramonak/react-progress-bar";
-import CustomLink from "./customLink";
-import Badge from "@/components/Badge/Badge";
-import { XpSvg } from "@/components";
-import { useAccount } from "wagmi";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import { getJourneyTasks } from "@/utils/getJourneyTasks";
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import styles from './JourneyCard.module.css';
+import ProgressBar from '@ramonak/react-progress-bar';
+import { Badge, CustomLink, Status, XpSvg } from '@/components';
+import { useAccount } from 'wagmi';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import { getJourneyTasks } from '@/utils/getJourneyTasks';
 
 export const JourneyCard = ({
   journeyName,
@@ -33,19 +27,20 @@ export const JourneyCard = ({
 
   return (
     <CustomLink
+      journeyName={journeyName}
       href={`/journeyPage/${journeyName}`}
       disabled={
-        (!WalletAddress && journeyName != "journey0") ||
-        (journeyName != "journey0" && !nfts[prevJourneyName])
+        (!WalletAddress && journeyName != 'journey0') ||
+        (journeyName != 'journey0' && !nfts[prevJourneyName])
       }
     >
       <div className={styles.top}>
         <Status
           type={
-            (journeyName != "journey0" && !nfts[prevJourneyName] && "locked") ||
-            (doneTasks === 0 && "todo") ||
-            (doneTasks === totalTasks && "completed") ||
-            (doneTasks < totalTasks && doneTasks !== 0 && "progress")
+            (journeyName != 'journey0' && !nfts[prevJourneyName] && 'locked') ||
+            (doneTasks === 0 && 'todo') ||
+            (doneTasks === totalTasks && 'completed') ||
+            (doneTasks < totalTasks && doneTasks !== 0 && 'progress')
           }
         />
         <p className={styles.top__text}>
@@ -53,7 +48,7 @@ export const JourneyCard = ({
         </p>
       </div>
       <ProgressBar
-        bgColor="#155EE6"
+        bgColor="#626EE9"
         baseBgColor="#F7F7F71A"
         height="4px"
         borderRadius="8px"

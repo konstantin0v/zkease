@@ -1,12 +1,12 @@
-import styles from "./Leaderboard.module.css";
-import { useSelector } from "react-redux";
-import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
-import { usersSelector } from "@/store/users/reducer";
-import { useAccount } from "wagmi";
-import clsx from "clsx";
-import { XpSvg } from "@/components";
-import { v4 as uuidv4 } from "uuid";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import styles from './Leaderboard.module.css';
+import { useSelector } from 'react-redux';
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
+import { usersSelector } from '@/store/users/reducer';
+import { useAccount } from 'wagmi';
+import clsx from 'clsx';
+import { XpSvg } from '@/components';
+import { v4 as uuidv4 } from 'uuid';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
 export const Leaderboard = () => {
   const { users } = useSelector(usersSelector);
   const { exp } = useSelector(zkRecordSelector);
@@ -29,11 +29,11 @@ export const Leaderboard = () => {
               <li className={styles.row__name}>
                 <Jazzicon diameter={24} seed={jsNumberForAddress(address)} />
                 <p className={styles.row__name__p}>
-                  {address.slice(0, 5) + "..." + address.slice(38)}
+                  {address.slice(0, 5) + '...' + address.slice(38)}
                 </p>
               </li>
               <li className={styles.row__xp}>
-                {exp}
+                <span className={styles.row__xp_span}>{exp}</span>
                 <XpSvg
                   className={clsx(
                     styles.row__xpsvg,
@@ -57,7 +57,7 @@ export const Leaderboard = () => {
                 seed={jsNumberForAddress(WalletAddress)}
               />
               <p className={styles.row__name__p}>
-                {WalletAddress.slice(0, 5) + "..." + WalletAddress.slice(38)}
+                {WalletAddress.slice(0, 5) + '...' + WalletAddress.slice(38)}
               </p>
             </li>
             <li className={styles.row__xp}>

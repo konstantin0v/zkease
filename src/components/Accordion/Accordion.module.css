@@ -1,33 +1,25 @@
 .accord {
-  border-radius: 16px;
-  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+}
+.accord:hover {
+  background: #2f2f34;
+}
+.accord__active {
+  background: #25252a;
 }
 .title {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-weight: 510;
-  font-size: 18px;
-  background-color: #171717;
-  padding: 16px 21px 16px 17px;
-  width: 100%;
-  border-radius: 16px;
+  padding: 8px 10px;
   transition: all 0.3s ease-out;
-}
-.title__left {
-  display: flex;
-  align-items: center;
-}
-.title__text {
-  margin-left: 9px;
-  font-weight: 510;
-  font-size: 18px;
 }
 .title__active {
   border-radius: 16px 16px 0px 0px;
   transition: all 0.2s ease-out;
 }
 .content {
+  display: flex;
+  flex-direction: column;
   font-weight: 400;
   font-size: 14px;
   padding: 0 16px;
@@ -40,10 +32,30 @@
     opacity 0.1s ease-out, visibility 0.1s ease-out;
 }
 .content__active {
-  padding: 16px;
+  padding: 4px 16px 8px;
   visibility: visible;
   opacity: 1;
   max-height: 700px;
   transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out,
     opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 510;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.links:hover {
+  background: #39393e;
+}
+.arrow {
+  transition: transform 0.3s ease-in-out; /* добавляем transition */
+}
+.arrow.rotate {
+  transform: rotate(-180deg);
 }

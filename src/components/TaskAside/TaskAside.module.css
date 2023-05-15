@@ -1,0 +1,25 @@
+.box {
+  font-size: 20px;
+  width: 260px;
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  background: #1b1b21;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+}
+.box::-webkit-scrollbar {
+  display: none;
+}
+.tasklist {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto;
+  z-index: 0;
+  padding: 8px;
+  gap: 4px;
+}

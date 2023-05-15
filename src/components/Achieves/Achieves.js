@@ -3,8 +3,9 @@ import styles from './Achieves.module.css';
 import { zkRecordSelector } from '@/store/zkRecord/reducer';
 import { useAccount } from 'wagmi';
 import Image from 'next/image';
+import { ArrowRight } from '@/components';
 
-const Achieves = () => {
+export const Achieves = () => {
   const { nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
   const nftComponents = ['nft1', 'nft2', 'nft3', 'nft4', 'nft1'];
@@ -14,12 +15,15 @@ const Achieves = () => {
   }
   return (
     <div className={styles.achievements}>
-      <h2 className={styles.title}>Achieves</h2>
+      <div className={styles.achieves__top}>
+        <h2 className={styles.title}>Achieves</h2>
+        <ArrowRight className={styles.arrow__svg} />
+      </div>
       {WalletAddress && nftCount > 0 ? (
         <ul className={styles.box}>
           {nftComponents.slice(0, nftCount).map((item) => (
             <Image
-              src={`/image/${item}.png`}
+              src={`/image/mininfts/${item}.png`}
               alt="nft"
               width={64}
               height={64}
@@ -27,7 +31,7 @@ const Achieves = () => {
               key={item}
             />
           ))}
-          <div className={styles.overlay}></div>
+          {/* <div className={styles.overlay}></div> */}
         </ul>
       ) : (
         <h3 className={styles.subtitle}>
@@ -37,5 +41,3 @@ const Achieves = () => {
     </div>
   );
 };
-
-export default Achieves;

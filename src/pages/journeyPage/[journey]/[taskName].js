@@ -1,26 +1,17 @@
-import { updateZKRecord } from "@/serverUtils/updateZKRecord";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import styles from "./taskNamePage.module.css";
+import { updateZKRecord } from '@/serverUtils/updateZKRecord';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import styles from './taskNamePage.module.css';
 import {
   setExp,
   setStoredTasks,
   zkRecordSelector,
-} from "@/store/zkRecord/reducer";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { useAccount } from "wagmi";
-import {
-  Badge,
-  Status,
-  ProjectName,
-  XpSvg,
-  LinkSvg,
-  Button,
-} from "@/components";
-import Accordion from "@/components/Accordion/Accordion";
-import Link from "next/link";
-import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+} from '@/store/zkRecord/reducer';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAccount } from 'wagmi';
+import { ethers } from 'ethers';
+import { useEffect, useState } from 'react';
+import { Embedded, TaskAside, TaskSection } from '@/components';
 
 export async function getServerSideProps(context) {
   try {
@@ -44,7 +35,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const [firstTxCount, setfirstTxCount] = useState(null);
   const provider = new ethers.providers.JsonRpcProvider(
     // "https://testnet.era.zksync.dev"
-    "https://mainnet.era.zksync.io"
+    'https://mainnet.era.zksync.io'
   );
 
   // const earnedExp = initialData[journey].tasks[taskName].exp;
@@ -57,7 +48,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const [updateCount, setUpdateCount] = useState(0);
   useEffect(() => {
     if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push("/");
+      router.push('/');
     }
   }, [WalletAddress, updateCount]);
 
@@ -105,75 +96,35 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
     } else {
-      window.alert("Oopss, you havent done the task!");
+      window.alert('Oopss, you havent done the task!');
     }
   };
 
   return (
     <>
       {(initialData && (
-        <div className={styles.main}>
-          <ul className={styles.top}>
-            <li>
-              <ProjectName tag={initialData[journey]?.tasks[taskName].source}>
-                {initialData[journey]?.tasks[taskName].source}
-              </ProjectName>
-            </li>
-            <li>
-              <Status type={countOfEfforts ? "completed" : "todo"} />
-            </li>
-          </ul>
-          <h2 className={styles.title}>
-            {initialData[journey]?.tasks[taskName].title}
-          </h2>
-          <h3 className={styles.subtitle}>
-            {initialData[journey]?.journeyDesc}
-          </h3>
-          <Accordion content={initialData[journey]?.tasks[taskName].taskDesc} />
-          <div className={styles.iframewrapper}>
-            <p className={styles.iframe__text}>Try here</p>
-            <Link
-              href={initialData[journey]?.tasks[taskName].link}
-              className={styles.iframe__link}
-              target="_blank"
-            >
-              Open new tab
-              <LinkSvg className={styles.iframe__svg} />
-            </Link>
-          </div>
-          <iframe
-            src={initialData[journey]?.tasks[taskName].link}
-            width="100%"
-            height="800"
-          ></iframe>
-          <div className={styles.iframewrapper__down}></div>
-          <div className={styles.down}>
-            {WalletAddress && (
-              <>
-                <Button
-                  type="intent-primary"
-                  intent="primary"
-                  size="large"
-                  onClick={handleVerify}
-                  style={{ width: "91px" }}
-                >
-                  Verify
-                </Button>
-                <Button
-                  type="intent-primary"
-                  intent="primary"
-                  size="large"
-                  onClick={handleVerifyTEST}
-                  style={{ width: "91px" }}
-                >
-                  TEST Verify
-                </Button>
-              </>
-            )}
-            <Badge showIconLeft IconLeft={XpSvg}>
-              {initialData[journey]?.tasks[taskName].exp}
-            </Badge>
-          </div>
+        <div className={styles.wrapper}>
+          <TaskAside
+            initialData={initialData}
+            journey={journey}
+            className={styles.taskaside}
+            path={taskName}
+          />
+          <TaskSection
+            initialData={initialData}
+            journey={journey}
+            taskName={taskName}
+            countOfEfforts={countOfEfforts}
+            handleVerify={handleVerify}
+            handleVerifyTEST={handleVerifyTEST}
+            WalletAddress={WalletAddress}
+          />
+          <Embedded
+            initialData={initialData}
+            journey={journey}
+            taskName={taskName}
+            className={styles.embedded}
+          />
         </div>
       )) || <p>Loading...</p>}
     </>
