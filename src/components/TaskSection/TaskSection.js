@@ -74,11 +74,11 @@ export const TaskSection = ({
           <>
             <Button>Next task</Button>
             <Button onClick={handleVerify}>Verify</Button>
-            <Button onClick={handleVerify} transparent>
+            <Button onClick={handleVerify} transparent="transparent">
               Verify
             </Button>
             <Button onClick={() => setModalActive(true)}>Continue</Button>
-            <Button onClick={handleVerify} error>
+            <Button onClick={handleVerify} error="error">
               Continue
             </Button>
             {/* <Button onClick={handleVerifyTEST} }>
