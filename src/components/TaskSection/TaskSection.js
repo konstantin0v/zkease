@@ -1,4 +1,4 @@
-import styles from './TaskSection.module.css';
+import styles from "./TaskSection.module.css";
 import {
   Accordion,
   ArrowRight,
@@ -9,12 +9,13 @@ import {
   ProjectName,
   Status,
   XpSvg,
-} from '@/components';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
+} from "@/components";
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 export const TaskSection = ({
+  storedTasks,
   initialData,
   journey,
   taskName,
@@ -22,11 +23,22 @@ export const TaskSection = ({
   handleVerify,
   handleVerifyTEST,
   WalletAddress,
+  notif,
+  setNotif,
+  loader,
+  exp,
+  nfts,
 }) => {
   const [modalActive, setModalActive] = useState(false);
   const [modalActive2, setModalActive2] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const countForStatusVeryf = storedTasks?.[journey]?.[taskName];
   const steps = initialData?.[journey]?.tasks?.[taskName]?.taskGuide;
+  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 1170 };
+  let nftCount = 0;
+  if (nfts) {
+    nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
+  }
   return (
     <div className={styles.tasksection}>
       <div className={styles.wrapper}>
@@ -41,7 +53,7 @@ export const TaskSection = ({
             </ProjectName>
           </li>
           <li>
-            <Status type={countOfEfforts ? 'completed' : 'todo'} />
+            <Status type={countOfEfforts ? "completed" : "todo"} />
           </li>
         </ul>
         <h2 className={styles.title}>
@@ -65,18 +77,34 @@ export const TaskSection = ({
           </Accordion>
         ))}
       </div>
-      {/* <Notification type="error">сообщение об </Notification> */}
+      {notif && (
+        <Notification onClick={() => setNotif("")} type={notif}>
+          сообщение об{" "}
+        </Notification>
+      )}
       <div className={styles.down}>
         {WalletAddress && (
           <>
-            <Button onClick={handleVerify}>Verify</Button>
-            <Button onClick={handleVerify} background="transparent">
-              Verify
-            </Button>
-            <Button onClick={() => setModalActive(true)}>Continue</Button>
-            <Button onClick={handleVerify} type="error">
-              Continue
-            </Button>
+            {notif !== "error" ? (
+              <Button
+                onClick={handleVerify}
+                background={countForStatusVeryf && "transparent"}
+                loader={loader}
+              >
+                Verify
+              </Button>
+            ) : (
+              <Button onClick={() => setNotif("")} type="error">
+                Try again!
+              </Button>
+            )}
+
+            {exp >= needExp[nftCount] && (
+              <Button onClick={() => setModalActive2(true)}>
+                Claim Reward
+              </Button>
+            )}
+
             {/* <Button onClick={handleVerifyTEST} }>
               TEST Verify
             </Button> */}

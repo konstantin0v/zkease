@@ -1,17 +1,17 @@
-import { updateZKRecord } from '@/serverUtils/updateZKRecord';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import styles from './taskNamePage.module.css';
+import { updateZKRecord } from "@/serverUtils/updateZKRecord";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import styles from "./taskNamePage.module.css";
 import {
   setExp,
   setStoredTasks,
   zkRecordSelector,
-} from '@/store/zkRecord/reducer';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAccount } from 'wagmi';
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
-import { Embedded, TaskAside, TaskSection } from '@/components';
+} from "@/store/zkRecord/reducer";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import { Embedded, TaskAside, TaskSection } from "@/components";
 
 export async function getServerSideProps(context) {
   try {
@@ -30,12 +30,15 @@ export async function getServerSideProps(context) {
 const TaskPage = ({ journey, taskName, ...props }) => {
   const { address: WalletAddress } = useAccount();
   const dispatch = useDispatch();
-  const { exp, storedTasks } = useSelector(zkRecordSelector);
+  const { exp, storedTasks, nfts } = useSelector(zkRecordSelector);
   const { initialData } = useSelector(initialDataSelector);
   const [firstTxCount, setfirstTxCount] = useState(null);
+  const [loader, setLoder] = useState(false);
+  const [notif, setNotif] = useState("");
+
   const provider = new ethers.providers.JsonRpcProvider(
     // "https://testnet.era.zksync.dev"
-    'https://mainnet.era.zksync.io'
+    "https://mainnet.era.zksync.io"
   );
 
   // const earnedExp = initialData[journey].tasks[taskName].exp;
@@ -48,7 +51,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const [updateCount, setUpdateCount] = useState(0);
   useEffect(() => {
     if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push('/');
+      router.push("/");
     }
   }, [WalletAddress, updateCount]);
 
@@ -57,16 +60,26 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   }, [WalletAddress]);
 
   const handleVerify = async () => {
-    const newExp = exp + initialData[journey].tasks[taskName].exp;
-    const newCountOfEfforts = countOfEfforts + 1;
-    const response = await updateZKRecord(
-      WalletAddress,
-      newExp,
-      newPath,
-      newCountOfEfforts
-    );
-    dispatch(setExp(response.exp));
-    dispatch(setStoredTasks(response.tasks));
+    try {
+      setLoder(true);
+      setNotif("");
+      const newExp = exp + initialData[journey].tasks[taskName].exp;
+      const newCountOfEfforts = countOfEfforts + 1;
+      const response = await updateZKRecord(
+        WalletAddress,
+        newExp,
+        newPath,
+        newCountOfEfforts
+      );
+      dispatch(setExp(response.exp));
+      dispatch(setStoredTasks(response.tasks));
+      setLoder(false);
+      setNotif("success");
+    } catch (error) {
+      console.log(error);
+      setNotif("error");
+      setLoder(false);
+    }
   };
 
   useEffect(() => {
@@ -96,7 +109,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
     } else {
-      window.alert('Oopss, you havent done the task!');
+      window.alert("Oopss, you havent done the task!");
     }
   };
 
@@ -110,6 +123,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
             path={taskName}
           />
           <TaskSection
+            storedTasks={storedTasks}
             initialData={initialData}
             journey={journey}
             taskName={taskName}
@@ -117,6 +131,11 @@ const TaskPage = ({ journey, taskName, ...props }) => {
             handleVerify={handleVerify}
             handleVerifyTEST={handleVerifyTEST}
             WalletAddress={WalletAddress}
+            loader={loader}
+            notif={notif}
+            setNotif={setNotif}
+            exp={exp}
+            nfts={nfts}
           />
           <Embedded
             initialData={initialData}
