@@ -7,19 +7,19 @@ export const Button = ({
   className,
   style,
   children,
-  error,
-  w100,
-  transparent,
-  loader,
+  type = '',
+  width = '',
+  background = '',
+  loader = false,
   ...rest
 }) => {
   return (
     <button
       className={clsx(
         styles.button,
-        styles[error],
-        styles[transparent],
-        styles[w100],
+        type && styles[type],
+        background && styles[background],
+        width && styles[width],
         disabled && styles.disabled
       )}
       onClick={onClick}

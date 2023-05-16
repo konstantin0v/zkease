@@ -5,6 +5,7 @@ import {
   Badge,
   Button,
   ModalWindow,
+  Notification,
   ProjectName,
   Status,
   XpSvg,
@@ -24,22 +25,8 @@ export const TaskSection = ({
 }) => {
   const [modalActive, setModalActive] = useState(false);
   const [modalActive2, setModalActive2] = useState(false);
-  const steps = [
-    ['Connect Web3 Wallet', 'Connect your Web3 wallet to the platform.'],
-    [
-      'Choose Pool and Deposit',
-      'Select any pool and click on the + deposit button.',
-    ],
-    [
-      'Input Token Amount',
-      'Enter the desired amount of tokens you want to add to the pool.',
-    ],
-    [
-      'Click Add Liquidity',
-      "Click on the 'Add liquidity' button to initiate the transaction.",
-    ],
-    ['Confirm Transaction', 'Confirm the transaction in your Web3 wallet.'],
-  ];
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const steps = initialData?.[journey]?.tasks?.[taskName]?.taskGuide;
   return (
     <div className={styles.tasksection}>
       <div className={styles.wrapper}>
@@ -61,24 +48,33 @@ export const TaskSection = ({
           {initialData[journey]?.tasks[taskName].title}
         </h2>
         {/* <h3 className={styles.subtitle}>{initialData[journey]?.journeyDesc}</h3> */}
-        <h3 className={styles.subtitle}>Здесь надо вставить таск дескрипшен</h3>
+        <h3 className={styles.subtitle}>
+          {initialData?.[journey].tasks[taskName].taskDesc}
+        </h3>
         {/* <Accordion content={initialData[journey]?.tasks[taskName].taskDesc} /> */}
+
         {steps.map((step, index) => (
-          <Accordion key={step} index={++index} step={step[0]}>
+          <Accordion
+            key={step[0]}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            index={index}
+            step={step[0]}
+          >
             {step[1]}
           </Accordion>
         ))}
       </div>
+      {/* <Notification type="error">сообщение об </Notification> */}
       <div className={styles.down}>
         {WalletAddress && (
           <>
-            <Button>Next task</Button>
             <Button onClick={handleVerify}>Verify</Button>
-            <Button onClick={handleVerify} transparent="transparent">
+            <Button onClick={handleVerify} background="transparent">
               Verify
             </Button>
             <Button onClick={() => setModalActive(true)}>Continue</Button>
-            <Button onClick={handleVerify} error="error">
+            <Button onClick={handleVerify} type="error">
               Continue
             </Button>
             {/* <Button onClick={handleVerifyTEST} }>
@@ -93,7 +89,12 @@ export const TaskSection = ({
       {/* МОДАЛКА ПОЗДРАВЛЕНИЯ И ПРЕДЛОЖЕНИЯ ЗАМИНТИТЬ */}
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <div className={styles.nft}>
-          <Image src={`/image/nfts/${journey}.png`} alt="nft" fill={true} />
+          <Image
+            src={`/image/nft/${journey}.png`}
+            alt="nft"
+            width={190}
+            height={256}
+          />
         </div>
         <div className={styles.modal}>
           <h2>You have reached</h2>
@@ -105,12 +106,12 @@ export const TaskSection = ({
             Congratulations! Now you can claim вот тут тоже to access the next
             journey
           </h3>
-          <Button w100="w100" onClick={() => setModalActive2(true)}>
+          <Button width="full" onClick={() => setModalActive2(true)}>
             Go to Claim
           </Button>
           <Button
-            transparent="transparent"
-            w100="w100"
+            background="transparent"
+            width="full"
             onClick={() => setModalActive(false)}
           >
             Maybe Later
@@ -120,15 +121,20 @@ export const TaskSection = ({
       {/* МОДАЛКА МИНТА */}
       <ModalWindow active={modalActive2} setActive={setModalActive2}>
         <div className={styles.nft}>
-          <Image src={`/image/nfts/${journey}.png`} alt="nft" fill={true} />
+          <Image
+            src={`/image/nft/${journey}.png`}
+            alt="nft"
+            width={190}
+            height={256}
+          />
         </div>
         <div className={styles.modal}>
           <h2>Ready to claim your Level 02 NFT?</h2>
           <h3>You will gain access to the next journey.</h3>
-          <Button w100="w100">Claim NFT 0.0008 ETH</Button>
+          <Button width="w100">Claim NFT 0.0008 ETH</Button>
           <Button
-            transparent="transparent"
-            w100="w100"
+            background="transparent"
+            width="full"
             onClick={() => setModalActive2(false)}
           >
             Maybe Later

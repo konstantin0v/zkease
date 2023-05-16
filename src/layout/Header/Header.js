@@ -33,7 +33,7 @@ const Header = ({ ...props }) => {
         </li> */}
       </ul>
       <div className={styles.right}>
-        {exp && (
+        {exp !== 0 && (
           <div className={styles.exp}>
             <XpSvg />
             <span>{exp}</span>

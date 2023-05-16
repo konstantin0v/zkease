@@ -8,7 +8,7 @@ import { ArrowRight } from '@/components';
 export const Achieves = () => {
   const { nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-  const nftComponents = ['nft1', 'nft2', 'nft3', 'nft4', 'nft1'];
+  const nftComponents = ['nft1', 'nft2', 'nft3'];
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -17,21 +17,20 @@ export const Achieves = () => {
     <div className={styles.achievements}>
       <div className={styles.achieves__top}>
         <h2 className={styles.title}>Achieves</h2>
-        <ArrowRight className={styles.arrow__svg} />
+        {/* <ArrowRight className={styles.arrow__svg} /> */}
       </div>
       {WalletAddress && nftCount > 0 ? (
         <ul className={styles.box}>
           {nftComponents.slice(0, nftCount).map((item) => (
             <Image
-              src={`/image/mininfts/${item}.png`}
-              alt="nft"
+              src={`/image/mininft/${item}.png`}
+              alt="mininft"
               width={64}
               height={64}
               className={styles.nft}
               key={item}
             />
           ))}
-          {/* <div className={styles.overlay}></div> */}
         </ul>
       ) : (
         <h3 className={styles.subtitle}>

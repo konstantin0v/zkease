@@ -14,7 +14,9 @@ export const Accordion = ({
   path,
   children,
   step,
-  index,
+  index = -1,
+  activeIndex,
+  setActiveIndex,
 }) => {
   const [isActive, setIsActive] = useState(false);
   const { storedTasks } = useSelector(zkRecordSelector);
@@ -25,21 +27,64 @@ export const Accordion = ({
     }
   }, []);
 
+  const handleAccordionClick = (index) => {
+    setActiveIndex(index === activeIndex ? -1 : index);
+  };
+
   return (
     <>
-      <div className={clsx(styles.accord, isActive && styles.accord__active)}>
+      <div
+        className={clsx(
+          styles.accord,
+          isActive && styles.accord__active,
+          index === activeIndex && styles.accord__active
+        )}
+      >
         <div
-          className={clsx(styles.title, isActive && styles.title__active)}
-          onClick={() => setIsActive((prev) => !prev)}
+          className={clsx(
+            styles.title,
+            isActive && styles.title__active,
+            index === activeIndex && styles.title__active
+          )}
+          onClick={
+            index !== -1
+              ? () => handleAccordionClick(index)
+              : () => setIsActive((prev) => !prev)
+          }
         >
           {tasksByJourney && <Status type={type} />}
-          {step && step}
+          {step && (
+            <div
+              className={clsx(
+                styles.guidetitle,
+                index === activeIndex && styles.guidetitle__active
+              )}
+            >
+              <div
+                className={clsx(
+                  styles.index,
+                  index === activeIndex && styles.index__active
+                )}
+              >
+                {index + 1}
+              </div>
+              {step}
+            </div>
+          )}
           <OpenerSvg
-            className={clsx(styles.arrow, isActive && styles.rotate)}
+            className={clsx(
+              styles.arrow,
+              isActive && styles.rotate,
+              index === activeIndex && styles.rotate
+            )}
           />
         </div>
         <div
-          className={clsx(styles.content, isActive && styles.content__active)}
+          className={clsx(
+            styles.content,
+            isActive && styles.content__active,
+            index === activeIndex && styles.content__active
+          )}
         >
           {tasksByJourney &&
             Object.entries(tasksByJourney)
@@ -68,7 +113,7 @@ export const Accordion = ({
                   {task.title}
                 </Link>
               ))}
-          {children}
+          <p className={styles.guidedesc}>{children}</p>
         </div>
       </div>
     </>

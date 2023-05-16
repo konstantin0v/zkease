@@ -42,3 +42,4 @@ export * from './TaskCard/ProjectName';
 export * from './TaskSection/TaskSection';
 export * from './JourneyCard/JourneyCard';
 export * from './JourneyCard/CustomLink';
+export * from './Notification/Notification';

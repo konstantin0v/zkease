@@ -21,7 +21,9 @@
   color: var(--red-500);
 }
 .badgeText {
+  font-family: 'SF Pro';
+  font-style: normal;
+  font-weight: 590;
   font-size: 12px;
-  font-weight: 600;
   padding: 2px;
 }

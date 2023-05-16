@@ -16,23 +16,11 @@
   text-align: center;
 }
 .box {
+  width: 100%;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-}
-.box::-webkit-scrollbar {
-  display: none;
 }
 .nft {
   margin-right: 12px;
-}
-.overlay {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  background: linear-gradient(270deg, #171717 1.62%, rgba(23, 23, 23, 0) 50%);
 }
 .achieves__top {
   display: flex;

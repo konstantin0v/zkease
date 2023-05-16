@@ -60,11 +60,13 @@
   justify-content: space-between;
 }
 .nft {
-  width: 50%;
-  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal {
-  width: 50%;
+  flex: 1;
   background: #1b1b21;
   border-radius: 16px;
   padding: 24px;

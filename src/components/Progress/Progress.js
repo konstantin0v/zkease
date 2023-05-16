@@ -13,10 +13,11 @@ import { useState } from 'react';
 
 export const Progress = () => {
   const [modalActive, setModalActive] = useState(false);
+  const [loader, setLoader] = useState(false);
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
   const dispatch = useDispatch();
-  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 1170 };
+  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 9999 };
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -25,8 +26,10 @@ export const Progress = () => {
     const signer = await walletProvider.getSigner();
     return contract.connect(signer);
   };
+
   const handleNFT = async () => {
     try {
+      setLoader(true);
       const level = nftCount + 1;
       const journeyName = nftCount === 4 ? 'journeyEnd' : `journey${nftCount}`;
       const contractWithSigner = await getContractWithSigner(contract);
@@ -37,6 +40,9 @@ export const Progress = () => {
       await handleMintNft(WalletAddress, journeyName, setNfts, dispatch);
     } catch (error) {
       console.log(error);
+    } finally {
+      setModalActive(false);
+      setLoader(false);
     }
   };
 
@@ -44,7 +50,7 @@ export const Progress = () => {
     <div className={styles.progress}>
       <div className={styles.progress__top}>
         <h2 className={styles.title}>My progress</h2>
-        <ArrowRight className={styles.arrow__svg} />
+        {/* <ArrowRight className={styles.arrow__svg} /> */}
       </div>
       {WalletAddress ? (
         <>
@@ -64,7 +70,7 @@ export const Progress = () => {
             className={styles.bar}
           />
           {exp >= needExp[nftCount] && (
-            <Button w100="w100" onClick={() => setModalActive(true)}>
+            <Button width="full" onClick={() => setModalActive(true)}>
               Claim Reward
             </Button>
           )}
@@ -75,18 +81,23 @@ export const Progress = () => {
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <div className={styles.nft}>
           <Image
-            src={`/image/nfts/journey${nftCount}.png`}
+            src={`/image/nft/journey${
+              nftCount + 1 === 4 ? 'End' : nftCount + 1
+            }.png`}
             alt="nft"
-            fill={true}
+            width={190}
+            height={256}
           />
         </div>
         <div className={styles.modal}>
-          <h2>Ready to claim your Level 02 NFT?</h2>
+          <h2>Ready to claim your journey{nftCount + 1} NFT?</h2>
           <h3>You will gain access to the next journey.</h3>
-          <Button w100="w100">Claim NFT 0.0008 ETH</Button>
+          <Button width="full" loader={loader} onClick={handleNFT}>
+            Claim NFT 0.0008 ETH
+          </Button>
           <Button
-            transparent="transparent"
-            w100="w100"
+            background="transparent"
+            width="full"
             onClick={() => setModalActive(false)}
           >
             Maybe Later

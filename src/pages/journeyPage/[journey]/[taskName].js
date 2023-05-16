@@ -107,7 +107,6 @@ const TaskPage = ({ journey, taskName, ...props }) => {
           <TaskAside
             initialData={initialData}
             journey={journey}
-            className={styles.taskaside}
             path={taskName}
           />
           <TaskSection
@@ -123,7 +122,6 @@ const TaskPage = ({ journey, taskName, ...props }) => {
             initialData={initialData}
             journey={journey}
             taskName={taskName}
-            className={styles.embedded}
           />
         </div>
       )) || <p>Loading...</p>}
