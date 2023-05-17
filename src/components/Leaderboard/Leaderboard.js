@@ -11,8 +11,7 @@ export const Leaderboard = () => {
   const { address: WalletAddress } = useAccount();
   const { users, allUsers } = useSelector(usersSelector);
   const { exp } = useSelector(zkRecordSelector);
-  const userPosition =
-    allUsers?.records.findIndex((obj) => obj.address === WalletAddress) + 1;
+  const { records } = allUsers;
   return (
     <div className={styles.leaderboard}>
       <h2 className={styles.subtitle}>Leaderboard</h2>
@@ -51,7 +50,12 @@ export const Leaderboard = () => {
             key={uuidv4()}
             className={clsx(styles.row, styles.row__wallet, styles.walletfix)}
           >
-            <li className={styles.row__pos}>{userPosition || " "}</li>
+            <li className={styles.row__pos}>
+              {(records &&
+                records.findIndex((obj) => obj.address === WalletAddress) +
+                  1) ||
+                " "}
+            </li>
             <li className={styles.row__name}>
               <Jazzicon
                 diameter={24}
