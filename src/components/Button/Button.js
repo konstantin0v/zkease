@@ -2,45 +2,34 @@ import clsx from 'clsx';
 import styles from './Button.module.css';
 
 export const Button = ({
-  type = 'primary',
-  intent = 'primary',
-  size = 'medium',
-  showIconLeft = false,
-  showIconRight = false,
-  IconLeft,
-  IconRight,
   disabled = false,
-  children,
   onClick,
+  className,
   style,
+  children,
+  type = '',
+  width = '',
+  background = '',
+  text = '',
+  loader = false,
+  ...rest
 }) => {
   return (
     <button
       className={clsx(
         styles.button,
-        styles[type],
-        styles[intent],
-        styles[size],
-        disabled && styles.disabled,
-        styles.buttonContainer
+        type && styles[type],
+        background && styles[background],
+        width && styles[width],
+        text && styles[text],
+        disabled && styles.disabled
       )}
       onClick={onClick}
       disabled={disabled}
       style={style}
+      {...rest}
     >
-      {showIconLeft && (
-        <span className={styles.iconLeft}>
-          <IconLeft />
-        </span>
-      )}
-      <span className={styles.buttonText}>{children}</span>
-      {showIconRight && (
-        <span className={styles.iconRight}>
-          <IconRight />
-        </span>
-      )}
+      {loader ? <span>loading...</span> : children}
     </button>
   );
 };
-
-export default Button;

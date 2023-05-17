@@ -1,25 +1,25 @@
-import { Banner, JourneyCard } from "@/components";
-import postRecord from "@/serverUtils/postRecord";
-import styles from "@/styles/Home.module.css";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
+import { Banner, JourneyCard } from '@/components';
+import postRecord from '@/serverUtils/postRecord';
+import styles from '@/styles/Home.module.css';
+import { useEffect } from 'react';
+import { useAccount } from 'wagmi';
 import {
   setExp,
   setAddress,
   setStoredTasks,
   setNfts,
-} from "../store/zkRecord/reducer";
-import { setUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
+} from '../store/zkRecord/reducer';
+import { setUsers } from '../store/users/reducer';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   initialDataSelector,
   setInitialData,
-} from "@/store/initialData/reducer";
+} from '@/store/initialData/reducer';
 
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      "https://clownfish-app-z2nhn.ondigitalocean.app"
+      'https://clownfish-app-z2nhn.ondigitalocean.app'
     );
     const dataUsers = await responseUsers.json();
 
@@ -76,17 +76,17 @@ export default function Home({ bestUsers, serverData, ...props }) {
   }, [WalletAddress]);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <div className={styles.banner}>
         <Banner
           linkText="Learn more"
-          bannerTextTitle="Join our community"
-          bannerTextDescription="Join our community"
+          bannerTextTitle="zkSync Era - Scale Your Crypto Freedom"
+          bannerTextDescription="Scale your Ethereum security with zkSync Era - the layer 2 protocol using zero-knowledge cryptography."
         />
         <Banner
           submitBanner
-          linkText="Submit"
-          bannerTextTitle="Submit your project"
+          linkText="Submit project"
+          bannerTextTitle="Are you a builder on zkSync?"
           bannerTextDescription="If you want to attract users to your project built on zkSyncEra, then contact us using the form below."
         />
       </div>
@@ -104,6 +104,6 @@ export default function Home({ bestUsers, serverData, ...props }) {
             </div>
           ))) || <p>No journeys found</p>}
       </div>
-    </>
+    </div>
   );
 }

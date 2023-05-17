@@ -8,39 +8,22 @@
   border-radius: 32px;
   user-select: none;
 }
-
 .badge.neutral {
   background-color: var(--greyA-100);
   color: var(--grey-900);
 }
-
 .badge.blue {
   background-color: var(--blue-100);
   color: var(--blue-700);
 }
-
 .badge.red {
   background-color: var(--red-100);
   color: var(--red-500);
 }
-
-.iconLeft {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.iconRight {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .badgeText {
-  font-family: 'SF Pro', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: 'SF Pro';
   font-style: normal;
-  line-height: 16px;
+  font-weight: 590;
+  font-size: 12px;
   padding: 2px;
 }

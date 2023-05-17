@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import Footer from './Footer/Footer';
-import Header from './Header/Header';
 import styles from './Layout.module.css';
+import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
-
+import Footer from './Footer/Footer';
 const Layout = ({ children }) => {
   return (
     <>
@@ -15,10 +14,8 @@ const Layout = ({ children }) => {
       </Head>
       <div className={styles.wrapper}>
         <Header className={styles.header} />
-        <div className={styles.main}>
-          <Sidebar className={styles.sidebar} />
-          <div className={styles.page}>{children}</div>
-        </div>
+        <Sidebar className={styles.sidebar} />
+        <div className={styles.main}>{children}</div>
         <Footer className={styles.footer} />
       </div>
     </>

@@ -1,11 +1,12 @@
-import { useRouter } from "next/router";
-import styles from "./journeyPage.module.css";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import { useAccount } from "wagmi";
-import TaskCard from "@/components/TaskCard/taskCard";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
+import styles from './journeyPage.module.css';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { useAccount } from 'wagmi';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { ArrowRight, TaskCard } from '@/components';
 
 export async function getServerSideProps(context) {
   try {
@@ -29,7 +30,7 @@ const JourneyPage = ({ journey }) => {
 
   useEffect(() => {
     if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push("/");
+      router.push('/');
     }
   }, [WalletAddress, updateCount]);
 
@@ -38,12 +39,15 @@ const JourneyPage = ({ journey }) => {
   }, [WalletAddress]);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {initialData && (
         <div>
+          <Link className={styles.back} href="/">
+            <ArrowRight className={styles.back__svg} />
+            <p className={styles.back__text}>Back</p>
+          </Link>
           <h2 className={styles.title}>{initialData[journey]?.nick}</h2>
           <h3 className={styles.desc}>{initialData[journey]?.journeyDesc}</h3>
-          <h2 className={styles.subtitle}>Tasks</h2>
           <div className={styles.cards}>
             {(initialData[journey]?.tasks &&
               Object.entries(initialData[journey].tasks).map(([key, task]) => (
@@ -57,7 +61,7 @@ const JourneyPage = ({ journey }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

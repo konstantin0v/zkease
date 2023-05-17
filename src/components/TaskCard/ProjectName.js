@@ -1,4 +1,4 @@
-import styles from './taskCard.module.css';
+import styles from './TaskCard.module.css';
 import {
   Multichain,
   Mintsquare,
@@ -35,5 +35,3 @@ export const ProjectName = ({ children, tag }) => {
     </div>
   );
 };
-
-export default ProjectName;

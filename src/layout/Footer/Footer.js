@@ -19,15 +19,14 @@ const Footer = ({ ...props }) => {
       {index && (
         <footer {...props}>
           <div className={styles.top}>
-            <Link href="/" className={styles.top__logo}>
+            <Link href="/" className={styles.logo}>
               <Image
-                src="/image/logo.svg"
+                src="/image/1.svg"
                 alt="zkEasy logo"
-                width={20}
-                height={20}
-                className={styles.top__logo__img}
+                width={119}
+                height={19}
+                className={styles.logo__img}
               />
-              <h2 className={styles.top__logo__text}>zkEase</h2>
             </Link>
             <ul className={styles.top__menu}>
               <li>

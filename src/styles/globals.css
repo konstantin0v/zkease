@@ -9,7 +9,6 @@
   font-weight: 510;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Heavy.eot');
@@ -21,7 +20,6 @@
   font-weight: 900;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Thin.eot');
@@ -33,7 +31,6 @@
   font-weight: 100;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Light.eot');
@@ -45,7 +42,6 @@
   font-weight: 200;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Bold.eot');
@@ -57,7 +53,6 @@
   font-weight: bold;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Black.eot');
@@ -69,7 +64,6 @@
   font-weight: 900;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Ultralight.eot');
@@ -82,7 +76,6 @@
   font-weight: 200;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Semibold.eot');
@@ -94,7 +87,6 @@
   font-weight: 590;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SF Pro';
   src: url('/fonts/SFProDisplay-Regular.eot');
@@ -108,11 +100,13 @@
 }
 
 :root {
+  --background: #121218;
+
   --maintext: white;
   --secondtext: black;
   --buttonmain: white;
   --buttonhover: rgb(230, 230, 230);
-  --background: black;
+
   --secondbackground: rgba(23, 23, 23, 1);
   --border: #414141;
   --thirdtext: #b4b4b4;
@@ -200,7 +194,7 @@
 
 body {
   color: var(--maintext);
-  background-color: var(--grey-0);
+  background-color: var(--background);
   font-family: 'SF Pro', sans-serif;
   font-size: 16px;
   font-weight: 510;
@@ -221,5 +215,7 @@ ul {
   width: 0;
 }
 iframe {
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0 0 16px 16px;
+  border-top: none;
 }

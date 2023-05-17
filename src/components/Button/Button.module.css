@@ -2,363 +2,64 @@
   font-family: 'SF Pro', sans-serif;
   font-size: 16px;
   font-weight: 510;
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
+  height: 36px;
+  background: #626ee9;
+  border-radius: 12px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  outline: none;
+  width: 104px;
 }
-
-/* Button Sizes */
-.button.small {
-  width: 100%;
-  height: 28px;
-  padding: 4px 8px;
-  border-radius: 4px;
+.button:hover {
+  background: #626de9ae;
 }
-
-.button.large {
+.button:active {
+  background: #626ee9;
+}
+.error {
+  background: #af2c2c;
+}
+.error:hover {
+  background: #af2c2cc1;
+}
+.error:active {
+  background: #af2c2c;
+}
+.transparent {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+}
+.transparent:hover {
+  color: #ffffff;
+  background: transparent;
+}
+.transparent:active {
+  background: transparent;
+}
+.full {
   width: 100%;
   height: 44px;
-  padding: 12px 16px;
-  border-radius: 8px;
 }
-
-.button.medium {
-  width: 100%;
-  height: 36px;
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-/* Button Types, intent normal by default */
-.button.primary {
-  background-color: var(--grey-1000);
-  color: var(--grey-0);
-}
-
-.button.secondary {
-  background-color: var(--grey-100);
-  color: var(--grey-900);
-}
-
-.button.ghost {
-  background-color: var(--greyA-0);
-  color: var(--grey-1000);
-}
-
-.button.bare {
-  background-color: transparent;
-  color: var(--grey-1000);
-  padding: 0px;
-}
-
-/* --------------- */
-/* Button Intents */
-
-/* Button primary intents */
-.button.primary.intent-primary {
-  background-color: var(--blue-500);
-  color: var(--grey-1000);
-}
-
-.button.primary.intent-positive {
-  background-color: var(--green-500);
-  color: var(--grey-1000);
-}
-
-.button.primary.intent-destruction {
-  background-color: var(--red-500);
-  color: var(--grey-1000);
-}
-/* Button secondary intents */
-.button.secondary.intent-primary {
-  background-color: var(--blue-100);
-  color: var(--blue-500);
-}
-
-.button.secondary.intent-positive {
-  background-color: var(--green-100);
-  color: var(--green-500);
-}
-
-.button.secondary.intent-destruction {
-  background-color: var(--red-100);
-  color: var(--red-500);
-}
-/* Button ghost intents */
-.button.ghost.intent-primary {
-  color: var(--blue-500);
-}
-
-.button.ghost.intent-positive {
-  color: var(--green-500);
-}
-
-.button.ghost.intent-destruction {
-  color: var(--red-500);
-}
-/* Button bare intents */
-.button.bare.intent-primary {
-  color: var(--blue-500);
-}
-
-.button.bare.intent-positive {
-  color: var(--green-500);
-}
-
-.button.bare.intent-destruction {
-  color: var(--red-500);
-}
-
-/* --------------- */
-/* Button states */
-
-/* Button primary states */
-.button.primary:hover {
-  background-color: var(--grey-900);
-}
-.button.primary:active {
-  background-color: var(--grey-800);
-}
-.button.primary.disabled {
-  background-color: var(--grey-1000);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-/* primary intents states */
-.button.primary.intent-primary:hover {
-  background-color: var(--blue-400);
-}
-.button.primary.intent-primary:active {
-  background-color: var(--blue-300);
-}
-.button.primary.intent-primary.disabled {
-  background-color: var(--blue-500);
-  color: var(--grey-1000);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.primary.intent-positive:hover {
-  background-color: var(--green-400);
-}
-.button.primary.intent-positive:active {
-  background-color: var(--green-300);
-}
-.button.primary.intent-positive.disabled {
-  background-color: var(--green-500);
-  color: var(--grey-1000);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.primary.intent-destruction:hover {
-  background-color: var(--red-400);
-}
-.button.primary.intent-destruction:active {
-  background-color: var(--red-300);
-}
-.button.primary.intent-destruction.disabled {
-  background-color: var(--red-500);
-  color: var(--grey-1000);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Button secondary states */
-.button.secondary:hover {
-  background-color: var(--grey-200);
-  color: var(--grey-800);
-}
-.button.secondary:active {
-  background-color: var(--grey-300);
-  color: var(--grey-700);
-}
-.button.secondary.disabled {
-  background-color: var(--grey-100);
-  color: var(--grey-900);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-/* secondary intents states */
-.button.secondary.intent-primary:hover {
-  background-color: var(--blue-200);
-  color: var(--blue-500);
-}
-.button.secondary.intent-primary:active {
-  background-color: var(--blue-300);
-  color: var(--blue-500);
-}
-.button.secondary.intent-primary.disabled {
-  background-color: var(--blue-100);
-  color: var(--blue-500);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.secondary.intent-positive:hover {
-  background-color: var(--green-200);
-  color: var(--green-600);
-}
-.button.secondary.intent-positive:active {
-  background-color: var(--green-300);
-}
-.button.secondary.intent-positive.disabled {
-  background-color: var(--green-100);
-  color: var(--green-500);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.secondary.intent-destruction:hover {
-  background-color: var(--red-200);
-  color: var(--red-500);
-}
-.button.secondary.intent-destruction:active {
-  background-color: var(--red-300);
-  color: var(--red-500);
-}
-.button.secondary.intent-destruction.disabled {
-  background-color: var(--red-100);
-  color: var(--red-500);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Button ghost states */
-.button.ghost:hover {
-  background-color: var(--greyA-100);
-}
-.button.ghost:active {
-  background-color: var(--greyA-200);
-}
-.button.ghost.disabled {
-  background-color: var(--greyA-0);
-  color: var(--grey-1000);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-/* ghost intents states */
-.button.ghost.intent-primary:hover {
-  color: var(--blue-500);
-  background-color: var(--greyA-100);
-}
-.button.ghost.intent-primary:active {
-  color: var(--blue-500);
-  background-color: var(--greyA-200);
-}
-.button.ghost.intent-primary.disabled {
-  color: var(--blue-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.ghost.intent-positive:hover {
-  color: var(--green-500);
-  background-color: var(--greyA-100);
-}
-.button.ghost.intent-positive:active {
-  color: var(--green-500);
-  background-color: var(--greyA-200);
-}
-.button.ghost.intent-positive.disabled {
-  color: var(--green-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.ghost.intent-destruction:hover {
-  color: var(--red-500);
-  background-color: var(--greyA-100);
-}
-.button.ghost.intent-destruction:active {
-  color: var(--red-500);
-  background-color: var(--greyA-200);
-}
-.button.ghost.intent-destruction.disabled {
-  color: var(--red-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Button bare states */
-.button.bare:hover {
-  color: var(--grey-900);
-}
-.button.bare:active {
-  color: var(--grey-800);
-}
-.button.bare.disabled {
-  color: var(--grey-1000);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-/* bare intents states */
-.button.bare.intent-primary:hover {
-  color: var(--blue-400);
-}
-.button.bare.intent-primary:active {
-  color: var(--blue-300);
-}
-.button.bare.intent-primary.disabled {
-  color: var(--blue-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.bare.intent-positive:hover {
-  color: var(--green-400);
-}
-.button.bare.intent-positive:active {
-  color: var(--green-300);
-}
-.button.bare.intent-positive.disabled {
-  color: var(--green-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.button.bare.intent-destruction:hover {
-  color: var(--red-400);
-}
-.button.bare.intent-destruction:active {
-  color: var(--red-300);
-}
-.button.bare.intent-destruction.disabled {
-  color: var(--red-500);
-  background-color: var(--greyA-0);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.buttonContainer {
+.svg {
+  font-size: 16px;
+  font-weight: 510;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 }
-
-.buttonText {
-  padding: 0px 4px;
+.svg:hover {
+  color: #ffffff;
+  background: transparent;
 }
-
-.iconLeft {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.iconRight {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.svg:active {
+  background: transparent;
 }

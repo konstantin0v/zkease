@@ -3,17 +3,16 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  background-color: var(--grey-50);
-  padding: 16px;
+  background-color: #25252a;
+  padding: 12px;
 }
 .subtitle {
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   font-weight: 510;
-  font-size: 18px;
-  color: #b4b4b4;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
 }
 .list {
-  color: var(--thirdtext);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,13 +31,17 @@
   justify-content: space-between;
   margin-bottom: 13px;
 }
+.row:last-child {
+  margin-bottom: 0;
+}
 .row__pos {
+  padding-left: 4px;
   width: 34px;
   font-weight: 400;
   font-size: 14px;
   display: flex;
   align-items: center;
-  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.8);
 }
 .row__name {
   flex: 1;
@@ -47,19 +50,23 @@
   align-items: center;
   font-weight: 400;
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
 }
 .row__name__p {
   margin-left: 8px;
 }
 .row__xp {
-  color: var(--maintext);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 590;
-  font-size: 12px;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 4px;
 }
-
+.row__xp_span {
+  font-size: 12px;
+}
 .row__wallet {
   background: #eaeaea;
   box-shadow: 0px 0px 16px rgba(255, 255, 255, 0.05);
@@ -78,6 +85,7 @@
 }
 .row__xpsvg {
   margin-left: 4px;
+  fill: rgba(255, 255, 255, 0.6);
 }
 .xpsvg {
   fill: #242424;

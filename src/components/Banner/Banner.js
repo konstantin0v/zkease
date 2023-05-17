@@ -1,7 +1,7 @@
-import Link from "next/link";
-import styles from "./Banner.module.css";
-import { ArrowRight } from "..";
-import clsx from "clsx";
+import Link from 'next/link';
+import styles from './Banner.module.css';
+import clsx from 'clsx';
+import { ArrowRight, Zksync, Zksynclogo } from '@/components';
 
 export const Banner = ({
   linkText,
@@ -10,23 +10,15 @@ export const Banner = ({
   submitBanner = false,
 }) => {
   return (
-    <div
-      className={clsx(
-        styles.bannerItem,
-        submitBanner && styles.backgroundSubmitBanner
-      )}
-    >
-      <span>{bannerTextTitle}</span>
-      <span className={styles.bannerTextDescription}>
-        {bannerTextDescription}
-      </span>
+    <div className={clsx(styles.banner, submitBanner && styles.submit)}>
+      {!submitBanner && <Zksync />}
+      <h3 className={styles.title}>{bannerTextTitle}</h3>
+      <p className={styles.descr}>{bannerTextDescription}</p>
 
-      <Link href="#" className={styles.bannerLink}>
-        <span>{linkText}</span>
-        <ArrowRight />
+      <Link href="/" className={styles.link}>
+        {linkText}
+        {submitBanner && <ArrowRight className={styles.arrow__svg} />}
       </Link>
     </div>
   );
 };
-
-export default Banner;

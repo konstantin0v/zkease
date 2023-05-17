@@ -1,36 +1,37 @@
 .achievements {
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 12px;
   margin-bottom: 8px;
-  background-color: var(--grey-50);
-  height: 134px;
+  background-color: #25252a;
 }
 .title {
   font-weight: 510;
-  font-size: 18px;
-  color: #b4b4b4;
-  margin-bottom: 16px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
 }
 .subtitle {
   font-weight: 400;
   font-size: 14px;
-  color: #b4b4b4;
+  color: rgba(255, 255, 255, 0.6);
   text-align: center;
 }
 .box {
+  width: 100%;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  position: relative;
 }
 .nft {
   margin-right: 12px;
 }
-.overlay {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  background: linear-gradient(270deg, #171717 1.62%, rgba(23, 23, 23, 0) 50%);
+.achieves__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.arrow__svg {
+  fill: rgba(255, 255, 255, 0.8);
+}
+.arrow__svg:hover {
+  fill: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }

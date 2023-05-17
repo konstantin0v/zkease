@@ -1,11 +1,6 @@
-import { useRouter } from "next/router";
-import styles from "./Sidebar.module.css";
-import { Leaderboard } from "@/components";
-import { useSelector } from "react-redux";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import Progress from "@/components/Progress/Progress";
-import Achieves from "@/components/Achieves/Achieves";
-import SidebarTasks from "@/components/SidebarTasks/SidebarTasks";
+import { useRouter } from 'next/router';
+import styles from './Sidebar.module.css';
+import { Achieves, Leaderboard, Progress } from '@/components';
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
@@ -13,9 +8,7 @@ const Sidebar = ({ ...props }) => {
   const { journey } = router.query;
   return (
     <>
-      {currentPage.includes("task") ? (
-        <SidebarTasks journey={journey} />
-      ) : (
+      {!currentPage.includes('task') && (
         <div {...props}>
           <Progress journey={journey} />
           <Achieves />
