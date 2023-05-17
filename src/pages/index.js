@@ -51,7 +51,6 @@ export default function Home({ bestUsers, serverData, dataUsers, ...props }) {
   const { address: WalletAddress } = useAccount();
   const { initialData } = useSelector(initialDataSelector);
   const dispatch = useDispatch();
-  console.log("UERS", dataUsers);
   useEffect(() => {
     (() => {
       const needExp = generateSummaryObj(serverData);
