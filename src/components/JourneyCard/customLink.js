@@ -2,12 +2,28 @@ import { useState } from 'react';
 import styles from './JourneyCard.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ModalWindow, Button } from '@/components';
+import { ModalWindow, Button, ModalMint } from '@/components';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
 
 export const CustomLink = ({ href, disabled, journeyName, children }) => {
   const [modalActive, setModalActive] = useState(false);
-  const [modalActive2, setModalActive2] = useState(false);
-  const haveExpToNewLvl = true;
+  const { exp, nfts } = useSelector(zkRecordSelector);
+  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 9999 };
+  let nftCount = 0;
+
+  if (nfts) {
+    nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
+  }
+
+  let haveExpToNewLvl = 0;
+
+  if (exp >= needExp[nftCount]) {
+    haveExpToNewLvl = 1;
+  }
+  let nextJourney =
+    nftCount + 1 === 4 ? 'journeyEnd' : `journey${nftCount + 1}`;
+
   return (
     <>
       {disabled ? (
@@ -21,17 +37,19 @@ export const CustomLink = ({ href, disabled, journeyName, children }) => {
       )}
 
       <ModalWindow active={modalActive} setActive={setModalActive}>
-        <div className={styles.nft}>
-          <Image
-            src={`/image/nft/${journeyName}.png`}
-            alt="nft"
-            width={190}
-            height={256}
-          />
-        </div>
-        <div className={styles.modal}>
-          {!haveExpToNewLvl ? (
-            <>
+        {haveExpToNewLvl && journeyName === nextJourney ? (
+          <ModalMint setModalActive={setModalActive} />
+        ) : (
+          <>
+            <div className={styles.nft}>
+              <Image
+                src={`/image/nft/${journeyName}.png`}
+                alt="nft"
+                width={190}
+                height={256}
+              />
+            </div>
+            <div className={styles.modal}>
               <h2>{journeyName} required</h2>
               <h3>
                 To access {journeyName} , you must own the “{journeyName}” and
@@ -40,48 +58,9 @@ export const CustomLink = ({ href, disabled, journeyName, children }) => {
               <Button width="full" onClick={() => setModalActive(false)}>
                 Close
               </Button>
-            </>
-          ) : (
-            <>
-              <h2>Access to {journeyName}</h2>
-              <h3>
-                To access {journeyName}, you must own the `{journeyName}`
-              </h3>
-              <Button width="full" onClick={() => setModalActive2(true)}>
-                Go to Claim
-              </Button>
-              <Button
-                background="transparent"
-                width="full"
-                onClick={() => setModalActive(false)}
-              >
-                Maybe Later
-              </Button>
-            </>
-          )}
-        </div>
-      </ModalWindow>
-      <ModalWindow active={modalActive2} setActive={setModalActive2}>
-        <div className={styles.nft}>
-          <Image
-            src={`/image/nft/${journeyName}.png`}
-            alt="nft"
-            width={190}
-            height={256}
-          />
-        </div>
-        <div className={styles.modal}>
-          <h2>Ready to claim your {journeyName} NFT?</h2>
-          <h3>You will gain access to the next journey.</h3>
-          <Button width="full">Claim NFT 0.0008 ETH</Button>
-          <Button
-            background="transparent"
-            width="full"
-            onClick={() => setModalActive2(false)}
-          >
-            Maybe Later
-          </Button>
-        </div>
+            </div>
+          </>
+        )}
       </ModalWindow>
     </>
   );

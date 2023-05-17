@@ -10,6 +10,7 @@ export const Button = ({
   type = '',
   width = '',
   background = '',
+  text = '',
   loader = false,
   ...rest
 }) => {
@@ -20,6 +21,7 @@ export const Button = ({
         type && styles[type],
         background && styles[background],
         width && styles[width],
+        text && styles[text],
         disabled && styles.disabled
       )}
       onClick={onClick}

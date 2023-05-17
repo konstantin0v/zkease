@@ -1,5 +1,6 @@
-import clsx from "clsx";
-import styles from "./Notification.module.css";
+import clsx from 'clsx';
+import styles from './Notification.module.css';
+import { Button, Close, Error, Success } from '@/components';
 
 export const Notification = ({
   disabled = false,
@@ -11,13 +12,38 @@ export const Notification = ({
 }) => {
   return (
     <div
-      onClick={onClick}
       className={clsx(styles.notif, type && styles[type])}
       style={style}
       {...rest}
     >
-      {type === "error" && <div>Failed to verify your activity</div>}
-      {type === "success" && <div>Verification was successful</div>}
+      {type === 'error' && (
+        <div className={styles.wrapper}>
+          <div className={styles.top}>
+            <Error />
+            <Button type="svg">
+              <Close />
+            </Button>
+          </div>
+          <h3>Failed to verify your activity</h3>
+          <h4>
+            You need at least one transaction through this project. Try again
+          </h4>
+        </div>
+      )}
+      {type === 'success' && (
+        <div className={styles.wrapper}>
+          <div className={styles.top}>
+            <Success />
+            <Button text="svg" onClick={onClick}>
+              <Close />
+            </Button>
+          </div>
+          <h3>Verification was successful</h3>
+          <h4>
+            Now you can move on to the next task or go through this task again
+          </h4>
+        </div>
+      )}
     </div>
   );
 };
