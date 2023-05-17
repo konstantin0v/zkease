@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   initialData: [],
+  needExp: {},
 };
 
 export const initialDataSlice = createSlice({
@@ -11,10 +12,13 @@ export const initialDataSlice = createSlice({
     setInitialData: (state, action) => {
       state.initialData = action.payload;
     },
+    setNeedExp: (state, action) => {
+      state.needExp = action.payload;
+    },
   },
 });
 
-export const { setInitialData } = initialDataSlice.actions;
+export const { setInitialData, setNeedExp } = initialDataSlice.actions;
 
 export const initialDataSelector = (state) => state.initialData;
 

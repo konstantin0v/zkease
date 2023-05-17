@@ -1,15 +1,20 @@
-import { useState } from 'react';
-import styles from './journeyCard.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ModalWindow, Button, ModalMint } from '@/components';
-import { useSelector } from 'react-redux';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import { useState } from "react";
+import styles from "./journeyCard.module.css";
+import Image from "next/image";
+import Link from "next/link";
+import { ModalWindow, Button, ModalMint } from "@/components";
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
 
-export const CustomLink = ({ href, disabled, journeyName, children }) => {
+export const CustomLink = ({
+  href,
+  disabled,
+  journeyName,
+  children,
+  needExp,
+}) => {
   const [modalActive, setModalActive] = useState(false);
   const { exp, nfts } = useSelector(zkRecordSelector);
-  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 9999 };
   let nftCount = 0;
 
   if (nfts) {
@@ -22,7 +27,7 @@ export const CustomLink = ({ href, disabled, journeyName, children }) => {
     haveExpToNewLvl = 1;
   }
   let nextJourney =
-    nftCount + 1 === 4 ? 'journeyEnd' : `journey${nftCount + 1}`;
+    nftCount + 1 === 4 ? "journeyEnd" : `journey${nftCount + 1}`;
 
   return (
     <>

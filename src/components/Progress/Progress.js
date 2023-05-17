@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './Progress.module.css';
-import { useAccount } from 'wagmi';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import ProgressBar from '@ramonak/react-progress-bar';
-import { ArrowRight, Button, ModalMint, ModalWindow } from '@/components';
-import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./Progress.module.css";
+import { useAccount } from "wagmi";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { ArrowRight, Button, ModalMint, ModalWindow } from "@/components";
+import { useState } from "react";
+import { initialDataSelector } from "@/store/initialData/reducer";
 
 export const Progress = () => {
   const [modalActive, setModalActive] = useState(false);
-
+  const { needExp } = useSelector(initialDataSelector);
   const { exp, nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-  const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 9999 };
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -55,4 +55,3 @@ export const Progress = () => {
     </div>
   );
 };
-

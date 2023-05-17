@@ -1,17 +1,18 @@
-import styles from './Leaderboard.module.css';
-import { useSelector } from 'react-redux';
-import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
-import { usersSelector } from '@/store/users/reducer';
-import { useAccount } from 'wagmi';
-import clsx from 'clsx';
-import { XpSvg } from '@/components';
-import { v4 as uuidv4 } from 'uuid';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import styles from "./Leaderboard.module.css";
+import { useSelector } from "react-redux";
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { usersSelector } from "@/store/users/reducer";
+import { useAccount } from "wagmi";
+import clsx from "clsx";
+import { XpSvg } from "@/components";
+import { v4 as uuidv4 } from "uuid";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
 export const Leaderboard = () => {
-  const { users } = useSelector(usersSelector);
-  const { exp } = useSelector(zkRecordSelector);
-
   const { address: WalletAddress } = useAccount();
+  const { users, allUsers } = useSelector(usersSelector);
+  const { exp } = useSelector(zkRecordSelector);
+  const userPosition =
+    allUsers?.records.findIndex((obj) => obj.address === WalletAddress) + 1;
   return (
     <div className={styles.leaderboard}>
       <h2 className={styles.subtitle}>Leaderboard</h2>
@@ -29,7 +30,7 @@ export const Leaderboard = () => {
               <li className={styles.row__name}>
                 <Jazzicon diameter={24} seed={jsNumberForAddress(address)} />
                 <p className={styles.row__name__p}>
-                  {address.slice(0, 5) + '...' + address.slice(38)}
+                  {address.slice(0, 5) + "..." + address.slice(38)}
                 </p>
               </li>
               <li className={styles.row__xp}>
@@ -50,14 +51,14 @@ export const Leaderboard = () => {
             key={uuidv4()}
             className={clsx(styles.row, styles.row__wallet, styles.walletfix)}
           >
-            <li className={styles.row__pos}>i</li>
+            <li className={styles.row__pos}>{userPosition || " "}</li>
             <li className={styles.row__name}>
               <Jazzicon
                 diameter={24}
                 seed={jsNumberForAddress(WalletAddress)}
               />
               <p className={styles.row__name__p}>
-                {WalletAddress.slice(0, 5) + '...' + WalletAddress.slice(38)}
+                {WalletAddress.slice(0, 5) + "..." + WalletAddress.slice(38)}
               </p>
             </li>
             <li className={styles.row__xp}>

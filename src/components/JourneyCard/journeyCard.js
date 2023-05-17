@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import styles from './journeyCard.module.css';
-import ProgressBar from '@ramonak/react-progress-bar';
-import { Badge, CustomLink, Status, XpSvg } from '@/components';
-import { useAccount } from 'wagmi';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import { getJourneyTasks } from '@/utils/getJourneyTasks';
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import styles from "./journeyCard.module.css";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { Badge, CustomLink, Status, XpSvg } from "@/components";
+import { useAccount } from "wagmi";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { getJourneyTasks } from "@/utils/getJourneyTasks";
 
 export const JourneyCard = ({
   journeyName,
@@ -16,7 +16,7 @@ export const JourneyCard = ({
   ...props
 }) => {
   const { storedTasks, nfts } = useSelector(zkRecordSelector);
-  const { initialData } = useSelector(initialDataSelector);
+  const { initialData, needExp } = useSelector(initialDataSelector);
   const { address: WalletAddress } = useAccount();
 
   let { doneTasks, totalTasks } = getJourneyTasks(journeyName, storedTasks);
@@ -29,18 +29,19 @@ export const JourneyCard = ({
     <CustomLink
       journeyName={journeyName}
       href={`/journeyPage/${journeyName}`}
+      needExp={needExp}
       disabled={
-        (!WalletAddress && journeyName != 'journey0') ||
-        (journeyName != 'journey0' && !nfts[prevJourneyName])
+        (!WalletAddress && journeyName != "journey0") ||
+        (journeyName != "journey0" && !nfts[prevJourneyName])
       }
     >
       <div className={styles.top}>
         <Status
           type={
-            (journeyName != 'journey0' && !nfts[prevJourneyName] && 'locked') ||
-            (doneTasks === 0 && 'todo') ||
-            (doneTasks === totalTasks && 'completed') ||
-            (doneTasks < totalTasks && doneTasks !== 0 && 'progress')
+            (journeyName != "journey0" && !nfts[prevJourneyName] && "locked") ||
+            (doneTasks === 0 && "todo") ||
+            (doneTasks === totalTasks && "completed") ||
+            (doneTasks < totalTasks && doneTasks !== 0 && "progress")
           }
         />
         <p className={styles.top__text}>
