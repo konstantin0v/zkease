@@ -1,4 +1,4 @@
-import styles from './TaskCard.module.css';
+import styles from './taskCard.module.css';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { zkRecordSelector } from '@/store/zkRecord/reducer';

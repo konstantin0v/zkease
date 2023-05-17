@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import styles from './JourneyCard.module.css';
+import styles from './journeyCard.module.css';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { Badge, CustomLink, Status, XpSvg } from '@/components';
 import { useAccount } from 'wagmi';

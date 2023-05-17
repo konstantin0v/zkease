@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './JourneyCard.module.css';
+import styles from './journeyCard.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ModalWindow, Button, ModalMint } from '@/components';
