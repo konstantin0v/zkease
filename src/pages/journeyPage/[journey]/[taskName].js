@@ -91,11 +91,8 @@ const TaskPage = ({ journey, taskName, ...props }) => {
         console.log(error);
       }
     })();
+    console.log('посчитали твои транзакции');
   }, [WalletAddress]);
-
-  // useEffect(() => {
-  //   setNotif('');
-  // }, []);
 
   const handleVerifyTEST = async () => {
     const newExp = exp + initialData[journey].tasks[taskName].exp;

@@ -33,6 +33,10 @@ export const TaskSection = ({
   const [modalActive, setModalActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  useEffect(() => {
+    setNotif('');
+  }, [taskName]);
+
   const countForStatusVeryf = storedTasks?.[journey]?.[taskName];
   const steps = initialData?.[journey]?.tasks?.[taskName]?.taskGuide;
   const needExp = { 0: 10, 1: 70, 2: 400, 3: 950, 4: 1170 };

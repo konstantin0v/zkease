@@ -1,4 +1,4 @@
-import styles from './TaskCard.module.css';
+import styles from './taskCard.module.css';
 import {
   Multichain,
   Mintsquare,
