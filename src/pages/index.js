@@ -1,25 +1,27 @@
-import { Banner, JourneyCard } from '@/components';
-import postRecord from '@/serverUtils/postRecord';
-import styles from '@/styles/Home.module.css';
-import { useEffect } from 'react';
-import { useAccount } from 'wagmi';
+import { Banner, JourneyCard } from "@/components";
+import postRecord from "@/serverUtils/postRecord";
+import styles from "@/styles/Home.module.css";
+import { useEffect } from "react";
+import { useAccount } from "wagmi";
 import {
   setExp,
   setAddress,
   setStoredTasks,
   setNfts,
-} from '../store/zkRecord/reducer';
-import { setUsers } from '../store/users/reducer';
-import { useDispatch, useSelector } from 'react-redux';
+} from "../store/zkRecord/reducer";
+import { setUsers, setAllUsers } from "../store/users/reducer";
+import { useDispatch, useSelector } from "react-redux";
 import {
   initialDataSelector,
   setInitialData,
-} from '@/store/initialData/reducer';
+  setNeedExp,
+} from "@/store/initialData/reducer";
+import { generateSummaryObj } from "@/utils/generateSummaryObj";
 
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      'https://clownfish-app-z2nhn.ondigitalocean.app'
+      "https://clownfish-app-z2nhn.ondigitalocean.app"
     );
     const dataUsers = await responseUsers.json();
 
@@ -34,7 +36,7 @@ export const getServerSideProps = async () => {
       .slice(0, 10);
 
     return {
-      props: { bestUsers, serverData },
+      props: { bestUsers, serverData, dataUsers },
     };
   } catch (error) {
     console.log(error);
@@ -45,14 +47,17 @@ export const getServerSideProps = async () => {
   }
 };
 
-export default function Home({ bestUsers, serverData, ...props }) {
+export default function Home({ bestUsers, serverData, dataUsers, ...props }) {
   const { address: WalletAddress } = useAccount();
   const { initialData } = useSelector(initialDataSelector);
   const dispatch = useDispatch();
-
+  console.log("UERS", dataUsers);
   useEffect(() => {
     (() => {
+      const needExp = generateSummaryObj(serverData);
+      dispatch(setNeedExp(needExp));
       dispatch(setUsers(bestUsers));
+      dispatch(setAllUsers(dataUsers));
       dispatch(setInitialData(serverData));
     })();
   }, []);
