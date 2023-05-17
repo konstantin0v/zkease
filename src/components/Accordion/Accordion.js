@@ -52,7 +52,7 @@ export const Accordion = ({
               : () => setIsActive((prev) => !prev)
           }
         >
-          {tasksByJourney && <Status type={type} />}
+          {tasksByJourney && <Status type={type} color="graycolor" />}
           {step && (
             <div
               className={clsx(

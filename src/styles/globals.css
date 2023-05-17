@@ -124,56 +124,6 @@
   --grey-900: #eaeaea;
   --grey-1000: #fff;
 
-  --blue-100: #011e63;
-  --blue-200: #043192;
-  --blue-300: #0b46be;
-  --blue-400: #155ee6;
-  --blue-500: #257bff;
-  --blue-600: #439bff;
-  --blue-700: #74b9ff;
-  --blue-800: #aed3f5;
-  --blue-900: #deecf9;
-
-  --green-100: #002c00;
-  --green-200: #004500;
-  --green-300: #005f00;
-  --green-400: #007a00;
-  --green-500: #009603;
-  --green-600: #04b210;
-  --green-700: #1cd021;
-  --green-800: #37ee38;
-  --green-900: #abffa4;
-
-  --red-100: #510200;
-  --red-200: #790600;
-  --red-300: #a31100;
-  --red-400: #cb2209;
-  --red-500: #f13b21;
-  --red-600: #ff694e;
-  --red-700: #ff9981;
-  --red-800: #ffc0b1;
-  --red-900: #fbe6e1;
-
-  --pink-100: #4a0042;
-  --pink-200: #6e0062;
-  --pink-300: #950086;
-  --pink-400: #be00ab;
-  --pink-500: #e900d1;
-  --pink-600: #ff43f8;
-  --pink-700: #ff86ff;
-  --pink-800: #ffb7ff;
-  --pink-900: #ffe2ff;
-
-  --orange-100: #3b1c00;
-  --orange-200: #5c2e00;
-  --orange-300: #7d4100;
-  --orange-400: #9e5600;
-  --orange-500: #c16b00;
-  --orange-600: #e18200;
-  --orange-700: #ff9e15;
-  --orange-800: #ffc56e;
-  --orange-900: #ffe8c2;
-
   --greyA-0: rgba(255, 255, 255, 0);
   --greyA-100: rgba(255, 255, 255, 0.03);
   --greyA-200: rgba(247, 247, 247, 0.1);
@@ -211,11 +161,24 @@ ul {
   margin: 0;
   padding: 0;
 }
-::-webkit-scrollbar {
-  width: 0;
-}
+
 iframe {
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 0 0 16px 16px;
   border-top: none;
+}
+.box::-webkit-scrollbar {
+  width: 2px; /* Ширина полосы скролла */
+}
+::-webkit-scrollbar {
+  width: 8px; /* Ширина полосы скролла */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #25252a; /* Цвет полоски скролла */
+  border-radius: 4px; /* Закругление углов полоски скролла */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #121218; /* Цвет трека полоски скролла */
 }

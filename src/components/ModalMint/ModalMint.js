@@ -58,10 +58,17 @@ export const ModalMint = ({ setModalActive }) => {
         />
       </div>
       <div className={styles.modal}>
-        <h2>Ready to claim your journey{nftCount + 1} NFT?</h2>
+        <h2>Ready to claim next level NFT?</h2>
         <h3>You will gain access to the next journey.</h3>
-        <Button width="full" loader={loader} onClick={handleNFT}>
-          Claim NFT 0.0008 ETH
+        <Button
+          width="full"
+          loader={loader}
+          style={{ height: '52px' }}
+          onClick={handleNFT}
+        >
+          <div className={styles.btntext}>
+            Claim NFT <span className={styles.price}>0.0008 ETH</span>
+          </div>
         </Button>
         <Button
           background="transparent"

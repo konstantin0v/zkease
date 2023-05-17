@@ -6,10 +6,10 @@ import {
   Badge,
 } from '@/components';
 
-export const Status = ({ type = 'todo' }) => {
+export const Status = ({ type = 'todo', color }) => {
   const status = {
     todo: (
-      <Badge showIconLeft IconLeft={TodoSvg}>
+      <Badge showIconLeft IconLeft={TodoSvg} color={color}>
         To do
       </Badge>
     ),
