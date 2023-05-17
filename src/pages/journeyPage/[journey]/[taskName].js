@@ -1,17 +1,17 @@
-import { updateZKRecord } from "@/serverUtils/updateZKRecord";
-import { initialDataSelector } from "@/store/initialData/reducer";
-import styles from "./taskNamePage.module.css";
+import { updateZKRecord } from '@/serverUtils/updateZKRecord';
+import { initialDataSelector } from '@/store/initialData/reducer';
+import styles from './taskNamePage.module.css';
 import {
   setExp,
   setStoredTasks,
   zkRecordSelector,
-} from "@/store/zkRecord/reducer";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { useAccount } from "wagmi";
-import { ethers } from "ethers";
-import { useEffect, useState } from "react";
-import { Embedded, TaskAside, TaskSection } from "@/components";
+} from '@/store/zkRecord/reducer';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAccount } from 'wagmi';
+import { ethers } from 'ethers';
+import { useEffect, useState } from 'react';
+import { Embedded, TaskAside, TaskSection } from '@/components';
 
 export async function getServerSideProps(context) {
   try {
@@ -33,11 +33,11 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const { exp, storedTasks, nfts } = useSelector(zkRecordSelector);
   const { initialData, needExp } = useSelector(initialDataSelector);
   const [loader, setLoder] = useState(false);
-  const [notif, setNotif] = useState("");
+  const [notif, setNotif] = useState('');
   const [firstTxCount, setfirstTxCount] = useState(null);
   const provider = new ethers.providers.JsonRpcProvider(
     //   // "https://testnet.era.zksync.dev"
-    "https://mainnet.era.zksync.io"
+    'https://mainnet.era.zksync.io'
   );
   const newPath = `tasks.${journey}.${taskName}`;
   let countOfEfforts = storedTasks?.[journey]?.[taskName];
@@ -48,7 +48,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const [updateCount, setUpdateCount] = useState(0);
   useEffect(() => {
     if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push("/");
+      router.push('/');
     }
   }, [WalletAddress, updateCount]);
 
@@ -66,12 +66,10 @@ const TaskPage = ({ journey, taskName, ...props }) => {
     })();
   }, [WalletAddress]);
 
-  console.log("посчитали твои транзакции", firstTxCount);
-
   const handleVerify = async () => {
     try {
       setLoder(true);
-      setNotif("");
+      setNotif('');
       const newExp = exp + initialData[journey].tasks[taskName].exp;
       const newCountOfEfforts = countOfEfforts + 1;
       const response = await updateZKRecord(
@@ -83,10 +81,10 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
       setLoder(false);
-      setNotif("success");
+      setNotif('success');
     } catch (error) {
       console.log(error);
-      setNotif("error");
+      setNotif('error');
       setLoder(false);
     }
   };
@@ -107,7 +105,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
     } else {
-      window.alert("Oopss, you havent done the task!");
+      window.alert('Oopss, you havent done the task!');
     }
   };
 

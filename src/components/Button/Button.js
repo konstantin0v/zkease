@@ -29,7 +29,7 @@ export const Button = ({
       style={style}
       {...rest}
     >
-      {loader ? <span>loading...</span> : children}
+      {loader ? <div className={styles.loader}></div> : children}
     </button>
   );
 };
