@@ -1,6 +1,6 @@
 import Layout from "@/layout/Layout";
 import "@/styles/globals.css";
-import { WagmiConfig } from "wagmi";
+import { WagmiConfig, sepolia } from "wagmi";
 import { chains, wagmiClient } from "../services/wagmiConfig";
 import {
   RainbowKitProvider,
@@ -14,6 +14,7 @@ import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
 import { Provider } from "react-redux";
 import { store, persistor } from "@/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { zkSync } from "@wagmi/chains";
 
 const CustomAvatar = ({ address }) => {
   return address ? (
@@ -37,8 +38,11 @@ export default function App({ Component, pageProps }) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
         chains={chains}
+        initialChain={zkSync}
         avatar={CustomAvatar}
-        theme={darkTheme()}
+        theme={darkTheme({
+          accentColor: "#626ee9",
+        })}
       >
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
