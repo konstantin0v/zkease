@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
-import styles from './Achieves.module.css';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import { useAccount } from 'wagmi';
-import Image from 'next/image';
-import { ArrowRight } from '@/components';
+import { useSelector } from "react-redux";
+import styles from "./Achieves.module.css";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useAccount } from "wagmi";
+import Image from "next/image";
+import { ArrowRight } from "@/components";
 
 export const Achieves = () => {
   const { nfts } = useSelector(zkRecordSelector);
   const { address: WalletAddress } = useAccount();
-  const nftComponents = ['nft1', 'nft2', 'nft3', 'nft4', 'nft5'];
+  const nftComponents = ["nft1", "nft2", "nft3", "nft4", "nft5"];
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -29,6 +29,7 @@ export const Achieves = () => {
               height={64}
               className={styles.nft}
               key={item}
+              quality={95}
             />
           ))}
         </ul>

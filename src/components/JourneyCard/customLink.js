@@ -52,6 +52,7 @@ export const CustomLink = ({
                 alt="nft"
                 width={190}
                 height={256}
+                quality={96}
               />
             </div>
             <div className={styles.modal}>
