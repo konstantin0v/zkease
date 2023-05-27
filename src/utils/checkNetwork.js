@@ -1,11 +1,8 @@
 import walletProvider from "@/web3/walletProvider";
 
 export const checkNetwork = async () => {
-  const zkSyncEraMainnetChainId = 324;
-  const zkSyncEraMainnetChainIdHex = `0x144`;
-
   const zkSyncEraMainnetChainObject = {
-    chainId: zkSyncEraMainnetChainIdHex,
+    chainId: `0x144`,
     chainName: "zkSync Era Mainnet",
     nativeCurrency: {
       name: "Ethereum",
@@ -18,11 +15,11 @@ export const checkNetwork = async () => {
 
   const network = await walletProvider.getNetwork();
 
-  if (network.chainId !== zkSyncEraMainnetChainId) {
+  if (network.chainId !== 324) {
     try {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: zkSyncEraMainnetChainIdHex }],
+        params: [{ chainId: `0x144` }],
       });
     } catch (error) {
       if (error.code === 4902) {
