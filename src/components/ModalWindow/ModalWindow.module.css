@@ -27,8 +27,8 @@
   padding: 16px;
   display: flex;
   gap: 12px;
-  width: 554px;
-  height: 352px;
+  width: 560px;
+  height: 355px;
 }
 .modal__content.active {
   transform: scale(1);

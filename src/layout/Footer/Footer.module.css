@@ -50,3 +50,31 @@
 .down__right li {
   margin-left: 19px;
 }
+ul.down__right li {
+  position: relative;
+}
+
+.soon::before {
+  content: 'soon';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.soon:hover::before {
+  opacity: 1;
+}
+.svg:hover {
+  fill: white;
+}

@@ -1,12 +1,12 @@
 import styles from './Embedded.module.css';
 import { LinkSvg } from '@/components';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export const Embedded = ({ initialData, journey, taskName }) => {
   return (
     <div className={styles.embedded}>
       <div className={styles.iframewrapper}>
-        <p className={styles.iframe__text}>Try here</p>
         <Link
           href={initialData[journey]?.tasks[taskName].link}
           className={styles.iframe__link}
@@ -15,6 +15,7 @@ export const Embedded = ({ initialData, journey, taskName }) => {
           Open new tab
           <LinkSvg className={styles.iframe__svg} />
         </Link>
+        <p className={styles.iframe__text}>Check your connected address!</p>
       </div>
       <iframe
         src={initialData[journey]?.tasks[taskName].link}

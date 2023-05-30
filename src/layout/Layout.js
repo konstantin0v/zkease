@@ -3,6 +3,9 @@ import styles from './Layout.module.css';
 import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
 import Footer from './Footer/Footer';
+
+import Script from 'next/script';
+
 const Layout = ({ children }) => {
   return (
     <>
@@ -17,6 +20,19 @@ const Layout = ({ children }) => {
         <Sidebar className={styles.sidebar} />
         <div className={styles.main}>{children}</div>
         <Footer className={styles.footer} />
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-HR46EBYQPN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-HR46EBYQPN');
+        `}
+        </Script>
       </div>
     </>
   );

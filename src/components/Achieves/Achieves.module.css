@@ -1,8 +1,15 @@
 .achievements {
   border-radius: 12px;
   padding: 12px;
+  padding-bottom: 5px;
   margin-bottom: 8px;
   background-color: #25252a;
+}
+.achieves__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 .title {
   font-weight: 510;
@@ -17,15 +24,27 @@
 }
 .box {
   width: 100%;
-  display: flex;
-  overflow-x: auto; /* Добавляем горизонтальный скролл */
-  flex-wrap: nowrap; /* Запрещаем перенос элементов на новую строку */
-  scrollbar-width: thin;
+  overflow-x: auto; /* Добавлено overflow-x для .box */
+  white-space: nowrap; /* Добавлено white-space для .box */
 }
-
+.box__item {
+  display: inline-flex; /* Заменено на inline-flex */
+  flex-wrap: nowrap;
+  position: relative;
+  height: 64px;
+  width: 64px;
+  margin-right: 12px; /* Перенесено с .nft */
+  margin-bottom: 2px;
+}
+.box__item:last-child {
+  margin-right: 0;
+}
+.nft {
+  object-fit: contain;
+}
 /* Стили полосы скролла */
 .box::-webkit-scrollbar {
-  width: 2px; /* Ширина полосы скролла */
+  height: 6px;
 }
 
 .box::-webkit-scrollbar-thumb {
@@ -37,15 +56,6 @@
   background-color: #25252a; /* Цвет трека полоски скролла */
 }
 
-.nft {
-  margin-right: 12px;
-}
-.achieves__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
 .arrow__svg {
   fill: rgba(255, 255, 255, 0.8);
 }

@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./Progress.module.css";
-import { useAccount } from "wagmi";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
-import ProgressBar from "@ramonak/react-progress-bar";
-import { ArrowRight, Button, ModalMint, ModalWindow } from "@/components";
-import { useState } from "react";
-import { initialDataSelector } from "@/store/initialData/reducer";
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './Progress.module.css';
+import { useAccount } from 'wagmi';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
+import ProgressBar from '@ramonak/react-progress-bar';
+import { ArrowRight, Button, ModalMint, ModalWindow } from '@/components';
+import { useState } from 'react';
+import { initialDataSelector } from '@/store/initialData/reducer';
 
 export const Progress = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -42,7 +42,7 @@ export const Progress = () => {
           />
           {exp >= needExp[nftCount] && (
             <Button width="full" onClick={() => setModalActive(true)}>
-              Claim Reward
+              Level Up
             </Button>
           )}
         </>
