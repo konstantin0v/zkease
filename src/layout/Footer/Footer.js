@@ -23,8 +23,8 @@ const Footer = ({ ...props }) => {
               <Image
                 src="/image/1.svg"
                 alt="zkEasy logo"
-                width={119}
-                height={19}
+                fill
+                quality={100}
                 className={styles.logo__img}
               />
             </Link>
