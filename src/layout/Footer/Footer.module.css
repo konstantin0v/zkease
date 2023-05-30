@@ -3,6 +3,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.logo {
+  position: relative;
+  width: 113.39px;
+  height: 18.42px;
+}
 .top__logo {
   display: flex;
   align-items: center;

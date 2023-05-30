@@ -1,6 +1,9 @@
 .logo {
   display: flex;
   align-items: center;
+  position: relative;
+  width: 113.39px;
+  height: 18.42px;
 }
 .logo__img {
   display: flex;
