@@ -30,52 +30,49 @@ const Footer = ({ ...props }) => {
             </Link>
             <ul className={styles.top__menu}>
               <li>
-                <Link href="/">About</Link>
+                <Link
+                  href="https://forms.gle/7ySdaZT7iMNFxQ9o8"
+                  target="_blank"
+                >
+                  Submit project
+                </Link>
               </li>
               <li>
-                <Link href="/">Submit project</Link>
+                <Link href="mailto:contact@zkease.xyz">Contact us</Link>
               </li>
               <li>
-                <Link href="/">Contact us</Link>
-              </li>
-              <li>
-                <Link href="/">Contact support</Link>
+                <Link
+                  href="https://forms.gle/Yahhjja5ev61hfC37"
+                  target="_blank"
+                >
+                  Contact support
+                </Link>
               </li>
             </ul>
           </div>
           <div className={styles.down}>
             <ul className={styles.down__left}>
               <li>
-                <Link href="/">Terms of use</Link>
+                <Link target="_blank" href="/pdf/ToS_ZkEase.pdf">
+                  Terms of use
+                </Link>
               </li>
               <li>
-                <Link href="/">Privacy Policy</Link>
+                <Link target="_blank" href="/pdf/Privacy_Policy_ZkEase.pdf">
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
             <ul className={styles.down__right}>
-              <li>
-                <Link href="/">
-                  <GithubSvg />
-                </Link>
+              <li className={styles.soon}>
+                <DiscordSvg />
+              </li>
+              <li className={styles.soon}>
+                <TelegramSvg />
               </li>
               <li>
-                <Link href="/">
-                  <DiscordSvg />
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <TelegramSvg />
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <TwitterSvg />
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <SocialSvg />
+                <Link target="_blank" href="https://twitter.com/zkeasexyz">
+                  <TwitterSvg className={styles.svg} />
                 </Link>
               </li>
             </ul>

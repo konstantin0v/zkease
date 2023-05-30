@@ -1,10 +1,10 @@
-import { useState } from "react";
-import styles from "./journeyCard.module.css";
-import Image from "next/image";
-import Link from "next/link";
-import { ModalWindow, Button, ModalMint } from "@/components";
-import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useState } from 'react';
+import styles from './journeyCard.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ModalWindow, Button, ModalMint } from '@/components';
+import { useSelector } from 'react-redux';
+import { zkRecordSelector } from '@/store/zkRecord/reducer';
 
 export const CustomLink = ({
   href,
@@ -15,8 +15,13 @@ export const CustomLink = ({
 }) => {
   const [modalActive, setModalActive] = useState(false);
   const { exp, nfts } = useSelector(zkRecordSelector);
+  const journeyInfo = {
+    journey1: 'Journey One',
+    journey2: 'Journey Two',
+    journey3: 'Journey Three',
+    journeyEnd: 'Journey End',
+  };
   let nftCount = 0;
-
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
   }
@@ -27,8 +32,7 @@ export const CustomLink = ({
     haveExpToNewLvl = 1;
   }
   let nextJourney =
-    nftCount + 1 === 4 ? "journeyEnd" : `journey${nftCount + 1}`;
-
+    nftCount + 1 === 4 ? 'journeyEnd' : `journey${nftCount + 1}`;
   return (
     <>
       {disabled ? (
@@ -46,20 +50,23 @@ export const CustomLink = ({
           <ModalMint setModalActive={setModalActive} />
         ) : (
           <>
-            <div className={styles.nft}>
+            <div className={styles.box}>
               <Image
                 src={`/image/nft/${journeyName}.png`}
                 alt="nft"
-                width={190}
-                height={256}
-                quality={96}
+                fill
+                quality={95}
+                className={styles.nft}
               />
             </div>
             <div className={styles.modal}>
-              <h2>{journeyName} required</h2>
+              <h2>{journeyInfo[journeyName]} NFT required</h2>
               <h3>
-                To access {journeyName} , you must own the “{journeyName}” and
-                reach 2 level
+                To access {journeyInfo[journeyName]}, you need to own the “
+                {journeyInfo[journeyName]} NFT”.
+                <br />
+                Gain enough XP from tasks in previous journney and mint the NFT
+                to level up!
               </h3>
               <Button width="full" onClick={() => setModalActive(false)}>
                 Close

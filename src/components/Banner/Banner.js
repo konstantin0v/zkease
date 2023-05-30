@@ -15,7 +15,15 @@ export const Banner = ({
       <h3 className={styles.title}>{bannerTextTitle}</h3>
       <p className={styles.descr}>{bannerTextDescription}</p>
 
-      <Link href="/" className={styles.link}>
+      <Link
+        href={
+          submitBanner
+            ? 'https://forms.gle/7ySdaZT7iMNFxQ9o8'
+            : 'https://zksync.io/'
+        }
+        className={styles.link}
+        target="_blank"
+      >
         {linkText}
         {submitBanner && <ArrowRight className={styles.arrow__svg} />}
       </Link>
