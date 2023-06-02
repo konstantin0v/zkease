@@ -1,4 +1,4 @@
-import styles from './TaskSection.module.css';
+import styles from "./TaskSection.module.css";
 import {
   Accordion,
   ArrowRight,
@@ -10,10 +10,10 @@ import {
   ProjectName,
   Status,
   XpSvg,
-} from '@/components';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+} from "@/components";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export const TaskSection = ({
   storedTasks,
@@ -23,7 +23,7 @@ export const TaskSection = ({
   countOfEfforts,
   handleVerify,
   handleVerifyTEST,
-  WalletAddress,
+  walletAddress,
   notif,
   setNotif,
   loader,
@@ -34,7 +34,7 @@ export const TaskSection = ({
   const [modalActive, setModalActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   useEffect(() => {
-    setNotif('');
+    setNotif("");
   }, [taskName]);
 
   const countForStatusVeryf = storedTasks?.[journey]?.[taskName];
@@ -58,7 +58,7 @@ export const TaskSection = ({
             </ProjectName>
           </li>
           <li>
-            <Status type={countOfEfforts ? 'completed' : 'todo'} />
+            <Status type={countOfEfforts ? "completed" : "todo"} />
           </li>
         </ul>
         <h2 className={styles.title}>
@@ -81,24 +81,24 @@ export const TaskSection = ({
           </Accordion>
         ))}
       </div>
-      {notif && <Notification onClick={() => setNotif('')} type={notif} />}
+      {notif && <Notification onClick={() => setNotif("")} type={notif} />}
       <div className={styles.down}>
         <div className={styles.downbtns}>
-          {WalletAddress && (
+          {walletAddress && (
             <>
               {exp >= needExp[nftCount] && (
                 <Button
                   onClick={() => setModalActive(true)}
-                  style={{ width: '130px' }}
+                  style={{ width: "130px" }}
                 >
                   Claim Reward
                 </Button>
               )}
-              {notif !== 'error' ? (
+              {notif !== "error" ? (
                 <>
                   <Button
                     onClick={handleVerify}
-                    background={countForStatusVeryf && 'transparent'}
+                    background={countForStatusVeryf && "transparent"}
                     loader={loader}
                   >
                     Verify
@@ -112,7 +112,7 @@ export const TaskSection = ({
                   </Button>
                 </>
               ) : (
-                <Button onClick={() => setNotif('')} type="error">
+                <Button onClick={() => setNotif("")} type="error">
                   Try again!
                 </Button>
               )}

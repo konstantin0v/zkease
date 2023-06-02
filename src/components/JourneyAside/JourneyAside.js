@@ -1,20 +1,20 @@
-import { useSelector } from 'react-redux';
-import styles from './JourneyAside.module.css';
-import ProgressBar from '@ramonak/react-progress-bar';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import { getJourneyTasks } from '@/utils/getJourneyTasks';
-import { useAccount } from 'wagmi';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import { Status } from '@/components/Status/Status';
+import { useSelector } from "react-redux";
+import styles from "./JourneyAside.module.css";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { getJourneyTasks } from "@/utils/getJourneyTasks";
+import { useAccount } from "wagmi";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { Status } from "@/components/Status/Status";
 
 export const JourneyAside = ({ journeyName, journeyNick }) => {
   const { storedTasks } = useSelector(zkRecordSelector);
   const { initialData } = useSelector(initialDataSelector);
 
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
 
   let { doneTasks, totalTasks } = getJourneyTasks(journeyName, storedTasks);
-  if (!WalletAddress) {
+  if (!walletAddress) {
     (doneTasks = 0),
       (totalTasks = Object.keys(initialData[journeyName].tasks).length);
   }
@@ -25,8 +25,8 @@ export const JourneyAside = ({ journeyName, journeyNick }) => {
       <div className={styles.top}>
         <Status
           type={
-            (doneTasks === totalTasks && 'completed') ||
-            (doneTasks < totalTasks && doneTasks !== 0 && 'progress')
+            (doneTasks === totalTasks && "completed") ||
+            (doneTasks < totalTasks && doneTasks !== 0 && "progress")
           }
         />
         <p className={styles.top__text}>

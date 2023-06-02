@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router';
-import styles from './journeyPage.module.css';
-import { useSelector } from 'react-redux';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import { useAccount } from 'wagmi';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { ArrowRight, TaskCard } from '@/components';
+import { useRouter } from "next/router";
+import styles from "./journeyPage.module.css";
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useAccount } from "wagmi";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, TaskCard } from "@/components";
 
 export async function getServerSideProps(context) {
   try {
@@ -24,19 +24,19 @@ export async function getServerSideProps(context) {
 const JourneyPage = ({ journey }) => {
   const { initialData } = useSelector(initialDataSelector);
   const { exp } = useSelector(zkRecordSelector);
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);
 
   useEffect(() => {
-    if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push('/');
+    if (updateCount >= 2 && walletAddress !== undefined) {
+      router.push("/");
     }
-  }, [WalletAddress, updateCount]);
+  }, [walletAddress, updateCount]);
 
   useEffect(() => {
     setUpdateCount((count) => count + 1);
-  }, [WalletAddress]);
+  }, [walletAddress]);
 
   return (
     <div className={styles.wrapper}>
