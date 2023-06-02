@@ -1,15 +1,15 @@
-import styles from './Header.module.css';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { XpSvg } from '@/components';
-import { useSelector } from 'react-redux';
-import { zkRecordSelector } from '@/store/zkRecord/reducer';
-import { useAccount } from 'wagmi';
+import styles from "./Header.module.css";
+import Link from "next/link";
+import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { XpSvg } from "@/components";
+import { useSelector } from "react-redux";
+import { zkRecordSelector } from "@/store/zkRecord/reducer";
+import { useAccount } from "wagmi";
 
 const Header = ({ ...props }) => {
   const { exp } = useSelector(zkRecordSelector);
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
 
   return (
     <header {...props}>
@@ -36,7 +36,7 @@ const Header = ({ ...props }) => {
         </li> */}
       </ul>
       <div className={styles.right}>
-        {WalletAddress && (
+        {walletAddress && (
           <div className={styles.exp}>
             <XpSvg />
             <span>{exp}</span>

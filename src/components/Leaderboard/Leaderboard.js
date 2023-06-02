@@ -8,7 +8,7 @@ import { XpSvg } from "@/components";
 import { v4 as uuidv4 } from "uuid";
 import { zkRecordSelector } from "@/store/zkRecord/reducer";
 export const Leaderboard = () => {
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
   const { users, allUsers } = useSelector(usersSelector);
   const { exp } = useSelector(zkRecordSelector);
   const { records } = allUsers;
@@ -22,7 +22,7 @@ export const Leaderboard = () => {
               key={uuidv4()}
               className={clsx(
                 styles.row,
-                WalletAddress === address && styles.row__wallet
+                walletAddress === address && styles.row__wallet
               )}
             >
               <li className={styles.row__pos}>{++index}</li>
@@ -37,32 +37,32 @@ export const Leaderboard = () => {
                 <XpSvg
                   className={clsx(
                     styles.row__xpsvg,
-                    WalletAddress === address && styles.xpsvg
+                    walletAddress === address && styles.xpsvg
                   )}
                 />
               </li>
             </ul>
           ))}
       </ul>
-      {WalletAddress &&
-        !users?.some((user) => user.address === WalletAddress) && (
+      {walletAddress &&
+        !users?.some((user) => user.address === walletAddress) && (
           <ul
             key={uuidv4()}
             className={clsx(styles.row, styles.row__wallet, styles.walletfix)}
           >
             <li className={styles.row__pos}>
               {(records &&
-                records.findIndex((obj) => obj.address === WalletAddress) +
+                records.findIndex((obj) => obj.address === walletAddress) +
                   1) ||
                 " "}
             </li>
             <li className={styles.row__name}>
               <Jazzicon
                 diameter={24}
-                seed={jsNumberForAddress(WalletAddress)}
+                seed={jsNumberForAddress(walletAddress)}
               />
               <p className={styles.row__name__p}>
-                {WalletAddress.slice(0, 5) + "..." + WalletAddress.slice(38)}
+                {walletAddress.slice(0, 5) + "..." + walletAddress.slice(38)}
               </p>
             </li>
             <li className={styles.row__xp}>

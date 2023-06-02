@@ -1,17 +1,17 @@
-import { updateZKRecord } from '@/serverUtils/updateZKRecord';
-import { initialDataSelector } from '@/store/initialData/reducer';
-import styles from './taskNamePage.module.css';
+import { updateZKRecord } from "@/serverUtils/updateZKRecord";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import styles from "./taskNamePage.module.css";
 import {
   setExp,
   setStoredTasks,
   zkRecordSelector,
-} from '@/store/zkRecord/reducer';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAccount } from 'wagmi';
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
-import { Embedded, TaskAside, TaskSection } from '@/components';
+} from "@/store/zkRecord/reducer";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import { Embedded, TaskAside, TaskSection } from "@/components";
 
 export async function getServerSideProps(context) {
   try {
@@ -28,52 +28,52 @@ export async function getServerSideProps(context) {
 }
 
 const TaskPage = ({ journey, taskName, ...props }) => {
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
   const dispatch = useDispatch();
   const { exp, storedTasks, nfts } = useSelector(zkRecordSelector);
   const { initialData, needExp } = useSelector(initialDataSelector);
   const [loader, setLoder] = useState(false);
-  const [notif, setNotif] = useState('');
+  const [notif, setNotif] = useState("");
   const [firstTxCount, setfirstTxCount] = useState(null);
   const provider = new ethers.providers.JsonRpcProvider(
     //   // "https://testnet.era.zksync.dev"
-    'https://mainnet.era.zksync.io'
+    "https://mainnet.era.zksync.io"
   );
   const newPath = `tasks.${journey}.${taskName}`;
   let countOfEfforts = storedTasks?.[journey]?.[taskName];
-  if (!WalletAddress) {
+  if (!walletAddress) {
     countOfEfforts = false;
   }
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);
   useEffect(() => {
-    if (updateCount >= 2 && WalletAddress !== undefined) {
-      router.push('/');
+    if (updateCount >= 2 && walletAddress !== undefined) {
+      router.push("/");
     }
-  }, [WalletAddress, updateCount]);
+  }, [walletAddress, updateCount]);
 
   useEffect(() => {
     setUpdateCount((count) => count + 1);
-  }, [WalletAddress]);
+  }, [walletAddress]);
   useEffect(() => {
     (async () => {
       try {
-        const txCountFirst = await provider.getTransactionCount(WalletAddress);
+        const txCountFirst = await provider.getTransactionCount(walletAddress);
         setfirstTxCount(txCountFirst);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [WalletAddress]);
+  }, [walletAddress]);
 
   const handleVerify = async () => {
     try {
       setLoder(true);
-      setNotif('');
+      setNotif("");
       const newExp = exp + initialData[journey].tasks[taskName].exp;
       const newCountOfEfforts = countOfEfforts + 1;
       const response = await updateZKRecord(
-        WalletAddress,
+        walletAddress,
         newExp,
         newPath,
         newCountOfEfforts
@@ -81,10 +81,10 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
       setLoder(false);
-      setNotif('success');
+      setNotif("success");
     } catch (error) {
       console.log(error);
-      setNotif('error');
+      setNotif("error");
       setLoder(false);
     }
   };
@@ -92,12 +92,12 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const handleVerifyTEST = async () => {
     const newExp = exp + initialData[journey].tasks[taskName].exp;
     const newCountOfEfforts = countOfEfforts + 1;
-    const txCountNow = await provider.getTransactionCount(WalletAddress);
+    const txCountNow = await provider.getTransactionCount(walletAddress);
 
     if (txCountNow > firstTxCount) {
       setfirstTxCount(txCountNow);
       const response = await updateZKRecord(
-        WalletAddress,
+        walletAddress,
         newExp,
         newPath,
         newCountOfEfforts
@@ -105,7 +105,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
     } else {
-      window.alert('Oopss, you havent done the task!');
+      window.alert("Oopss, you havent done the task!");
     }
   };
 
@@ -126,7 +126,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
             countOfEfforts={countOfEfforts}
             handleVerify={handleVerify}
             handleVerifyTEST={handleVerifyTEST}
-            WalletAddress={WalletAddress}
+            walletAddress={walletAddress}
             loader={loader}
             notif={notif}
             setNotif={setNotif}

@@ -17,10 +17,10 @@ export const JourneyCard = ({
 }) => {
   const { storedTasks, nfts } = useSelector(zkRecordSelector);
   const { initialData, needExp } = useSelector(initialDataSelector);
-  const { address: WalletAddress } = useAccount();
+  const { address: walletAddress } = useAccount();
 
   let { doneTasks, totalTasks } = getJourneyTasks(journeyName, storedTasks);
-  if (!WalletAddress) {
+  if (!walletAddress) {
     (doneTasks = 0),
       (totalTasks = Object.keys(initialData[journeyName].tasks).length);
   }
@@ -31,7 +31,7 @@ export const JourneyCard = ({
       href={`/journeyPage/${journeyName}`}
       needExp={needExp}
       disabled={
-        (!WalletAddress && journeyName != "journey0") ||
+        (!walletAddress && journeyName != "journey0") ||
         (journeyName != "journey0" && !nfts[prevJourneyName])
       }
     >
