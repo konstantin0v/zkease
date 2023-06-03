@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import styles from "./journeyPage.module.css";
 import { useSelector } from "react-redux";
-import { zkRecordSelector } from "@/store/zkRecord/reducer";
 import { useAccount } from "wagmi";
 import { initialDataSelector } from "@/store/initialData/reducer";
 import { useEffect, useState } from "react";
@@ -23,7 +22,6 @@ export async function getServerSideProps(context) {
 }
 const JourneyPage = ({ journey }) => {
   const { initialData } = useSelector(initialDataSelector);
-  const { exp } = useSelector(zkRecordSelector);
   const { address: walletAddress } = useAccount();
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);

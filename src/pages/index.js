@@ -1,39 +1,26 @@
 import { Banner, JourneyCard } from "@/components";
-import postRecord from "@/serverUtils/postRecord";
 import styles from "@/styles/Home.module.css";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
-import {
-  setExp,
-  setAddress,
-  setStoredTasks,
-  setNfts,
-} from "../store/zkRecord/reducer";
-import { setUsers, setAllUsers } from "../store/users/reducer";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  initialDataSelector,
-  setInitialData,
-  setNeedExp,
-} from "@/store/initialData/reducer";
-import { generateSummaryObj } from "@/utils/generateSummaryObj";
+import { useSelector } from "react-redux";
+import { initialDataSelector } from "@/store/initialData/reducer";
+import { useFetchData } from "@/utils/useFetchData";
 
 export const getServerSideProps = async () => {
   try {
     const responseUsers = await fetch(
-      "https://clownfish-app-z2nhn.ondigitalocean.app"
+      "https://sea-lion-app-39uur.ondigitalocean.app/"
     );
-    const dataUsers = await responseUsers.json();
+    const users = await responseUsers.json();
+    const dataUsers = users.records
+      .sort((a, b) => b.exp - a.exp)
+      .map((i) => i.address);
 
     const responseData = await fetch(
-      `https://clownfish-app-z2nhn.ondigitalocean.app/data`
+      "https://sea-lion-app-39uur.ondigitalocean.app/data"
     );
     const { records } = await responseData.json();
     const { _id, ...serverData } = records[0];
 
-    const bestUsers = dataUsers.records
-      .sort((a, b) => b.exp - a.exp)
-      .slice(0, 10);
+    const bestUsers = users.records.sort((a, b) => b.exp - a.exp).slice(0, 10);
 
     return {
       props: { bestUsers, serverData, dataUsers },
@@ -48,36 +35,8 @@ export const getServerSideProps = async () => {
 };
 
 export default function Home({ bestUsers, serverData, dataUsers, ...props }) {
-  const { address: walletAddress } = useAccount();
   const { initialData } = useSelector(initialDataSelector);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    (() => {
-      const needExp = generateSummaryObj(serverData);
-      dispatch(setNeedExp(needExp));
-      dispatch(setUsers(bestUsers));
-      dispatch(setAllUsers(dataUsers));
-      dispatch(setInitialData(serverData));
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        if (walletAddress) {
-          const { record } = await postRecord(walletAddress);
-          if (record) {
-            dispatch(setAddress(record.address));
-            dispatch(setExp(record.exp));
-            dispatch(setStoredTasks(record.tasks));
-            dispatch(setNfts(record.nfts));
-          } else throw new Error(record.error);
-        } else return null;
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [walletAddress]);
+  useFetchData(serverData, bestUsers, dataUsers);
 
   return (
     <div className={styles.wrapper}>

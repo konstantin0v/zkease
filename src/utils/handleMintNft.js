@@ -4,10 +4,11 @@ export const handleMintNft = async (
   walletAddress,
   journey,
   setNfts,
-  dispatch
+  dispatch,
+  jwt
 ) => {
   try {
-    const response = await updateNftCount(walletAddress, journey);
+    const response = await updateNftCount(walletAddress, journey, jwt);
     dispatch(setNfts(response.nfts));
   } catch (error) {
     console.log(error);

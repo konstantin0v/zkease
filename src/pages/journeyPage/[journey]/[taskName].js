@@ -9,9 +9,9 @@ import {
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
-import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { Embedded, TaskAside, TaskSection } from "@/components";
+import { useVerify } from "@/utils/useVerify";
 
 export async function getServerSideProps(context) {
   try {
@@ -30,15 +30,9 @@ export async function getServerSideProps(context) {
 const TaskPage = ({ journey, taskName, ...props }) => {
   const { address: walletAddress } = useAccount();
   const dispatch = useDispatch();
-  const { exp, storedTasks, nfts } = useSelector(zkRecordSelector);
+  const { exp, storedTasks, nfts, jwt } = useSelector(zkRecordSelector);
   const { initialData, needExp } = useSelector(initialDataSelector);
-  const [loader, setLoder] = useState(false);
-  const [notif, setNotif] = useState("");
-  const [firstTxCount, setfirstTxCount] = useState(null);
-  const provider = new ethers.providers.JsonRpcProvider(
-    //   // "https://testnet.era.zksync.dev"
-    "https://mainnet.era.zksync.io"
-  );
+
   const newPath = `tasks.${journey}.${taskName}`;
   let countOfEfforts = storedTasks?.[journey]?.[taskName];
   if (!walletAddress) {
@@ -55,57 +49,28 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   useEffect(() => {
     setUpdateCount((count) => count + 1);
   }, [walletAddress]);
-  useEffect(() => {
-    (async () => {
-      try {
-        const txCountFirst = await provider.getTransactionCount(walletAddress);
-        setfirstTxCount(txCountFirst);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [walletAddress]);
 
-  const handleVerify = async () => {
+  const { loader, notif, setNotif, handleVerify } = useVerify(
+    journey,
+    taskName
+  );
+
+  //  IT MUST BE DELETED BEFORE PRODUCTION
+  const handleVerifyTEST = async () => {
     try {
-      setLoder(true);
-      setNotif("");
       const newExp = exp + initialData[journey].tasks[taskName].exp;
       const newCountOfEfforts = countOfEfforts + 1;
       const response = await updateZKRecord(
         walletAddress,
         newExp,
         newPath,
-        newCountOfEfforts
+        newCountOfEfforts,
+        jwt
       );
       dispatch(setExp(response.exp));
       dispatch(setStoredTasks(response.tasks));
-      setLoder(false);
-      setNotif("success");
     } catch (error) {
       console.log(error);
-      setNotif("error");
-      setLoder(false);
-    }
-  };
-
-  const handleVerifyTEST = async () => {
-    const newExp = exp + initialData[journey].tasks[taskName].exp;
-    const newCountOfEfforts = countOfEfforts + 1;
-    const txCountNow = await provider.getTransactionCount(walletAddress);
-
-    if (txCountNow > firstTxCount) {
-      setfirstTxCount(txCountNow);
-      const response = await updateZKRecord(
-        walletAddress,
-        newExp,
-        newPath,
-        newCountOfEfforts
-      );
-      dispatch(setExp(response.exp));
-      dispatch(setStoredTasks(response.tasks));
-    } else {
-      window.alert("Oopss, you havent done the task!");
     }
   };
 

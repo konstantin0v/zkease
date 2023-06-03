@@ -10,15 +10,15 @@ const postRecord = async (address) => {
     // const response = await fetch(`http://localhost:3003/`, requestOptions);
 
     const response = await fetch(
-      `https://clownfish-app-z2nhn.ondigitalocean.app`,
+      // `https://clownfish-app-z2nhn.ondigitalocean.app`,
+      "https://sea-lion-app-39uur.ondigitalocean.app/",
       requestOptions
     );
-    const data = await response.json();
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.message);
     }
-    console.log("Response from server: : ", data);
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);

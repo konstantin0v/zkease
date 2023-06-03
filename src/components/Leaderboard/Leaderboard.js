@@ -11,7 +11,6 @@ export const Leaderboard = () => {
   const { address: walletAddress } = useAccount();
   const { users, allUsers } = useSelector(usersSelector);
   const { exp } = useSelector(zkRecordSelector);
-  const { records } = allUsers;
   return (
     <div className={styles.leaderboard}>
       <h2 className={styles.subtitle}>Leaderboard</h2>
@@ -51,9 +50,8 @@ export const Leaderboard = () => {
             className={clsx(styles.row, styles.row__wallet, styles.walletfix)}
           >
             <li className={styles.row__pos}>
-              {(records &&
-                records.findIndex((obj) => obj.address === walletAddress) +
-                  1) ||
+              {(allUsers &&
+                allUsers.findIndex((i) => i === walletAddress) + 1) ||
                 " "}
             </li>
             <li className={styles.row__name}>

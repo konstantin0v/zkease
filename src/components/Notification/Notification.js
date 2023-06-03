@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import styles from './Notification.module.css';
-import { Button, Close, Error, Success } from '@/components';
+import clsx from "clsx";
+import styles from "./Notification.module.css";
+import { Button, Close, Error, Success } from "@/components";
 
 export const Notification = ({
   disabled = false,
@@ -16,11 +16,11 @@ export const Notification = ({
       style={style}
       {...rest}
     >
-      {type === 'error' && (
+      {type === "error" && (
         <div className={styles.wrapper}>
           <div className={styles.top}>
             <Error />
-            <Button type="svg">
+            <Button text="svg" onClick={onClick}>
               <Close />
             </Button>
           </div>
@@ -30,7 +30,7 @@ export const Notification = ({
           </h4>
         </div>
       )}
-      {type === 'success' && (
+      {type === "success" && (
         <div className={styles.wrapper}>
           <div className={styles.top}>
             <Success />

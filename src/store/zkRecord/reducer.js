@@ -5,6 +5,7 @@ const initialState = {
   exp: undefined,
   storedTasks: {},
   nfts: {},
+  jwt: undefined,
 };
 
 export const zkRecordSlice = createSlice({
@@ -23,10 +24,13 @@ export const zkRecordSlice = createSlice({
     setNfts: (state, action) => {
       state.nfts = action.payload;
     },
+    setJwt: (state, action) => {
+      state.jwt = action.payload;
+    },
   },
 });
 
-export const { setAddress, setExp, setStoredTasks, setNfts } =
+export const { setAddress, setExp, setStoredTasks, setNfts, setJwt } =
   zkRecordSlice.actions;
 
 export const zkRecordSelector = (state) => state.zkRecord;
