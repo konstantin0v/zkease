@@ -1,6 +1,10 @@
+import LandingButton from "@/components/LandingButton/LandingButton";
 const Landing = () => {
     return ( 
-        <div>I'm Landing</div> 
+        <div> 
+            <LandingButton size="large" type="empty">Lable</LandingButton>
+        </div> 
+        
     );
 }
  
