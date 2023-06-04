@@ -8,7 +8,7 @@ const Sidebar = ({ ...props }) => {
   const { journey } = router.query;
   return (
     <>
-      {!currentPage.includes('task') && (
+      {!currentPage.includes('task') && !currentPage.includes('landing') &&(
         <div {...props}>
           <Progress journey={journey} />
           <Achieves />

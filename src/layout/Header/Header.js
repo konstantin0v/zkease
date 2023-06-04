@@ -6,12 +6,16 @@ import { XpSvg } from "@/components";
 import { useSelector } from "react-redux";
 import { zkRecordSelector } from "@/store/zkRecord/reducer";
 import { useAccount } from "wagmi";
+import { useRouter } from "next/router";
 
 const Header = ({ ...props }) => {
   const { exp } = useSelector(zkRecordSelector);
   const { address: walletAddress } = useAccount();
+  const router = useRouter();
+  const currentPage = router.pathname;
 
-  return (
+  return (<> 
+  {!currentPage.includes('landing') &&(
     <header {...props}>
       <ul className={styles.top__menu}>
         <li>
@@ -53,7 +57,9 @@ const Header = ({ ...props }) => {
           }}
         />
       </div>
-    </header>
+    </header>)
+    }
+    </>
   );
 };
 
