@@ -1,10 +1,9 @@
 import LandingButton from "@/components/LandingButton/LandingButton";
+import Hero from "@/components/Hero/Hero"
+
 const Landing = () => {
     return ( 
-        <div> 
-            <LandingButton size="large" type="empty">Lable</LandingButton>
-        </div> 
-        
+        <Hero />
     );
 }
  
