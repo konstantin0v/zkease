@@ -1,0 +1,74 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  border: 1px solid #36363a;
+  border-radius: 16px;
+  background: url('/image/banner-zk.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.title {
+  margin-top: 40px;
+  width: 336px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.logo {
+  position: relative;
+  width: 75px;
+  height: 15px;
+}
+.descr {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #a4a4a6;
+  margin-top: 8px;
+  width: 300px;
+}
+.link {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 510px;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #e0e2fb;
+  background: #626ee9;
+  width: 120px;
+  height: 36px;
+}
+.submit {
+  background: #121218;
+  padding: 0 24px;
+}
+.submit .title {
+  margin-top: 96px;
+  width: 100%;
+}
+.submit .descr {
+  margin-right: 0;
+  width: 100%;
+}
+.submit .link {
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  gap: 8px;
+  width: 142px;
+  height: 20px;
+  padding: 0;
+  margin: 16px 0 0 4px;
+  justify-content: start;
+  fill: #a4a4a6;
+}

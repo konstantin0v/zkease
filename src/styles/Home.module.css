@@ -1,9 +1,19 @@
 .banner {
-    display: flex;
-    background: #212121;
-    border-radius: 16px;
-    justify-content: center;
-    align-items: center;
-    height: 284px;
-  }
-  
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 2.0207fr 1fr;
+}
+.box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.title {
+  font-weight: 510;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 32px 0 16px;
+}
+.wrapper {
+  margin: 8px 24px 64px 292px;
+}

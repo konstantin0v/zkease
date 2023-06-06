@@ -1,0 +1,90 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  background: #1b1b21;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  /* margin: 10px; */
+}
+
+.card:hover {
+  background-color: #25252a;
+  border: 1px solid #36363a;
+}
+
+.card:active {
+  background: #1b1b21;
+  border: 1px solid #36363a;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardContent {
+  font-family: 'SF Pro', sans-serif;
+  font-size: 18px;
+  font-weight: 510;
+  font-style: normal;
+  line-height: 22px;
+  height: 88px;
+  color: var(--grey-800);
+  width: 100%;
+}
+
+.cardContentSidebar {
+  flex: 1;
+}
+.cardSidebar {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardFooterStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectNameContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 2px 0px;
+  gap: 6px;
+  height: 28px;
+  user-select: none;
+}
+
+.projectNameLogo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.projectNameText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'SF Pro', sans-serif;
+  font-size: 12px;
+  font-weight: 590;
+  font-style: normal;
+  line-height: 16px;
+  color: var(--grey-700);
+}

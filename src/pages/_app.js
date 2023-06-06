@@ -1,13 +1,20 @@
 import Layout from "@/layout/Layout";
 import "@/styles/globals.css";
-import { WagmiConfig } from "wagmi";
+import { WagmiConfig, sepolia } from "wagmi";
 import { chains, wagmiClient } from "../services/wagmiConfig";
-import { RainbowKitProvider, AvatarComponent, darkTheme, midnightTheme } from "@rainbow-me/rainbowkit";
+import {
+  RainbowKitProvider,
+  AvatarComponent,
+  darkTheme,
+  midnightTheme,
+} from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 //import { generateColorFromAddress } from './utils';
-import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
 import { Provider } from "react-redux";
-import store from "@/store";
+import { store, persistor } from "@/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { zkSync } from "@wagmi/chains";
 
 const CustomAvatar = ({ address }) => {
   return address ? (
@@ -15,34 +22,36 @@ const CustomAvatar = ({ address }) => {
   ) : (
     <div
       style={{
-        backgroundColor: 'red',
+        backgroundColor: "red",
         borderRadius: 999,
-        height: '80px',
-        width: '80px',
+        height: "80px",
+        width: "80px",
       }}
     >
-      "no pic"
+      no pic
     </div>
   );
 };
 
-
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider 
-      chains={chains} 
-      avatar={CustomAvatar}
-      theme={darkTheme()}
+      <RainbowKitProvider
+        chains={chains}
+        initialChain={zkSync}
+        avatar={CustomAvatar}
+        theme={darkTheme({
+          accentColor: "#626ee9",
+        })}
       >
         <Provider store={store}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <PersistGate loading={null} persistor={persistor}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </PersistGate>
         </Provider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
 }
-
-

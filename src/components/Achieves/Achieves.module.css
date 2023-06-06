@@ -1,0 +1,65 @@
+.achievements {
+  border-radius: 12px;
+  padding: 12px;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  background-color: #25252a;
+}
+.achieves__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.title {
+  font-weight: 510;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+.box {
+  width: 100%;
+  overflow-x: auto; /* Добавлено overflow-x для .box */
+  white-space: nowrap; /* Добавлено white-space для .box */
+}
+.box__item {
+  display: inline-flex; /* Заменено на inline-flex */
+  flex-wrap: nowrap;
+  position: relative;
+  height: 64px;
+  width: 64px;
+  margin-right: 12px; /* Перенесено с .nft */
+  margin-bottom: 2px;
+}
+.box__item:last-child {
+  margin-right: 0;
+}
+.nft {
+  object-fit: contain;
+}
+/* Стили полосы скролла */
+.box::-webkit-scrollbar {
+  height: 6px;
+}
+
+.box::-webkit-scrollbar-thumb {
+  background-color: #33333a; /* Цвет полоски скролла */
+  border-radius: 4px; /* Закругление углов полоски скролла */
+}
+
+.box::-webkit-scrollbar-track {
+  background-color: #25252a; /* Цвет трека полоски скролла */
+}
+
+.arrow__svg {
+  fill: rgba(255, 255, 255, 0.8);
+}
+.arrow__svg:hover {
+  fill: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
