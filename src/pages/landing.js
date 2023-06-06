@@ -8,7 +8,7 @@ const Landing = () => {
     return ( 
         <>
             <Hero />
-            <div className={styles.landing}>
+            <div className={styles.container}>
                 
                 <Features />
                 <div className={styles.bigTextContainer}>
