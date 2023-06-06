@@ -26,7 +26,7 @@ const Features = () => {
                 </div>
 
                 <div className={styles.snippedImage}>
-                    <Image src={rightSnipped} width={500} height={390}/>
+                    <Image src={rightSnipped} width={500} height={390} alt="Snipped of guides"/>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@ const Features = () => {
                 </div>
 
                 <div className={styles.snippedImage}>
-                    <Image src={leftSnipped} width={500} height={390}/>
+                    <Image src={leftSnipped} width={500} height={390} alt="Snipped of iframe interface for tasks"/>
                 </div>
             </div>
         </div>
