@@ -24,8 +24,6 @@ const Hero = () => {
             <div className={styles.buttons}>
                 <div className={styles.rightButton}><LandingButton size="large" >Launch App</LandingButton></div>
                 <div><LandingButton size="large" type="empty">Contact Us</LandingButton></div>
-                
-                
             </div>
         </div>
 
