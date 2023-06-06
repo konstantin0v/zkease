@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bigTextContainer{
+    margin-top: 117px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 497.5px;
+    padding-right: 497.5px; */
+    width: 800px;
+    height: 371px;
+    text-align: start;
+}
+
+.bigText{
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.9);
+}
