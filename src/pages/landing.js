@@ -12,7 +12,7 @@ const Landing = () => {
                 
                 <Features />
                 <div className={styles.bigTextContainer}>
-                    <p className={styles.bigText}>We aim to help onboard people into the ZkSync ecosystem. You can engage with verified* ecosystem dApps in a logical and structured manner. We clarify what's happening: our guides for each Journey task ensure you complete everything correctly.</p>
+                    <p className={styles.bigText}>We aim to help onboard people into the ZkSync ecosystem. You can engage with verified&#10033; ecosystem dApps in a logical and structured manner. We clarify what's happening: our guides for each Journey task ensure you complete everything correctly.</p>
                 </div>
             </div>
         </>
