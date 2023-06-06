@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
-
 .heroContainer{
     display: flex;
     justify-content: center;
@@ -87,4 +86,12 @@
     width: 1140px;
     position: relative;
     margin-bottom: 128px;
+}
+
+.rightButton{
+    margin-right: 12px;
+}
+
+.buttons{
+    display: flex;
 }

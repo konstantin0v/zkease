@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
+.mainContainer{
+    margin-top: 256px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 1171px; */
+}
+
+.firstHeaderText{
+    font-family: 'Shadows Into Light Two';
+    color: #626EE9;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.secondHeaderText{
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 53px;
+    width: 800px;
+    height: 128px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+.paragraphText{
+    height: 66px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-family: 'SF Pro';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.snippets{
+    display: flex;
+    width: 1140px;
+    height: 600px;
+    justify-content: space-between;
+    margin-top: 64px;
+}
+
+.snippedContainer{
+    background: linear-gradient(180deg, rgba(28, 28, 42, 0) 0%, rgba(98, 110, 233, 0.2) 100%), #1C1C2A;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;     
+    align-items: center;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 0px;
+}
+
+.snippedTextContainer{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    height: 171px;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.snippedPurpleText{
+    font-family: 'Shadows Into Light Two';
+    color: #626EE9;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.snippedStrongText{
+    font-family: 'SF Pro';
+    font-weight: 400;
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.snippedText{
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.snippedImage{
+    margin-bottom: 0px;
+    height: 390px;
+}
