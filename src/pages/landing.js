@@ -1,6 +1,7 @@
 import LandingButton from "@/components/LandingButton/LandingButton";
 import Hero from "@/components/Hero/Hero"
 import Features from "@/components/Features/Features";
+import styles from "../styles/Landing.module.css"
 
 
 const Landing = () => {
