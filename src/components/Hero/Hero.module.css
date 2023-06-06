@@ -88,3 +88,11 @@
     position: relative;
     margin-bottom: 128px;
 }
+
+.rightButton{
+    margin-right: 12px;
+}
+
+.buttons{
+    display: flex;
+}

@@ -3,7 +3,7 @@ import logo from "../../../public/image/logoZkSync.png"
 import Image from "next/image";
 import LandingButton from "../LandingButton/LandingButton";
 import starts from "../../../public/image/illustration_64_stars.png"
-import snippet from "../../../public/image/Snippet.png"
+import snippet from "../../../public/image/1.png"
 
 const Hero = () => {
     return ( 
@@ -22,8 +22,10 @@ const Hero = () => {
                 <p className={styles.paragraphText}>Discover and learn about zkSync projects with ease, all in one place.</p>
             </div>
             <div className={styles.buttons}>
-                <LandingButton size="large">Launch App</LandingButton>
-                <LandingButton size="large" type="empty">Contact Us</LandingButton>
+                <div className={styles.rightButton}><LandingButton size="large" >Launch App</LandingButton></div>
+                <div><LandingButton size="large" type="empty">Contact Us</LandingButton></div>
+                
+                
             </div>
         </div>
 
