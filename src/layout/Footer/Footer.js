@@ -13,10 +13,11 @@ import {
 const Footer = ({ ...props }) => {
   const router = useRouter();
   const index = router.pathname === '/';
+  const currentPage = router.pathname;
 
   return (
     <>
-      {index && (
+      {index || currentPage.includes('landing') ?(
         <footer {...props}>
           <div className={styles.top}>
             <Link href="/" className={styles.logo}>
@@ -78,7 +79,7 @@ const Footer = ({ ...props }) => {
             </ul>
           </div>
         </footer>
-      )}
+      ) : <></>}
     </>
   );
 };
