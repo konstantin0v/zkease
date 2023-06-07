@@ -1,0 +1,31 @@
+.mainContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 128px;
+    padding-left: 327.5px;
+    padding-right: 327.5px;
+    padding-bottom: 128px;
+    background: radial-gradient(50.1% 50.1% at 50% 0%, #626EE9 0%, rgba(104, 78, 180, 0.745676) 15.28%, rgba(18, 18, 24, 0) 80.84%);
+}
+
+.textContainner{
+    text-align: center;
+}
+
+.headContainer{
+    font-family: 'SF Pro';
+    font-weight: 400;
+    font-size: 53px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+.paragraph{
+    font-family: 'SF Pro';
+    font-weight: 400;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 24px;
+}

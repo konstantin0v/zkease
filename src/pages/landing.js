@@ -3,6 +3,7 @@ import Hero from "@/components/Hero/Hero"
 import Features from "@/components/Features/Features";
 import styles from "../styles/Landing.module.css"
 import Gamification from "@/components/Gamification/Gamification";
+import CallToAction from "@/components/CallToAction/CallToAction";
 
 
 const Landing = () => {
@@ -16,6 +17,7 @@ const Landing = () => {
                 </div>
             </div>
             <Gamification />
+            <CallToAction />
         </>
     );
 }

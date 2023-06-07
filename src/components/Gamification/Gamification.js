@@ -14,7 +14,7 @@ const Gamification = () => {
                     <p className={styles.paragraph}>We make your transition smooth with a logical and structured</p>
                     <p className={styles.paragraph}>approach to verified ecosystem dApps.</p>
                 </div>
-                <Image src={gamification} height={360} width={1140}/>
+                <Image src={gamification} height={360} width={1140} alt="Gamification picture"/>
             </div>
 
             <div className={styles.cardsContainer}>
@@ -24,7 +24,7 @@ const Gamification = () => {
                         <p className={styles.paragraph}>We make your transition smooth with a logical and </p>
                         <p className={styles.paragraph}>structured approach to verified ecosystem dApps.</p>
                     </div>
-                    <Image src={security} height={320} width={479}/>
+                    <Image src={security} height={320} width={479} alt="Security picture"/>
                 </div>
 
                 <div className={styles.convinience}>
@@ -33,7 +33,7 @@ const Gamification = () => {
                         <p className={styles.paragraph}>We make your transition smooth with a logical and</p>
                         <p className={styles.paragraph}>structured approach to verified ecosystem dApps.</p>
                     </div>
-                    <Image src={convinience} height={360} width={544}/>
+                    <Image src={convinience} height={360} width={544} alt="Convinience picture"/>
                 </div>
             </div>
         </div> 
