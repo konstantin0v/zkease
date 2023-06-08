@@ -5,7 +5,6 @@ import styles from "../styles/Landing.module.css"
 import Gamification from "@/components/Gamification/Gamification";
 import CallToAction from "@/components/CallToAction/CallToAction";
 
-
 const Landing = () => {
     return ( 
         <>
@@ -18,6 +17,8 @@ const Landing = () => {
             </div>
             <Gamification />
             <CallToAction />
+           
+            
         </>
     );
 }
