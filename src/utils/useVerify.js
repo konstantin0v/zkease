@@ -40,7 +40,6 @@ export const useVerify = (journey, taskName) => {
     })();
   }, [walletAddress]);
 
-  console.log("txCOUnt", firstTxCount);
   const handleVerify = async () => {
     try {
       setLoder(true);
@@ -48,7 +47,6 @@ export const useVerify = (journey, taskName) => {
       const newExp = exp + initialData[journey].tasks[taskName].exp;
       const newCountOfEfforts = countOfEfforts + 1;
       const txCountNow = await provider.getTransactionCount(walletAddress);
-      console.log("next txCOUnt", txCountNow);
       if (firstTxCount && txCountNow > firstTxCount) {
         setfirstTxCount(txCountNow);
         const response = await updateZKRecord(

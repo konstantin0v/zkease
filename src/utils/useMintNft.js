@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 import { checkNetwork } from "@/utils/checkNetwork";
 import useNftContract from "@/web3/useNftContract";
+import { initialDataSelector } from "@/store/initialData/reducer";
 
 const useMintNft = (setModalActive) => {
   const [loader, setLoader] = useState(false);
@@ -13,6 +14,7 @@ const useMintNft = (setModalActive) => {
   const dispatch = useDispatch();
 
   const { nfts, jwt } = useSelector(zkRecordSelector);
+  const { nftPrice, firstNftPrice } = useSelector(initialDataSelector);
   let nftCount = 0;
   if (nfts) {
     nftCount = Object.entries(nfts).filter(([_, value]) => value !== 0).length;
@@ -25,10 +27,7 @@ const useMintNft = (setModalActive) => {
       await checkNetwork();
       const level = nftCount + 1;
       const journeyName = nftCount === 4 ? "journeyEnd" : `journey${nftCount}`;
-      const valueNFT =
-        level === 1
-          ? ethers.utils.parseEther("0.0018")
-          : ethers.utils.parseEther("0.0008");
+      const valueNFT = level === 1 ? firstNftPrice : nftPrice;
       const tx = await signedContract.mintNFT(level, {
         value: valueNFT,
       });

@@ -6,6 +6,7 @@ import { initialDataSelector } from "@/store/initialData/reducer";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, TaskCard } from "@/components";
+import { useVerifyAccess } from "@/utils/useVerifyAccess";
 
 export async function getServerSideProps(context) {
   try {
@@ -26,6 +27,8 @@ const JourneyPage = ({ journey }) => {
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);
 
+  const { access } = useVerifyAccess(journey);
+
   useEffect(() => {
     if (updateCount >= 2 && walletAddress !== undefined) {
       router.push("/");
@@ -38,7 +41,7 @@ const JourneyPage = ({ journey }) => {
 
   return (
     <div className={styles.wrapper}>
-      {initialData && (
+      {initialData && access ? (
         <div>
           <Link className={styles.back} href="/">
             <ArrowRight className={styles.back__svg} />
@@ -58,6 +61,8 @@ const JourneyPage = ({ journey }) => {
               ))) || <p>No tasks found</p>}
           </div>
         </div>
+      ) : (
+        <p>You have not minted NFT yet</p>
       )}
     </div>
   );
