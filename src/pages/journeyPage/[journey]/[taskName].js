@@ -12,6 +12,7 @@ import { useAccount } from "wagmi";
 import { useEffect, useState } from "react";
 import { Embedded, TaskAside, TaskSection } from "@/components";
 import { useVerify } from "@/utils/useVerify";
+import { useVerifyAccess } from "@/utils/useVerifyAccess";
 
 export async function getServerSideProps(context) {
   try {
@@ -33,11 +34,8 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   const { exp, storedTasks, nfts, jwt } = useSelector(zkRecordSelector);
   const { initialData, needExp } = useSelector(initialDataSelector);
 
-  const newPath = `tasks.${journey}.${taskName}`;
-  let countOfEfforts = storedTasks?.[journey]?.[taskName];
-  if (!walletAddress) {
-    countOfEfforts = false;
-  }
+  const { access } = useVerifyAccess(journey);
+  console.log("ACCCCC", access);
   const router = useRouter();
   const [updateCount, setUpdateCount] = useState(0);
   useEffect(() => {
@@ -56,6 +54,11 @@ const TaskPage = ({ journey, taskName, ...props }) => {
   );
 
   //  IT MUST BE DELETED BEFORE PRODUCTION
+  const newPath = `tasks.${journey}.${taskName}`;
+  let countOfEfforts = storedTasks?.[journey]?.[taskName];
+  if (!walletAddress) {
+    countOfEfforts = false;
+  }
   const handleVerifyTEST = async () => {
     try {
       const newExp = exp + initialData[journey].tasks[taskName].exp;
@@ -76,7 +79,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
 
   return (
     <>
-      {(initialData && (
+      {(initialData && access && (
         <div className={styles.wrapper}>
           <TaskAside
             initialData={initialData}
@@ -105,7 +108,7 @@ const TaskPage = ({ journey, taskName, ...props }) => {
             taskName={taskName}
           />
         </div>
-      )) || <p>Loading...</p>}
+      )) || <p>You havent minted NFT yet...</p>}
     </>
   );
 };

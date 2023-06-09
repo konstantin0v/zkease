@@ -18,7 +18,7 @@ export const getServerSideProps = async () => {
       "https://sea-lion-app-39uur.ondigitalocean.app/data"
     );
     const { records } = await responseData.json();
-    const { _id, ...serverData } = records[0];
+    const { _id, ...serverData } = records[1];
 
     const bestUsers = users.records.sort((a, b) => b.exp - a.exp).slice(0, 10);
 
@@ -37,7 +37,6 @@ export const getServerSideProps = async () => {
 export default function Home({ bestUsers, serverData, dataUsers, ...props }) {
   const { initialData } = useSelector(initialDataSelector);
   useFetchData(serverData, bestUsers, dataUsers);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.banner}>
