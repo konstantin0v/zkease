@@ -17,22 +17,26 @@ import {
 } from "@/store/zkRecord/reducer";
 import { useAccount } from "wagmi";
 import { useEffect } from "react";
-import { contract } from "@/web3/contractNFT";
+import useNftContract from "@/web3/useNftContract";
 
 export const useFetchData = (serverData, bestUsers, dataUsers) => {
   const dispatch = useDispatch();
   const { address: walletAddress } = useAccount();
+  const { contract } = useNftContract();
+
   useEffect(() => {
     (async () => {
-      const price = (await contract.price()).toNumber();
-      dispatch(setNftPrice(price));
-      const firstPprice = (await contract.priceFirst()).toNumber();
-      dispatch(setFirstNftPrice(firstPprice));
       const needExp = generateSummaryObj(serverData);
       dispatch(setNeedExp(needExp));
       dispatch(setUsers(bestUsers));
       dispatch(setAllUsers(dataUsers));
       dispatch(setInitialData(serverData));
+      if (contract) {
+        const price = Number(await contract.price());
+        dispatch(setNftPrice(price));
+        const firstPprice = Number(await contract.priceFirst());
+        dispatch(setFirstNftPrice(firstPprice));
+      }
     })();
   }, []);
 
@@ -48,9 +52,7 @@ export const useFetchData = (serverData, bestUsers, dataUsers) => {
             dispatch(setNfts(record.nfts));
             dispatch(setJwt(token));
           }
-          // else throw new Error(record.error);
         }
-        // else return null;
       } catch (error) {
         console.error(error);
       }

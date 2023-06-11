@@ -19,7 +19,6 @@ const postRecord = async (address) => {
       throw new Error(error.message);
     }
     const data = await response.json();
-    console.log("Response from server: : ", data);
     return data;
   } catch (error) {
     console.log(error);

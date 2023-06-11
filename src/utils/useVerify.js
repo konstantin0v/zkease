@@ -19,8 +19,8 @@ export const useVerify = (journey, taskName) => {
   const { initialData } = useSelector(initialDataSelector);
 
   const provider = new ethers.providers.JsonRpcProvider(
-    "https://testnet.era.zksync.dev"
-    // "https://mainnet.era.zksync.io"
+    //"https://testnet.era.zksync.dev"
+    "https://mainnet.era.zksync.io"
   );
   const newPath = `tasks.${journey}.${taskName}`;
   let countOfEfforts = storedTasks?.[journey]?.[taskName];

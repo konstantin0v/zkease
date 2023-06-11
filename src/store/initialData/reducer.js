@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   initialData: [],
   needExp: {},
-  nftPrice: Number,
-  firstNftPrice: Number,
+  nftPrice: undefined,
+  firstNftPrice: undefined,
 };
 
 export const initialDataSlice = createSlice({

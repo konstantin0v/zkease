@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
-import styles from './Sidebar.module.css';
-import { Achieves, Leaderboard, Progress } from '@/components';
+import { useRouter } from "next/router";
+import { Achieves, Leaderboard, Progress } from "@/components";
 
 const Sidebar = ({ ...props }) => {
   const router = useRouter();
@@ -8,7 +7,7 @@ const Sidebar = ({ ...props }) => {
   const { journey } = router.query;
   return (
     <>
-      {!currentPage.includes('task') && !currentPage.includes('landing') &&(
+      {!currentPage.includes("task") && currentPage != "/" && (
         <div {...props}>
           <Progress journey={journey} />
           <Achieves />
