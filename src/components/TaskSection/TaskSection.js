@@ -22,7 +22,7 @@ export const TaskSection = ({
   taskName,
   countOfEfforts,
   handleVerify,
-  handleVerifyTEST,
+  // handleVerifyTEST,
   walletAddress,
   notif,
   setNotif,
@@ -103,13 +103,13 @@ export const TaskSection = ({
                   >
                     Verify
                   </Button>
-                  <Button
+                  {/* <Button
                     onClick={handleVerifyTEST}
                     // background={countForStatusVeryf && 'transparent'}
                     // loader={loader}
                   >
                     TEST Verify
-                  </Button>
+                  </Button> */}
                 </>
               ) : (
                 <Button onClick={() => setNotif("")} type="error">

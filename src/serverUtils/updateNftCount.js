@@ -17,7 +17,6 @@ const updateNftCount = async (address, nft, jwt) => {
       }
     );
     const record = await response.json();
-    console.log("Successfully updated document:", record);
     return record;
   } catch (error) {
     console.error("Failed to update document:", error);

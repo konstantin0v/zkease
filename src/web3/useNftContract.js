@@ -7,7 +7,7 @@ import walletProvider from "./walletProvider";
 const useNftContract = () => {
   const [contract, setContract] = useState(null);
   const [signedContract, setSignedContract] = useState(null);
-  const address = "0x0B495069560Bb61be990D7764Ed1453180F077f4";
+  const address = "0x33Df2c97BF96A845FCE52884c726235d5efe5076";
   useEffect(() => {
     const initializeContract = async () => {
       const contractInstance = new ethers.Contract(

@@ -2,12 +2,7 @@ import Layout from "@/layout/Layout";
 import "@/styles/globals.css";
 import { WagmiConfig, sepolia } from "wagmi";
 import { chains, wagmiClient } from "../services/wagmiConfig";
-import {
-  RainbowKitProvider,
-  AvatarComponent,
-  darkTheme,
-  midnightTheme,
-} from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 //import { generateColorFromAddress } from './utils';
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
@@ -46,9 +41,11 @@ export default function App({ Component, pageProps }) {
       >
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            {
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            }
           </PersistGate>
         </Provider>
       </RainbowKitProvider>

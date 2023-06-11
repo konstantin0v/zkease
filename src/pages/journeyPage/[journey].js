@@ -43,7 +43,7 @@ const JourneyPage = ({ journey }) => {
     <div className={styles.wrapper}>
       {initialData && access ? (
         <div>
-          <Link className={styles.back} href="/">
+          <Link className={styles.back} href="/app">
             <ArrowRight className={styles.back__svg} />
             <p className={styles.back__text}>Back</p>
           </Link>

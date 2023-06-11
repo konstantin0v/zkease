@@ -9,7 +9,6 @@ const getRecordByAddress = async (address) => {
     if (response.status !== 200) {
       throw new Error(data.error);
     }
-    console.log("Response from server: : ", data);
     return data.record;
   } catch (error) {
     console.log(error);
